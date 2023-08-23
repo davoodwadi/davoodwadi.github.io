@@ -2,14 +2,21 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "davoodwadi.github.io",
+    "title": "About me",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "I’m a passionate researcher and educator with a focus on Digital Marketing and the application of Artificial Intelligence in Marketing.\nHere you’ll find a glimpse into my journey, research, and teaching experiences.\nI currently teach the following courses: # Courses - MIT’s Applied Data Science Program - HEC Montreal’s MATH60629A - Machine Learning I"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "courses.html",
+    "href": "courses.html",
+    "title": "Courses",
     "section": "",
     "text": "About this site"
   }

@@ -3,12 +3,18 @@ project:
   output-dir: docs
 
 website:
-  title: "davoodwadi.github.io"
+  title: "Davood Wadi"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - text: Courses
+        menu:        
+          - text: MIT ADSP 
+            url: https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making
+
+          - text: MATH60629A 
+            url: courses.qmd
 
 format:
   html:
