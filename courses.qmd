@@ -93,14 +93,10 @@ ISBN: 9780387310732
     + Building C-Ste-Cath, Room Groupe Cholette
 * Time
     + Tuesdays, 3:30 PM - 6:30 PM EDT
-* Final Exam
-    + Dec 14, 2023
-    + 9:00 am - 12:00 pm EDT
-    + Location to be communicated
 :::
 
 ## Evaluations
-### Homework
+### Homework (20%)
 * Due on 24 October 2023
 * Homework assignments are counted for 20% of your final grade.
 * The homework should be done in jupyter notebook [here](MATH60629A_Homework.ipynb) or Google Colab [here](https://colab.research.google.com/github/davoodwadi/MATH60629A.A2023-MACHINE-LEARNING-I/blob/main/MATH60629A_Homework.ipynb).
@@ -115,3 +111,65 @@ ISBN: 9780387310732
         - Please provide your code answers in the code block under each question and verbal answers in text boxes assigned in the notebook (where applicable).
         - Please run the notebook before the submission so that the outputs are displayed.
         - Please make sure that your results are reproducible. You may use random seeds from `random` and `numpy` packages. For `scikit-learn` modules, you may use the `random_state` argument.
+
+### Project (30%)
+The aim of this project is to allow you to learn about machine learning by trying to solve a task with it.
+
+First, select a question that can be answered using machine learning. I expect that your question will be about a model/algorithm or about an application. Then design a study that will try to answer your question. Your study must have an element of novelty. For example the novelty could be an extension or a variation of an existing algorithm or results of an existing method on a new dataset.
+
+Your study should involve reading and understanding some background material. Your study must involve running some experiments. You are free to use (or not) any of the tools or models we have seen in class.
+
+**Study plan**: *(1 upload per group)* Please submit a one-page summary of your proposed research question and study to ZoneCours. I will meet with each group to discuss study plans during the lecture on Week 9. I will send you a schedule the day before. We will probably only have about 15 minutes so please make sure that your study plan is clear and precise. You may also include questions that you would like us to discuss at the end of the document.
+
+**The group report**: *(1 upload per group)* Your report must contain a description of the question you are trying to answer, a clear description of the model/algorithm you are studying, a survey of related work which proper references, an empirical section that reports your results, and a conclusion that summarizes your findings and (if pertinent) highlights possible future directions of investigation. Your report should be no longer than 10 pages in length (plus references) for pairs or 13 pages (plus references) for teams of three.
+
+**The individual report**: *(1 upload per student)* You will also submit a brief individual report (at most one page), which will: (1) Describe the parts of the project you worked on (which machine learning methods you applied, which preprocessing steps you performed on the data, which parts of the term paper you wrote, who you worked with on what parts, etc.) and what parts of the project your teammates worked on. (2) What you learned from the project. The purpose of the individual report is to facilitate fair grading and to allow the instructor to understand well what you learned from the project.
+
+Project Report (30%)
+
+* Clarity/Relevance of problem statement and description of approach: 10%
+* Discussion of relationship to previous work and references: 4%
+* Design and execution of experiments: 10%
+Figures/Tables/Writing: easily readable, properly labeled, * informative: 5%
+* Indiviual report: 1%
+
+#### Timeline
+
+* Team Registration, due: **October 1**. Fill this [form](https://forms.gle/DkNsrh8xpYyU1kAh6).
+* Study plan, due: **October 28** (by the end of the day EDT).
+* Handing in: Through *ZoneCours*
+* Project meeting, **October 31**
+* Project Presentation, due: **December 1**. Upload the PDF of your poster/slides to *ZoneCours*.
+* In-class Presentation, on **December 5**.
+* Final individual report, due: **December 15**, 2023 (by the end of the day EDT).
+    + Handing in: Through *ZoneCours* (per each team member).
+
+
+### Project Presentation (10%)
+Make a poster that describes your project. You can think of a poster as supporting material for your oral presentation (in that way it is similar to slides). It could also follow a similar structure: begin by motivating your work, then (quickly) highlight related work, talk in depth about your solution, then go into results (pictures and tables are good tools for that), finally conclude and perhaps mention one or two ideas for future work.
+
+* Project Presentation (10%)
+    + Clarity of presentation: 3%
+    + Slide or Poster quality: 2%
+    + Correctness: 2%
+    + Answers to questions: 3%
+
+
+
+### Final Exam (30%)
++ Dec 14, 2023
++ 9:00 am - 12:00 pm EDT
++ Location to be communicated
+
+[Past exam - Fall 2018](exam_80629_A18.pdf)
+
+### Capsule Quizzes (10%)
+* In-class quizzes of the capsules
+* Capsule quizzes are counted for 10% of your final grade.
+    + Quiz 0, **TBA**.
+    + Quiz 1, **TBA**.
+    + Quiz 2, **TBA**.
+    + Quiz 3, **TBA**.
+    + Quiz 4, **TBA**.
+    + Quiz 5, **TBA**.
+    + Quiz 6, **TBA**.
