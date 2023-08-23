@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "About me",
+    "title": "Davood Wadi",
     "section": "",
-    "text": "I’m a passionate researcher and educator with a focus on Digital Marketing and the application of Artificial Intelligence in Marketing.\nHere you’ll find a glimpse into my journey, research, and teaching experiences.\nI currently teach the following courses: # Courses - MIT’s Applied Data Science Program - HEC Montreal’s MATH60629A - Machine Learning I"
+    "text": "I’m a researcher and educator with a focus on Digital Marketing and the application of Artificial Intelligence in Marketing.\nI currently teach the following courses:"
   },
   {
     "objectID": "about.html",
@@ -19,5 +19,26 @@
     "title": "Courses",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "index.html#about-this-blog",
+    "href": "index.html#about-this-blog",
+    "title": "Courses",
+    "section": "About this blog",
+    "text": "About this blog\nI currently teach the following courses:"
+  },
+  {
+    "objectID": "index.html#courses",
+    "href": "index.html#courses",
+    "title": "Davood Wadi",
+    "section": "Courses",
+    "text": "Courses\n+ MIT: *Applied Data Science Program*\n+ HEC Montreal: *MATH60629A - Machine Learning I*"
+  },
+  {
+    "objectID": "index.html#experiences",
+    "href": "index.html#experiences",
+    "title": "Davood Wadi",
+    "section": "Experiences",
+    "text": "Experiences\n\nPhD in Marketing - HEC Montreal (Best 2023 Thesis Award Nominee)\nPartner with intelChain.io as AI Scientist"
   }
 ]

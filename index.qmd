@@ -1,12 +1,31 @@
 ---
-title: "About me"
+title: ""
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/davoodwadi
+    - icon: youtube
+      text: YouTube
+      href: https://www.youtube.com/user/davoodwadi
+    # (additional links excluded for brevity)
 ---
 
-I'm a passionate researcher and educator with a focus on Digital Marketing and the application of Artificial Intelligence in Marketing. 
 
-Here you'll find a glimpse into my journey, research, and teaching experiences.
+
+I'm a researcher and educator with a focus on Digital Marketing and the application of Artificial Intelligence in Marketing. 
+
+
 
 I currently teach the following courses:
-# Courses
-- MIT's Applied Data Science Program
-- HEC Montreal's MATH60629A - Machine Learning I
+
+### Courses
++ MIT: *Applied Data Science Program*
++ HEC Montreal: *Machine Learning I* [*(MATH60629A)*](courses.qmd)
+
+## Experiences
+
+* PhD in Marketing - HEC Montreal (*Best 2023 Thesis Award Nominee*)
+* Partner with [intelChain.io](https://intelChain.io) as AI Scientist
