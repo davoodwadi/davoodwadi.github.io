@@ -2,16 +2,16 @@
 title: "MATH60629A - Machine Learning I (Fall 2023)"
 resources:
     - "*.pdf"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: false
+format:
+  html:
+      toc: true
+      toc-depth: 4
 
 ---
-## Course outline
-::: {.callout-note appearance="minimal" collapse=true}
+## Course Information
 ### Contact Information
+::: {.callout-note appearance="minimal" collapse=true}
+
 * **Davood Wadi**
     + Part-time Faculty Lecturer
     + <davood.wadi@hec.ca>
@@ -45,8 +45,8 @@ listing:
         - From 8 am to 12 pm and from 1 pm to 4:30 pm
 :::
 
-::: {.callout-note appearance="minimal" collapse=true}
 ### Bibliographic Sources
+::: {.callout-note appearance="minimal" collapse=true}
 * The Elements of Statistical Learning: Data Mining, Inference, and Prediction
     + [Available online](https://web.stanford.edu/~hastie/Papers/ESLII.pdf)
 
@@ -87,8 +87,8 @@ ISBN: 9780387310732
     + Available at the library
 :::
 
+### Class Information
 ::: {.callout-note appearance="minimal" collapse=false}
-### Class information
 * Location
     + Building C-Ste-Cath, Room Groupe Cholette
 * Time
@@ -98,3 +98,8 @@ ISBN: 9780387310732
     + 9:00 am - 12:00 pm EDT
     + Location to be communicated
 :::
+
+## Evaluations
+### Homework
+* Due on 24 October 2023
+The homework should be done in jupyter notebook [here](MATH60629A_Homework.ipynb) or Google Colab [here](https://colab.research.google.com/github/davoodwadi/MATH60629A.A2023-MACHINE-LEARNING-I/blob/main/MATH60629A_Homework.ipynb).
