@@ -44,3 +44,57 @@ listing:
         - From Monday to Friday
         - From 8 am to 12 pm and from 1 pm to 4:30 pm
 :::
+
+::: {.callout-note appearance="minimal" collapse=true}
+### Bibliographic Sources
+* The Elements of Statistical Learning: Data Mining, Inference, and Prediction
+    + [Available online](https://web.stanford.edu/~hastie/Papers/ESLII.pdf)
+
+ 
+* Goodfellow, Ian . Deep learning , MIT Press
+ISBN: 9780262035613
+    + [Available online](https://www.deeplearningbook.org)
+ 
+* Richard S. Sutton, Andrew G. Barto. A Bradford Book (2017 (in progress)). Reinforcement Learning: An Introduction Hardcover, 2nd edition ed., The MIT Press
+    + [Available online](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0ahUKEwjAx8CEmsLbAhUFjlkKHd3hBnQQFggpMAE&url=http%3A%2F%2Fincompleteideas.net%2Fbook%2Fbookdraft2017nov5.pdf&usg=AOvVaw00kFmqVbFSdkU3PTkJMJrO)
+ 
+* Murphy, Kevin (2012). Machine Learning: A Probabilistic Perspective, MIT Press
+ISBN: 9780262018029
+    + Available at the library
+ 
+* Ricci, Francesco. Recommender systems handbook, Springer
+ISBN: 148997637X
+    + Available at the library
+ 
+* Parsian, Mahmoud (2015). Data algorithms: recipes for scaling up with Hadoop and Spark, O'Reilly Media
+ISBN: 9781491906156
+    + Available at the library
+ 
+* McKinney, Wes. Python for data analysis: data wrangling with Pandas, NumPy, and IPython, O'Reilly Media
+    + Available at the library
+ 
+* Bishop, Christopher (2006). Pattern Recognition and Machine Learning, Springer-Verlag New York
+ISBN: 9780387310732
+    + Available at the library
+ 
+* Leskovec, Jurij. Mining of massive datasets, Cambridge University Press
+    + Available at the library
+ 
+* Grus, Joel. Data science from scratch, O'Reilly Media
+    + Available at the library
+ 
+* Sandy Ryza, Uri Laserson, Sean Owen, Josh Wills (2017). Advanced analytics with Spark: patterns from learning from data at scale, 2nd edition ed., O'Reilly Media
+    + Available at the library
+:::
+
+::: {.callout-note appearance="minimal" collapse=false}
+### Class information
+* Location
+    + Building C-Ste-Cath, Room Groupe Cholette
+* Time
+    + Tuesdays, 3:30 PM - 6:30 PM EDT
+* Final Exam
+    + Dec 14, 2023
+    + 9:00 am - 12:00 pm EDT
+    + Location to be communicated
+:::
