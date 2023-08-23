@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davood Wadi - Courses</title>
+<title>Davood Wadi - MATH60629A - Machine Learning I (Fall 2023)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -59,7 +61,38 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: [],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -112,14 +145,23 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-outline" id="toc-course-outline" class="nav-link active" data-scroll-target="#course-outline">Course outline</a>
+  <ul class="collapse">
+  <li><a href="#contact-information" id="toc-contact-information" class="nav-link" data-scroll-target="#contact-information">Contact Information</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Courses</h1>
+<h1 class="title">MATH60629A - Machine Learning I (Fall 2023)</h1>
 </div>
 
 
@@ -134,11 +176,67 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>About this site</p>
+<section id="course-outline" class="level2">
+<h2 class="anchored" data-anchor-id="course-outline">Course outline</h2>
+<section id="contact-information" class="level3">
+<h3 class="anchored" data-anchor-id="contact-information">Contact Information</h3>
+<ul>
+<li><strong>Davood Wadi</strong>
+<ul>
+<li>Part-time Faculty Lecturer</li>
+<li><a href="mailto:davood.wadi@hec.ca" class="email">davood.wadi@hec.ca</a></li>
+</ul></li>
+<li><strong>Valérie Boucher</strong>
+<ul>
+<li>Assistant to Academic Activities</li>
+<li><a href="mailto:valerie.boucher@hec.ca" class="email">valerie.boucher@hec.ca</a></li>
+<li>514-340-5670</li>
+<li>Office: 4.632</li>
+<li>Availability:
+<ul>
+<li>Monday to Friday</li>
+<li>8:30 a.m. to 12 p.m. and 1 to 4:00 p.m.</li>
+</ul></li>
+</ul></li>
+<li><strong>Antonietta Florio</strong>
+<ul>
+<li>Assistant to Academic Activities</li>
+<li><a href="mailto:antonietta.florio@hec.ca" class="email">antonietta.florio@hec.ca</a></li>
+<li>514-340-6473</li>
+<li>Office: 4.632</li>
+<li>Availability:
+<ul>
+<li>From Monday to Friday</li>
+<li>From 8 am to 12 pm and from 1 pm to 4:30 pm</li>
+</ul></li>
+</ul></li>
+<li><strong>Jennifer Caron</strong>
+<ul>
+<li>Executive Assistant</li>
+<li><a href="mailto:jennifer.caron@hec.ca" class="email">jennifer.caron@hec.ca</a></li>
+<li>514-340-6473</li>
+<li>Office: 4.632</li>
+<li>Availability:
+<ul>
+<li>From Monday to Friday</li>
+<li>From 8 am to 12 pm and from 1 pm to 4:30 pm</li>
+</ul></li>
+</ul></li>
+</ul>
 
 
 
-</main> <!-- /main -->
+</section>
+</section>
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

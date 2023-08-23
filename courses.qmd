@@ -1,5 +1,42 @@
 ---
-title: "Courses"
+title: "MATH60629A - Machine Learning I (Fall 2023)"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: false
 ---
+## Course outline
+### Contact Information
+* **Davood Wadi**
+    + Part-time Faculty Lecturer
+    + <davood.wadi@hec.ca>
 
-About this site
+
+* **Valérie Boucher**
+    + Assistant to Academic Activities
+    + <valerie.boucher@hec.ca>
+    + 514-340-5670
+    + Office: 4.632
+    + Availability: 
+        - Monday to Friday
+        - 8:30 a.m. to 12 p.m. and 1 to 4:00 p.m.
+
+ 
+* **Antonietta Florio**
+    + Assistant to Academic Activities
+    + <antonietta.florio@hec.ca>
+    + 514-340-6473
+    + Office: 4.632
+    + Availability:
+        - From Monday to Friday
+        - From 8 am to 12 pm and from 1 pm to 4:30 pm 
+* **Jennifer Caron**
+    + Executive Assistant
+    + <jennifer.caron@hec.ca>
+    + 514-340-6473
+    + Office: 4.632
+    + Availability:
+        - From Monday to Friday
+        - From 8 am to 12 pm and from 1 pm to 4:30 pm
+
