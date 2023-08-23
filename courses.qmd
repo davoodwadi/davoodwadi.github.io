@@ -1,12 +1,16 @@
 ---
 title: "MATH60629A - Machine Learning I (Fall 2023)"
+resources:
+    - "*.pdf"
 listing:
   contents: posts
   sort: "date desc"
   type: default
   categories: false
+
 ---
 ## Course outline
+::: {.callout-note appearance="minimal" collapse=true}
 ### Contact Information
 * **Davood Wadi**
     + Part-time Faculty Lecturer
@@ -39,4 +43,4 @@ listing:
     + Availability:
         - From Monday to Friday
         - From 8 am to 12 pm and from 1 pm to 4:30 pm
-
+:::
