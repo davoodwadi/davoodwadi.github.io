@@ -26,31 +26,84 @@ format:
 ::: {.callout-note appearance="minimal" collapse="false"}
 
 ### Week 2 - Machine learning fundamentals [[slides]()]
-{{< video https://youtu.be/XHjYLAooCQI
-    title="What is the CERN?"
-    width="400" height="300"
->}}
+
 
 - Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
     + You can skim 5.4 (except 5.4.4) to 5.10.
-- Capsules: [slides]
-    + Learning Problem [14:40]
-    + Types of Experiences [13:15]
-    + A first Supervised Model [8:03]
-    + Model Evaluation [15:26]
-    + Regularization [4:09]
-    + Model Validation [3:08]
-    + Bias / Variance tradeoff [11:50]
+- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
+    1. Learning Problem [14:40]
+    {{< video https://youtu.be/XHjYLAooCQI
+    width="50%"
+    >}}
+    2. Types of Experiences [13:15]
+    {{< video https://youtu.be/bUrw6MWiI7E
+    width="50%"
+    >}}
+    
+    3. A first Supervised Model [8:03]
+    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
+    width="50%"
+    >}}
+    4. Model Evaluation [15:26]
+    {{< video https://youtu.be/jB69v09vrn8
+    width="50%"
+    >}}
+    5. Regularization [4:09]
+    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
+    width="50%"
+    >}}
+    6. Model Validation [3:08]
+    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
+    width="50%"
+    >}}
+    7. Bias / Variance tradeoff [11:50]
+    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
+    width="50%"
+    >}}
 - In-class material:
-    + Summary
-    + Exercises (colab) , answers (colab)
-    + If you do not want to use colab, here are the two files you need to download: 1a) Fundamentals_questions.ipynb AND 2) utilities.py
+
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
+    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
+    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
 
 ### Week 3 - Supervised learning algorithms [[slides]()]
+- References:
 
+    Sections 4.1-4.3, 4.5 of The Elements of Statistical Learning ([available online](https://web.stanford.edu/~hastie/ElemStatLearn/)),
+
+    Sections 3.5 and 4.2 of Machine Learning (K. Murphy)
+- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_supervised.pdf)]
+
+    1. Nearest Neighbor [19:05]
+    {{< video https://youtu.be/wrpB9mxmhJc
+    width="50%"
+    >}}
+    2. Linear Classification [15:26]
+    {{< video https://youtu.be/Kv8Ab2I_7CM
+    width="50%"
+    >}}
+    
+    3. Introduction to Probabilistic Models (for Classification) [11:55]
+    {{< video https://youtu.be/CnJTkeJpJLY
+    width="50%"
+    >}}
+    4. The Naive Bayes Model [24:28]
+    {{< video https://youtu.be/8L2ZM20BdoA
+    width="50%"
+    >}}
+    5. Naive Bayes Example [9:26]
+    {{< video https://youtu.be/xg8wZOr6zrY
+    width="50%"
+    >}}
+    
+- In-class material:
+
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_supervised_summary.pdf)
+    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week3-Supervised/Supervised_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week3-Supervised/Supervised_answers.ipynb)
+    - If you do not want to use colab, here are the two files you need to download: 1a) [Supervised_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week3-Supervised/Supervised_questions.ipynb) AND 2) [utils.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week3-Supervised/utils.py)
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
@@ -60,18 +113,126 @@ format:
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 5 - Neural networks and deep learning [[slides]()]
+- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
+    + You can skim 5.4 (except 5.4.4) to 5.10.
+- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
+    1. Learning Problem [14:40]
+    {{< video https://youtu.be/XHjYLAooCQI
+    width="50%"
+    >}}
+    2. Types of Experiences [13:15]
+    {{< video https://youtu.be/bUrw6MWiI7E
+    width="50%"
+    >}}
+    
+    3. A first Supervised Model [8:03]
+    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
+    width="50%"
+    >}}
+    4. Model Evaluation [15:26]
+    {{< video https://youtu.be/jB69v09vrn8
+    width="50%"
+    >}}
+    5. Regularization [4:09]
+    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
+    width="50%"
+    >}}
+    6. Model Validation [3:08]
+    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
+    width="50%"
+    >}}
+    7. Bias / Variance tradeoff [11:50]
+    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
+    width="50%"
+    >}}
+- In-class material:
 
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
+    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
+    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
 
 ### Week 6 - Recurrent Neural networks and Convolutional neural networks [[slides]()]
+- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
+    + You can skim 5.4 (except 5.4.4) to 5.10.
+- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
+    1. Learning Problem [14:40]
+    {{< video https://youtu.be/XHjYLAooCQI
+    width="50%"
+    >}}
+    2. Types of Experiences [13:15]
+    {{< video https://youtu.be/bUrw6MWiI7E
+    width="50%"
+    >}}
+    
+    3. A first Supervised Model [8:03]
+    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
+    width="50%"
+    >}}
+    4. Model Evaluation [15:26]
+    {{< video https://youtu.be/jB69v09vrn8
+    width="50%"
+    >}}
+    5. Regularization [4:09]
+    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
+    width="50%"
+    >}}
+    6. Model Validation [3:08]
+    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
+    width="50%"
+    >}}
+    7. Bias / Variance tradeoff [11:50]
+    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
+    width="50%"
+    >}}
+- In-class material:
 
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
+    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
+    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 
 ### Week 7 - Unsupervised learning [[slides]()]
+- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
+    + You can skim 5.4 (except 5.4.4) to 5.10.
+- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
+    1. Learning Problem [14:40]
+    {{< video https://youtu.be/XHjYLAooCQI
+    width="50%"
+    >}}
+    2. Types of Experiences [13:15]
+    {{< video https://youtu.be/bUrw6MWiI7E
+    width="50%"
+    >}}
+    
+    3. A first Supervised Model [8:03]
+    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
+    width="50%"
+    >}}
+    4. Model Evaluation [15:26]
+    {{< video https://youtu.be/jB69v09vrn8
+    width="50%"
+    >}}
+    5. Regularization [4:09]
+    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
+    width="50%"
+    >}}
+    6. Model Validation [3:08]
+    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
+    width="50%"
+    >}}
+    7. Bias / Variance tradeoff [11:50]
+    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
+    width="50%"
+    >}}
+- In-class material:
 
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
+    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
+    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
@@ -84,15 +245,127 @@ format:
 
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 10 - Parallel computational paradigms for large-scale data processing
+- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
+    + You can skim 5.4 (except 5.4.4) to 5.10.
+- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
+    1. Learning Problem [14:40]
+    {{< video https://youtu.be/XHjYLAooCQI
+    width="50%"
+    >}}
+    2. Types of Experiences [13:15]
+    {{< video https://youtu.be/bUrw6MWiI7E
+    width="50%"
+    >}}
+    
+    3. A first Supervised Model [8:03]
+    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
+    width="50%"
+    >}}
+    4. Model Evaluation [15:26]
+    {{< video https://youtu.be/jB69v09vrn8
+    width="50%"
+    >}}
+    5. Regularization [4:09]
+    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
+    width="50%"
+    >}}
+    6. Model Validation [3:08]
+    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
+    width="50%"
+    >}}
+    7. Bias / Variance tradeoff [11:50]
+    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
+    width="50%"
+    >}}
+- In-class material:
+
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
+    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
+    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 11 - Recommender systems
+
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 12 - Sequential decision making I
+- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
+    + You can skim 5.4 (except 5.4.4) to 5.10.
+- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
+    1. Learning Problem [14:40]
+    {{< video https://youtu.be/XHjYLAooCQI
+    width="50%"
+    >}}
+    2. Types of Experiences [13:15]
+    {{< video https://youtu.be/bUrw6MWiI7E
+    width="50%"
+    >}}
+    
+    3. A first Supervised Model [8:03]
+    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
+    width="50%"
+    >}}
+    4. Model Evaluation [15:26]
+    {{< video https://youtu.be/jB69v09vrn8
+    width="50%"
+    >}}
+    5. Regularization [4:09]
+    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
+    width="50%"
+    >}}
+    6. Model Validation [3:08]
+    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
+    width="50%"
+    >}}
+    7. Bias / Variance tradeoff [11:50]
+    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
+    width="50%"
+    >}}
+- In-class material:
+
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
+    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
+    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 13 - Sequential decision making II
+- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
+    + You can skim 5.4 (except 5.4.4) to 5.10.
+- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
+    1. Learning Problem [14:40]
+    {{< video https://youtu.be/XHjYLAooCQI
+    width="50%"
+    >}}
+    2. Types of Experiences [13:15]
+    {{< video https://youtu.be/bUrw6MWiI7E
+    width="50%"
+    >}}
+    
+    3. A first Supervised Model [8:03]
+    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
+    width="50%"
+    >}}
+    4. Model Evaluation [15:26]
+    {{< video https://youtu.be/jB69v09vrn8
+    width="50%"
+    >}}
+    5. Regularization [4:09]
+    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
+    width="50%"
+    >}}
+    6. Model Validation [3:08]
+    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
+    width="50%"
+    >}}
+    7. Bias / Variance tradeoff [11:50]
+    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
+    width="50%"
+    >}}
+- In-class material:
+
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
+    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
+    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
