@@ -9,6 +9,9 @@ format:
 
 ---
 ## Course Information
+
+[Session Materials](sessions.qmd)
+
 ### Contact Information
 ::: {.callout-note appearance="minimal" collapse=true}
 

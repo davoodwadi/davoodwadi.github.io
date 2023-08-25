@@ -1,0 +1,100 @@
+---
+title: "MATH60629A - Machine Learning I (Fall 2023)"
+resources:
+    - "*.pdf"
+format:
+  html:
+      toc: true
+      toc-depth: 4
+
+---
+
+## Session Materials
+
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 1 - Class introduction and math review [[slides](w1/slides_intro.pdf)]
+
+
+- Required reading: [Prologue to The Master Algorithm](http://homes.cs.washington.edu/~pedrod/Prologue.pdf)
+
+- Suggested reading: Chapter 1 of [ESL](https://web.stanford.edu/~hastie/Papers/ESLII.pdf)
+
+- Math review (if needed): have a look at the [resources page](https://www.cs.toronto.edu/~lcharlin/courses/60629/math_resources.html).
+:::
+
+
+::: {.callout-note appearance="minimal" collapse="false"}
+
+### Week 2 - Machine learning fundamentals [[slides]()]
+{{< video https://youtu.be/XHjYLAooCQI
+    title="What is the CERN?"
+    width="400" height="300"
+>}}
+
+- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
+    + You can skim 5.4 (except 5.4.4) to 5.10.
+- Capsules: [slides]
+    + Learning Problem [14:40]
+    + Types of Experiences [13:15]
+    + A first Supervised Model [8:03]
+    + Model Evaluation [15:26]
+    + Regularization [4:09]
+    + Model Validation [3:08]
+    + Bias / Variance tradeoff [11:50]
+- In-class material:
+    + Summary
+    + Exercises (colab) , answers (colab)
+    + If you do not want to use colab, here are the two files you need to download: 1a) Fundamentals_questions.ipynb AND 2) utilities.py
+:::
+
+::: {.callout-note appearance="minimal" collapse="false"}
+
+### Week 3 - Supervised learning algorithms [[slides]()]
+
+:::
+
+::: {.callout-note appearance="minimal" collapse="false"}
+
+### Week 4 - Python for scientific computations and machine learning [[Practical Session]()]
+
+:::
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 5 - Neural networks and deep learning [[slides]()]
+
+:::
+
+::: {.callout-note appearance="minimal" collapse="false"}
+
+### Week 6 - Recurrent Neural networks and Convolutional neural networks [[slides]()]
+
+:::
+::: {.callout-note appearance="minimal" collapse="false"}
+
+### Week 7 - Unsupervised learning [[slides]()]
+
+:::
+
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 8 - Reading week (no class) 
+:::
+
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 9 - Project team meetings
+:::
+
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 10 - Parallel computational paradigms for large-scale data processing
+:::
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 11 - Recommender systems
+:::
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 12 - Sequential decision making I
+:::
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 13 - Sequential decision making II
+:::
+
+::: {.callout-note appearance="minimal" collapse="false"}
+### Week 14 - Class project presentations
+:::
