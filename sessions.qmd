@@ -128,47 +128,32 @@ format:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rnn-cnnSummary.pdf)
     - Exercises RNNs ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/RNNs_Questions.ipynb)), answers ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/RNNs_Answers.ipynb))
     - Exercises CNNs ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/CNNs_Questions.ipynb)), answers ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/CNNs_Answers.ipynb))
+
+**Attention and Transformers [Optional]**
+
+* Capsules: [[Slides](w6/slides_transformers.pdf)]
+    1. [Transformers: Application [5:57]](https://youtu.be/K71RYvVwjSw) 
+    2. [History of Transformers and Attention Layers [6:01]](https://youtu.be/ef07hT1Nm_0)
+    3. [Word and Position Encoding [11:46]](https://youtu.be/hWyf21Dgujo)
+    4. [Self-Attention Layers [9:07]](https://youtu.be/hR0V4KETjh0)
+    5. [Multi Head Attention and Visual Transformers [4:59]](https://youtu.be/3ROYpukle44)
 :::
-::: {.callout-note appearance="minimal" collapse="true"}
+::: {.callout-note appearance="minimal" collapse="false"}
 
-### Week 7 - Unsupervised learning [[slides]()]
-- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
-    + You can skim 5.4 (except 5.4.4) to 5.10.
-- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
-    1. Learning Problem [14:40]
-    {{< video https://youtu.be/XHjYLAooCQI
-    width="50%"
-    >}}
-    2. Types of Experiences [13:15]
-    {{< video https://youtu.be/bUrw6MWiI7E
-    width="50%"
-    >}}
-    
-    3. A first Supervised Model [8:03]
-    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
-    width="50%"
-    >}}
-    4. Model Evaluation [15:26]
-    {{< video https://youtu.be/jB69v09vrn8
-    width="50%"
-    >}}
-    5. Regularization [4:09]
-    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
-    width="50%"
-    >}}
-    6. Model Validation [3:08]
-    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
-    width="50%"
-    >}}
-    7. Bias / Variance tradeoff [11:50]
-    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
-    width="50%"
-    >}}
-- In-class material:
+### Week 7 - Unsupervised learning
+* Required reading: 
 
-    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
-    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
-    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
+    Section 14.3 (skip 14.3.5 and 14.3.12) of the Elements of Statistical Learning.
+
+* Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_unsupervised.pdf)]
+
+    1. [Introduction to unsupervised learning [8:17]](https://youtu.be/z_PcTBDHvOs)
+    2. [K-means clustering [41:58]](https://youtu.be/9EFWKAQ3TSs) (there's a natural break at 22:28)
+    3. [GMMs for clustering [17:52]](https://youtu.be/OyK4tX2hjMc)
+    4. [Beyond Clustering [14:42]](https://youtu.be/zVoi--FTiYk)
+* In-class material:
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slidesUnsupervised-summary.pdf)
+    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week7-Unsupervised/Unsupervised_questions.ipynb)), answers ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week7-Unsupervised/Unsupervised_answers.ipynb))
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
@@ -179,129 +164,56 @@ format:
 ### Week 9 - Project team meetings
 :::
 
-::: {.callout-note appearance="minimal" collapse="true"}
+::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 10 - Parallel computational paradigms for large-scale data processing
-- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
-    + You can skim 5.4 (except 5.4.4) to 5.10.
-- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
-    1. Learning Problem [14:40]
-    {{< video https://youtu.be/XHjYLAooCQI
-    width="50%"
-    >}}
-    2. Types of Experiences [13:15]
-    {{< video https://youtu.be/bUrw6MWiI7E
-    width="50%"
-    >}}
-    
-    3. A first Supervised Model [8:03]
-    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
-    width="50%"
-    >}}
-    4. Model Evaluation [15:26]
-    {{< video https://youtu.be/jB69v09vrn8
-    width="50%"
-    >}}
-    5. Regularization [4:09]
-    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
-    width="50%"
-    >}}
-    6. Model Validation [3:08]
-    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
-    width="50%"
-    >}}
-    7. Bias / Variance tradeoff [11:50]
-    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
-    width="50%"
-    >}}
-- In-class material:
+- Capsules: [[Slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_largeScale22.pdf)]
+    1. [Intro. to Distributed Computing for ML [19:35]](https://youtu.be/CtYOBS9pDvg)
+    2. [MapReduce [17:41]](https://youtu.be/U3FLRYH3R5Q)
+    3. [Spark [17:37]](https://www.youtube.com/watch?v=4gOdejqyHng)
 
-    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
-    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
-    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
+- [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/summary-midterm.pdf)
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 11 - Recommender systems
+* **Required** preparation for the case: 
 
+    [Case Presentation and class execution](https://www.cs.toronto.edu/~lcharlin/courses/60629/case_Decathlon-preparation.pdf) (answer to Question 1 must be submitted by the 13 at the latest)
+
+* [Class slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/case_Decathlon-diapos.pdf)
 :::
-::: {.callout-note appearance="minimal" collapse="true"}
+::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 12 - Sequential decision making I
-- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
-    + You can skim 5.4 (except 5.4.4) to 5.10.
-- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
-    1. Learning Problem [14:40]
-    {{< video https://youtu.be/XHjYLAooCQI
-    width="50%"
-    >}}
-    2. Types of Experiences [13:15]
-    {{< video https://youtu.be/bUrw6MWiI7E
-    width="50%"
-    >}}
+* Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl.pdf)]
+    1. [Motivating RL [8:22]](https://youtu.be/V2WrKWyiPoQ)
+    2. [Planning with MDPs [12:16]](https://youtu.be/FwQQCSL5I_Y)
+    3. [MDP objective [14:16]](https://youtu.be/3vX-J61A8NQ)
+    4. [Algorithms for solving MDPs [17:51]](https://youtu.be/HBTyOjt4QBk)
     
-    3. A first Supervised Model [8:03]
-    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
-    width="50%"
-    >}}
-    4. Model Evaluation [15:26]
-    {{< video https://youtu.be/jB69v09vrn8
-    width="50%"
-    >}}
-    5. Regularization [4:09]
-    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
-    width="50%"
-    >}}
-    6. Model Validation [3:08]
-    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
-    width="50%"
-    >}}
-    7. Bias / Variance tradeoff [11:50]
-    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
-    width="50%"
-    >}}
-- In-class material:
+    *Note*: In this capsule, there is a mistake in the second equation of the policy iteration algorithm (the transition should be given a and not π(s)), the slides have been corrected (see slides 47 and 48)
 
-    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
-    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
-    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
+* *Optional*: [Demo of the policy iteration algorithm](https://www.cs.toronto.edu/~lcharlin/courses/60629/reinforcejs/gridworld_dp.html) (from Andrej Karpathy)
+
+* In-class material:
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl-summary.pdf)
+    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_question.ipynb)), solutions ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_solution.ipynb))
 :::
-::: {.callout-note appearance="minimal" collapse="true"}
+::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 13 - Sequential decision making II
-- Required readings: Chapter 5 of Deep Learning ([the book](http://www.deeplearningbook.org/contents/ml.html)). 
-    + You can skim 5.4 (except 5.4.4) to 5.10.
-- Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals.pdf)]
-    1. Learning Problem [14:40]
-    {{< video https://youtu.be/XHjYLAooCQI
-    width="50%"
-    >}}
-    2. Types of Experiences [13:15]
-    {{< video https://youtu.be/bUrw6MWiI7E
-    width="50%"
-    >}}
-    
-    3. A first Supervised Model [8:03]
-    {{< video https://www.youtube.com/watch?v=fu8IBbPREBg
-    width="50%"
-    >}}
-    4. Model Evaluation [15:26]
-    {{< video https://youtu.be/jB69v09vrn8
-    width="50%"
-    >}}
-    5. Regularization [4:09]
-    {{< video https://www.youtube.com/watch?v=SFzhFrWOTEI
-    width="50%"
-    >}}
-    6. Model Validation [3:08]
-    {{< video https://www.youtube.com/watch?v=WoFGyFvyoeo
-    width="50%"
-    >}}
-    7. Bias / Variance tradeoff [11:50]
-    {{< video https://www.youtube.com/watch?v=L5Hehy9s8SI
-    width="50%"
-    >}}
-- In-class material:
+* Capsules: [[slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl2.pdf)]
+    1. [Introduction to RL [13:31]](https://www.youtube.com/watch?v=VnZ4558bXys)
+    2. [A first RL algorithm [17:13]](https://www.youtube.com/watch?v=EYeACgMxHVk)
+    3. [RL Algorithms for Control [21:10]](https://www.youtube.com/watch?v=PeGnFc5S-f4)
 
-    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
-    - [Exercises (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , [answers (colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
-    - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
+* **Required** reading: 
+        Sections 1 through 4 from [this Survey](https://www.jair.org/index.php/jair/article/download/10166/24110/)
+
+* Other reading: 
+        Chapters 1,3,4, and 6 from [Reinforcement Learning: An Introduction](http://incompleteideas.net/book/the-book.html)
+* *Optional*: [Demo of the TD algorithm](https://www.cs.toronto.edu/~lcharlin/courses/60629/reinforcejs/gridworld_td.html) (from Andrej Karpathy)
+
+* In-class material:
+    - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl2-summary.pdf)
+    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Question.ipynb)), solutions ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Solution.ipynb))
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
