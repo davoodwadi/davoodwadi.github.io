@@ -10,7 +10,8 @@ format:
 ---
 ## Course Information
 
-[Session Materials](sessions.qmd)
+| [Contact Information](#contact-information) 	| [Bibliographic Sources](#bibliographic-sources) 	| [Class Information](#class-information) 	| [Evaluations](#evaluations) 	| [Session Materials](sessions.qmd) 	|
+
 
 ### Contact Information
 ::: {.callout-note appearance="minimal" collapse=true}
