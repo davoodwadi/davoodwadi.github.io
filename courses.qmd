@@ -19,6 +19,7 @@ format:
 * **Davood Wadi**
     + Part-time Faculty Lecturer
     + <davood.wadi@hec.ca>
+    + [Book](https://calendly.com/davoodwadi/30min) meeting
 
 
 * **Valérie Boucher**
