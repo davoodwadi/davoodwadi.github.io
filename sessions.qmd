@@ -17,7 +17,10 @@ format:
 
 - Required reading: [Prologue to The Master Algorithm](http://homes.cs.washington.edu/~pedrod/Prologue.pdf)
 
-- Suggested reading: Chapter 1 of [ESL](https://web.stanford.edu/~hastie/Papers/ESLII.pdf)
+- Suggested reading: 
+    + Chapter 1 of [ESL](https://web.stanford.edu/~hastie/Papers/ESLII.pdf)
+    + [To explain or to predict](w1/to%20explain%20or%20to%20predict_shmueli.pdf)
+
 
 - Math review (if needed): have a look at the [resources page](https://www.cs.toronto.edu/~lcharlin/courses/60629/math_resources.html).
 :::
