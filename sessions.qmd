@@ -81,7 +81,7 @@ format:
 
 ### Week 4 - Python for scientific computations and machine learning [Practical Session]
 
-- The tutorial that you will follow is [here](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week4-PracticalSession/Introduction_to_ML.ipynb) (on colab), [Solutions](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week4-PracticalSession/Introduction_to_ML_Solutions.ipynb).
+- The tutorial that you will follow is [here](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week4-PracticalSession/Introduction_to_ML.ipynb) (on colab).
 - I encourage you to start the tutorial ahead of time and to finish it during our 180 minutes together.
 
 :::
@@ -198,7 +198,7 @@ format:
 
 * In-class material:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl-summary.pdf)
-    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_question.ipynb)), solutions ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_solution.ipynb))
+    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_question.ipynb))
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 13 - Sequential decision making II
@@ -216,7 +216,7 @@ format:
 
 * In-class material:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl2-summary.pdf)
-    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Question.ipynb)), solutions ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Solution.ipynb))
+    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Question.ipynb))
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
