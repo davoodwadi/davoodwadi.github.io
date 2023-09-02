@@ -46,7 +46,7 @@ format:
 - In-class material:
 
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_ml-fundamentals_summary.pdf)
-    - Exercises [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb) , answers [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_answers.ipynb)
+    - Exercises [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week2-Fundamentals/Fundamentals_questions.ipynb)
     - If you do not want to use colab, here are the two files you need to download: 1a) [Fundamentals_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/Fundamentals_questions.ipynb) AND 2) [utilities.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week2-Fundamentals/utilities.py)
 :::
 
@@ -73,7 +73,7 @@ format:
 - In-class material:
 
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_supervised_summary.pdf)
-    - Exercises [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week3-Supervised/Supervised_questions.ipynb) , answers [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week3-Supervised/Supervised_answers.ipynb)
+    - Exercises [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week3-Supervised/Supervised_questions.ipynb) 
     - If you do not want to use colab, here are the two files you need to download: 1a) [Supervised_questions.ipynb](https://raw.githubusercontent.com/lcharlin/80-629/master/week3-Supervised/Supervised_questions.ipynb) AND 2) [utils.py](https://raw.githubusercontent.com/lcharlin/80-629/master/week3-Supervised/utils.py)
 :::
 
@@ -81,7 +81,7 @@ format:
 
 ### Week 4 - Python for scientific computations and machine learning [Practical Session]
 
-- The tutorial that you will follow is [here](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week4-PracticalSession/Introduction_to_ML.ipynb) (on colab), [Solutions](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week4-PracticalSession/Introduction_to_ML_Solutions.ipynb).
+- The tutorial that you will follow is [here](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week4-PracticalSession/Introduction_to_ML.ipynb) (on colab).
 - I encourage you to start the tutorial ahead of time and to finish it during our 180 minutes together.
 
 :::
@@ -106,7 +106,7 @@ format:
 
 - In-class exercises:
     + [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_nn_summary.pdf)
-    + Exercises [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week5-NeuralNetworks/Neural_Networks_questions.ipynb), answers [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week5-NeuralNetworks/Neural_Networks_answers.ipynb)
+    + Exercises [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week5-NeuralNetworks/Neural_Networks_questions.ipynb)
 
 :::
 
@@ -129,8 +129,8 @@ format:
     6. [Conclusions and Practical remarks [9:17]](https://youtu.be/mA71uUtkcXw)
 * In-class material:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rnn-cnnSummary.pdf)
-    - Exercises RNNs ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/RNNs_Questions.ipynb)), answers ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/RNNs_Answers.ipynb))
-    - Exercises CNNs ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/CNNs_Questions.ipynb)), answers ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/CNNs_Answers.ipynb))
+    - Exercises RNNs ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/RNNs_Questions.ipynb))
+    - Exercises CNNs ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week6-RNNs%2BCNNs/CNNs_Questions.ipynb))
 
 **Attention and Transformers [Optional]**
 
@@ -156,7 +156,7 @@ format:
     4. [Beyond Clustering [14:42]](https://youtu.be/zVoi--FTiYk)
 * In-class material:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slidesUnsupervised-summary.pdf)
-    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week7-Unsupervised/Unsupervised_questions.ipynb)), answers ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week7-Unsupervised/Unsupervised_answers.ipynb))
+    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week7-Unsupervised/Unsupervised_questions.ipynb))
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
@@ -198,7 +198,7 @@ format:
 
 * In-class material:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl-summary.pdf)
-    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_question.ipynb)), solutions ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_solution.ipynb))
+    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_question.ipynb))
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 13 - Sequential decision making II
@@ -216,7 +216,7 @@ format:
 
 * In-class material:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl2-summary.pdf)
-    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Question.ipynb)), solutions ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Solution.ipynb))
+    - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Question.ipynb))
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
