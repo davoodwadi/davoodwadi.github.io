@@ -114,8 +114,8 @@
   {
     "objectID": "code/Session1.html",
     "href": "code/Session1.html",
-    "title": "Davood Wadi",
+    "title": "Loading necessary packages",
     "section": "",
-    "text": "import numpy as np\n\n\na = np.random.randn(1,5)\nb = np.random.randn(1,5)\n\nDot Product\n\nb@a.T\n\narray([[0.64209117]])\n\n\nSolve : \\[a_1 x_1 + ... + a_{100} x_{100} = y\\]\n\nX = np.random.randn(100)\ny = 10 * X\n\n\ndef error_function(y,y_hat):\n    return ((y - y_hat)**2).mean()\n\n\nA = np.random.randn(100)\n\n\ny_hat = A*X\nerror = error_function(y,y_hat)\nerror\n\n99.60232836567859\n\n\n\n from sklearn.linear_model import LinearRegression\n\n\nlr = LinearRegression()\n\n\nlr.fit(X.reshape(-1,1),y)\n\nLinearRegression()In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LinearRegressionLinearRegression()\n\n\n\na = lr.coef_\n\narray([10.])\n\n\n\nb = lr.intercept_\n\n-2.220446049250313e-16"
+    "text": "To start let’s load NumPy, a package for scientific computing with Python. We usually load it as the np shorthand.\n\nimport numpy as np\n\n\na = np.random.randn(1,5)\nb = np.random.randn(1,5)\n\nDot Product\n\nb@a.T\n\narray([[0.64209117]])\n\n\nSolve : \\[a_1 x_1 + ... + a_{100} x_{100} = y\\]\n\nX = np.random.randn(100)\ny = 10 * X\n\n\ndef error_function(y,y_hat):\n    return ((y - y_hat)**2).mean()\n\n\nA = np.random.randn(100)\n\n\ny_hat = A*X\nerror = error_function(y,y_hat)\nerror\n\n99.60232836567859\n\n\n\n from sklearn.linear_model import LinearRegression\n\n\nlr = LinearRegression()\n\n\nlr.fit(X.reshape(-1,1),y)\n\nLinearRegression()In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LinearRegressionLinearRegression()\n\n\n\na = lr.coef_\n\narray([10.])\n\n\n\nb = lr.intercept_\n\n-2.220446049250313e-16"
   }
 ]

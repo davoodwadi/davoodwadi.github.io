@@ -10,7 +10,7 @@ format:
 ---
 ## Course Information
 
-[Contact Information](#contact-information) 	| [Bibliographic Sources](#bibliographic-sources) 	| [Class Information](#class-information) 	| [Evaluations](#evaluations) 	| [Session Materials](sessions.qmd) 	|       [Session Codes]()
+[Contact Information](#contact-information) 	| [Bibliographic Sources](#bibliographic-sources) 	| [Class Information](#class-information) 	| [Evaluations](#evaluations) 	| [Session Materials](sessions.qmd) 	|       [Session Codes](code/Session1.ipynb)
 
 
 ### Contact Information
