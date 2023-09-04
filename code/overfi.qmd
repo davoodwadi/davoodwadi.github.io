@@ -73,6 +73,7 @@ plt.show()
 ```
 
 In the above code, we define a list `degrees` with the degrees of the polynomials that we want to fit to the dataset. We then iterate over each degree and perform the following steps:
+
 - Fit a polynomial of the given degree to the dataset using the `polyfit` function from `numpy`.
 - Create a polynomial object using the computed coefficients using the `poly1d` function from `numpy`.
 - Generate a set of x values for plotting using the `linspace` function from `numpy`.

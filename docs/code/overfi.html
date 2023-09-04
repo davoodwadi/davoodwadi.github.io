@@ -225,7 +225,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="overfi_files/figure-html/cell-4-output-1.png" width="587" height="449"></p>
 </div>
 </div>
-<p>In the above code, we define a list <code>degrees</code> with the degrees of the polynomials that we want to fit to the dataset. We then iterate over each degree and perform the following steps: - Fit a polynomial of the given degree to the dataset using the <code>polyfit</code> function from <code>numpy</code>. - Create a polynomial object using the computed coefficients using the <code>poly1d</code> function from <code>numpy</code>. - Generate a set of x values for plotting using the <code>linspace</code> function from <code>numpy</code>. - Compute the predicted y values for the generated x values using the polynomial. - Plot the polynomial curve using the <code>plot</code> function from <code>matplotlib.pyplot</code> with a label indicating the degree of the polynomial.</p>
+<p>In the above code, we define a list <code>degrees</code> with the degrees of the polynomials that we want to fit to the dataset. We then iterate over each degree and perform the following steps:</p>
+<ul>
+<li>Fit a polynomial of the given degree to the dataset using the <code>polyfit</code> function from <code>numpy</code>.</li>
+<li>Create a polynomial object using the computed coefficients using the <code>poly1d</code> function from <code>numpy</code>.</li>
+<li>Generate a set of x values for plotting using the <code>linspace</code> function from <code>numpy</code>.</li>
+<li>Compute the predicted y values for the generated x values using the polynomial.</li>
+<li>Plot the polynomial curve using the <code>plot</code> function from <code>matplotlib.pyplot</code> with a label indicating the degree of the polynomial.</li>
+</ul>
 <p>Finally, we add labels and a title to the plot, and display a legend to distinguish the different polynomial curves.</p>
 <p>When you run the code, you will see a plot showing the dataset points as scatter points, and different polynomial curves fitted to the data. From this visualization, you can observe the effect of overfitting as the degree of the polynomial increases. Higher degree polynomials tend to fit the training data more closely, but they also capture random noise and fluctuations, resulting in poor generalization to new data.</p>
 
