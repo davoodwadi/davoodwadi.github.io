@@ -18,6 +18,10 @@ format:
 * Week 2
     + [Model capacity](code/Model.qmd)
     + [Overfitting](code/overfi.qmd)
+    + [Linear regression - Part 1](code/multip1.qmd)
+    + [Linear regression - Part 2](code/multip2.qmd)
+    + [L2 regularization](code/Improv.qmd)
+    + 
 
 ### Contact Information
 ::: {.callout-note appearance="minimal" collapse=true}

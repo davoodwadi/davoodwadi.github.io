@@ -1,0 +1,103 @@
+---
+title: ""
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  enabled: true
+---
+
+
+To understand the generalization of L2 regularization on the test set for multiple linear regression with design matrix X, let's first discuss what L2 regularization is and how it is applied in multiple linear regression.
+
+**L2 Regularization in Multiple Linear Regression:**
+
+Multiple Linear Regression is a technique used to model the relationship between a dependent variable and multiple independent variables. The goal is to find the best fitting line that minimizes the sum of squared errors.
+
+However, in some cases, the model can become overfit, meaning it fits the training data too closely and does not generalize well to unseen data. This can lead to poor performance on the test set.
+
+L2 regularization, also known as Ridge regression, is a technique used to prevent overfitting. It adds a penalty term to the least squares objective function, which reduces the magnitude of the coefficients and helps in controlling the complexity of the model.
+
+The L2 regularization term is given by:
+
+
+$\text{L2 regularization term} = \lambda \sum_{i=1}^{m} \beta_i^2$
+
+Where:
+
+- \(\lambda\) is the regularization parameter, which controls the amount of regularization applied. A higher value of \(\lambda\) results in more regularization.
+- \(\beta_i\) is the coefficient associated with the \(i\)th independent variable.
+
+Including the L2 regularization term in the objective function, the cost function for multiple linear regression with L2 regularization becomes:
+
+
+$\text{{Cost function}} = \frac{1}{2m} \left( \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2 + \lambda \sum_{j=1}^{n} \theta_j^2 \right)$
+
+Where:
+
+- \(m\) is the number of training examples.
+- \(h_\theta(x^{(i)})\) is the predicted value for the \(i\)th example using the model's parameters \(\theta\).
+- \(y^{(i)}\) is the actual value for the \(i\)th example.
+
+Now, let's see how we can apply L2 regularization in multiple linear regression using Python.
+
+**Applying L2 Regularization in Multiple Linear Regression:**
+
+First, we need to import the required libraries for our example:
+
+```{python}
+import numpy as np
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+```
+
+Next, we need to create the design matrix X and the target variable y. The design matrix X contains the values of the independent variables, and the target variable y contains the corresponding dependent variable values.
+
+```{python}
+# Create design matrix X
+X = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+# Create target variable y
+y = np.array([10, 20, 30])
+```
+
+We split the data into training and test sets using the `train_test_split` function from scikit-learn. The training set will be used to train the model, and the test set will be used to evaluate its performance.
+
+```{python}
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
+
+Next, we create an instance of the Ridge regression model and train it on the training set.
+
+```{python}
+# Create an instance of the Ridge regression model
+ridge = Ridge(alpha=0.5)
+
+# Train the model on the training set
+ridge.fit(X_train, y_train)
+```
+
+We can now use the trained model to make predictions on the test set.
+
+```{python}
+# Make predictions on the test set
+y_pred = ridge.predict(X_test)
+```
+
+Finally, we can evaluate the performance of the model using a performance metric such as mean squared error.
+
+```{python}
+# Calculate the mean squared error on the test set
+mse = mean_squared_error(y_test, y_pred)
+
+print("Mean Squared Error:", mse)
+```
+
+The mean squared error will give us an idea of how well the model is performing on the test set. A lower mean squared error indicates better performance.
+
+This is how L2 regularization is applied in multiple linear regression to generalize the model on the test set. By adding a penalty term to the objective function, we can control the complexity of the model and prevent overfitting.

@@ -1,0 +1,60 @@
+
+---
+title: "Multiple Linear Regression - Part 2"
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  enabled: true
+---
+
+
+Multiple linear regression is a powerful technique used for predicting a continuous outcome variable based on multiple predictor variables. In this tutorial, we will learn how to perform multiple linear regression using a design matrix in Python. 
+
+First, let's define the problem. In multiple linear regression, we have a dependent variable (also called the response or target variable) and several independent variables (also called features, input variables, or predictors). The goal is to find the best linear relationship between the predictors and the target variable.
+
+The general equation for a multiple linear regression model with 'p' predictors is given by:
+
+Y = β₀ + β₁X₁ + β₂X₂ + ... + βₚXₚ + ε
+
+Where:
+- Y is the target variable
+- X₁, X₂, ..., Xₚ are the predictor variables
+- β₀, β₁, β₂, ..., βₚ are the coefficients (or weights) of the predictors
+- ε is the error term, representing the randomness or noise in the relationship
+
+To estimate the coefficients (β₀, β₁, β₂, ..., βₚ), we need to minimize the sum of squared residuals, which measures the differences between the actual values of the target variable (Y) and the predicted values from the regression model.
+
+In multiple linear regression, the predictors are often organized into a design matrix (X), where each row represents an observation and each column represents a predictor variable.
+
+Now let's see how to perform multiple linear regression using a design matrix in Python.
+
+```{python}
+import numpy as np
+
+# Define the design matrix X
+X = np.array([[3,  3, -3],
+              [-4, 5,  6],
+              [7, -8,  9]])
+
+# Define the target variable Y
+Y = np.array([10, 20, 30])
+
+# Calculate beta coefficients using the normal equation
+beta = np.linalg.inv(X.T @ X) @ X.T @ Y
+
+print('Beta coefficients:', beta)
+```
+
+In the above code, we first import the necessary libraries. Then, we define the design matrix X as a 2-dimensional numpy array that contains the predictor variables. Each row represents an observation, and each column represents a predictor variable. We also define the target variable Y as a 1-dimensional numpy array.
+
+Next, we use the normal equation to calculate the beta coefficients. The normal equation is given by:
+
+$$β = (X^T \cdot X)^{-1} \cdot X^T \cdot Y$$
+
+- $X^T$ is the transpose of X
+- $(X^T \cdot X)^{-1}$ is the inverse of the matrix product of $X^T$ and $X$
+- $X^T \cdot Y$ is the matrix product of $X^T$ and $Y$
+
+Finally, we print the beta coefficients, which represent the weights or coefficients of the predictors in the multiple linear regression model.
