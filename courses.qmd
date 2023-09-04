@@ -102,6 +102,14 @@ ISBN: 9780387310732
 :::
 
 ## Evaluations
+### [Bonus] Class participation (5%)
+
+To receive this 5% bonus point:
+
+1. Prepare for each session's code before the class starts.
+2. Log in to [deepnote](deepnote.com) with your **Full Name**.
+3. During the coding exercises in class, add your answer to the questions as a *comment*.
+
 ### Homework (20%)
 * Due on 24 October 2023
 * Homework assignments are counted for 20% of your final grade.
