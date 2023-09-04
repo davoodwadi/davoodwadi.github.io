@@ -114,8 +114,29 @@
   {
     "objectID": "code/Session1.html",
     "href": "code/Session1.html",
-    "title": "Loading necessary packages",
+    "title": "Python Basics",
     "section": "",
-    "text": "To start let’s load NumPy, a package for scientific computing with Python. We usually load it as the np shorthand.\n\nimport numpy as np\n\n\na = np.random.randn(1,5)\nb = np.random.randn(1,5)\n\nDot Product\n\nb@a.T\n\narray([[0.64209117]])\n\n\nSolve : \\[a_1 x_1 + ... + a_{100} x_{100} = y\\]\n\nX = np.random.randn(100)\ny = 10 * X\n\n\ndef error_function(y,y_hat):\n    return ((y - y_hat)**2).mean()\n\n\nA = np.random.randn(100)\n\n\ny_hat = A*X\nerror = error_function(y,y_hat)\nerror\n\n99.60232836567859\n\n\n\n from sklearn.linear_model import LinearRegression\n\n\nlr = LinearRegression()\n\n\nlr.fit(X.reshape(-1,1),y)\n\nLinearRegression()In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LinearRegressionLinearRegression()\n\n\n\na = lr.coef_\n\narray([10.])\n\n\n\nb = lr.intercept_\n\n-2.220446049250313e-16"
+    "text": "To start let’s load NumPy, a package for scientific computing with Python. We usually load it as the np shorthand.\n\nimport numpy as np\n\nLet’s initialize two arrays\n\na = np.random.randn(1,5)\nb = np.random.randn(1,5)"
+  },
+  {
+    "objectID": "code/Session1.html#loading-necessary-packages",
+    "href": "code/Session1.html#loading-necessary-packages",
+    "title": "Python Basics",
+    "section": "",
+    "text": "To start let’s load NumPy, a package for scientific computing with Python. We usually load it as the np shorthand.\n\nimport numpy as np\n\nLet’s initialize two arrays\n\na = np.random.randn(1,5)\nb = np.random.randn(1,5)"
+  },
+  {
+    "objectID": "code/Session1.html#dot-product",
+    "href": "code/Session1.html#dot-product",
+    "title": "Python Basics",
+    "section": "Dot product",
+    "text": "Dot product\nTo perform a dot product of two arrays, the shape of the arrays should match. Let’s get the shape of our arrays.\n\na.shape, b.shape\n\n((1, 5), (1, 5))\n\n\nboth arrays have a shape of \\((1, 5)\\).\nIn general, the shape of the two arrays should be \\((n, k) (k, m)\\), where \\(k\\) is the common dimension of the two arrays.\nFor our example, we can transpose the array b to make the shapes match. The NumPy command for transposition of arrays is .T.\n\na.shape, b.T.shape\n\n((1, 5), (5, 1))\n\n\nNow that the two arrays have the matching shapes, we can calculate their dot product using the @ operator.\n\na @ b.T\n\narray([[0.56077435]])\n\n\nThe result of the dot product is an array of shape \\((1,1)\\), or a scalar. In general, the result of a dot product has a shape of \\((n, m)\\)"
+  },
+  {
+    "objectID": "code/Session1.html#best-fit-line",
+    "href": "code/Session1.html#best-fit-line",
+    "title": "Python Basics",
+    "section": "Best fit line",
+    "text": "Best fit line\nLet us now simulate a some data and find the best fit line, a line that minimizes the average distance of all data points to the line.\nHere our X is a vector of shape \\((100, 1)\\) samples from a standard normal distribution. Here we have \\(100\\) points with \\(1\\) feature for each point.\nThe y is 10 times x, with the shape \\((100, 1)\\).\n\\[y = X \\cdot coeff\\]\n\nX = np.random.randn(100, 1)\ncoeff = np.ones((1, 1)) * 10\ny = X @ coeff\ny.shape\n\n(100, 1)"
   }
 ]
