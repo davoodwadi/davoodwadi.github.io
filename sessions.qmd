@@ -15,7 +15,7 @@ format:
 ### Week 1 - Class introduction and math review [[slides](w1/slides_intro.pdf)]
 
 
-- [Code tutorial](code/Session1.ipynb)
+- [Code tutorial](code/Session1.ipynb) 
 
 - Required reading: [Prologue to The Master Algorithm](http://homes.cs.washington.edu/~pedrod/Prologue.pdf)
 
