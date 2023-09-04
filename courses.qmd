@@ -22,6 +22,9 @@ format:
     + [Linear regression - Part 2](code/multip2.qmd)
     + [Bias/variance tradeoff](code/bias%20v.qmd)
     + [L2 regularization](code/Improv.qmd)
+* Week 3
+    + [Linear least squares for classification](code/Linear_classification.qmd)
+    + [SVM for classification](code/SVM.qmd)
     
 
 ### Contact Information
