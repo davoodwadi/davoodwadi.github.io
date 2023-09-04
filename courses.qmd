@@ -10,8 +10,14 @@ format:
 ---
 ## Course Information
 
-[Contact Information](#contact-information) 	| [Bibliographic Sources](#bibliographic-sources) 	| [Class Information](#class-information) 	| [Evaluations](#evaluations) 	| [Session Materials](sessions.qmd) 	|       [Session Codes](code/Session1.ipynb)
+[Code Tutorials](#code-tutorials)       |       [Contact Information](#contact-information) 	| [Bibliographic Sources](#bibliographic-sources) 	| [Class Information](#class-information) 	| [Evaluations](#evaluations) 	| [Session Materials](sessions.qmd)
 
+### Code Tutorials
+* Week 1
+    + [Python basics](code/Session1.ipynb)
+* Week 2
+    + [Model capacity](code/Model.qmd)
+    + [Overfitting](code/overfi.qmd)
 
 ### Contact Information
 ::: {.callout-note appearance="minimal" collapse=true}
