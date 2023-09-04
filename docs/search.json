@@ -138,5 +138,19 @@
     "title": "Python Basics",
     "section": "Best fit line",
     "text": "Best fit line\nLet us now simulate a some data and find the best fit line, a line that minimizes the average distance of all data points to the line.\nHere our X is a vector of shape \\((100, 1)\\) samples from a standard normal distribution. Here we have \\(100\\) points with \\(1\\) feature for each point.\nThe y is 10 times x, with the shape \\((100, 1)\\).\n\\[y = X \\cdot coeff\\]\n\nX = np.random.randn(100, 1)\ncoeff = np.ones((1, 1)) * 10\ny = X @ coeff\ny.shape\n\n(100, 1)"
+  },
+  {
+    "objectID": "code/Session1.html#fitting-the-data-using-sklearn",
+    "href": "code/Session1.html#fitting-the-data-using-sklearn",
+    "title": "Python Basics",
+    "section": "Fitting the data using sklearn",
+    "text": "Fitting the data using sklearn\nIn the next session, we will formulate a closed-form solution for finding the parameters of linear regression.\nFor now, let’s use the scikit-learn package to find the best line.\nWe’ll import the LinearRegression class from the linear_model submodule of sklearn. Each submodule of sklearn contains classes for that particular topic.\n\nfrom sklearn.linear_model import LinearRegression\n\nNow, let’s create an instance of the LinearRegression model and fit it to the data.\n\nmodel = LinearRegression()\n\n\nmodel.fit(X,y)\n\nLinearRegression()In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LinearRegressionLinearRegression()\n\n\nMost sklearn classes involve two steps: 1. Instantiating the class. This is where you provide the necessary hyper-parameters. - model = LinearRegression() 2. Fitting the data. - model.fit(X,y)\nNext, we can retrieve the coefficients of the fitted model by accessing the .coeff_ attribute of the model object.\n\na = model.coef_\na\n\narray([[10.]])\n\n\nIn our case, the coefficient is an array of shape \\((1,1)\\). This is in line with the shape of our X (\\(n,1\\)) and y (\\(n, 1\\)).\nWe can also access the intercept of the model using the .intercept_ attribute. Since we didn’t add an intercept in our data simulation, the value of the intercept should be \\(0\\).\nNote. In numerical computations, very small numbers (e.g. \\(2 \\times 10^{-16}\\)) are considered to be \\(0\\).\n\nb = model.intercept_\nb\n\narray([2.22044605e-16])"
+  },
+  {
+    "objectID": "code/Session1.html#plotting-the-line-on-the-data",
+    "href": "code/Session1.html#plotting-the-line-on-the-data",
+    "title": "Python Basics",
+    "section": "Plotting the line on the data",
+    "text": "Plotting the line on the data\nWe can now plot the line and the data to see the fit.\nFirst, we get the predictions from the model using its fitted parameters a and b.\n\ny_pred = X @ a + b\n\nWe’ll use seaborn and Matplotlib to create two separate plots on the same axis, ax.\n\nax = sns.scatterplot(x=X[:,0], y=y[:,0], label=\"Actual y\")\nax = sns.lineplot(x=X[:,0], y=y_pred[:,0], ax=ax, color='red', label=\"Predicted y\")\nax.legend()\n\n&lt;matplotlib.legend.Legend at 0x120000280&gt;"
   }
 ]
