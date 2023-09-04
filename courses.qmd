@@ -10,7 +10,7 @@ format:
 ---
 ## Course Information
 
-| [Contact Information](#contact-information) 	| [Bibliographic Sources](#bibliographic-sources) 	| [Class Information](#class-information) 	| [Evaluations](#evaluations) 	| [Session Materials](sessions.qmd) 	|
+[Contact Information](#contact-information) 	| [Bibliographic Sources](#bibliographic-sources) 	| [Class Information](#class-information) 	| [Evaluations](#evaluations) 	| [Session Materials](sessions.qmd) 	|       [Session Codes]()
 
 
 ### Contact Information
@@ -107,7 +107,7 @@ ISBN: 9780387310732
 To receive this 5% bonus point:
 
 1. Prepare for each session's code before the class starts.
-2. Log in to [deepnote](deepnote.com) with your **Full Name**.
+2. Log in to [deepnote](https://www.deepnote.com) with your **Full Name**.
 3. During the coding exercises in class, add your answer to the questions as a *comment*.
 
 ### Homework (20%)
