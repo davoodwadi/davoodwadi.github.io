@@ -5,7 +5,7 @@ format:
     code-fold: false
 jupyter: python3
 execute: 
-  enabled: true
+  cache: true
 ---
 
 ### SVM

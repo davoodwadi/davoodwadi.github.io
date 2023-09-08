@@ -6,7 +6,7 @@ format:
     code-fold: false
 jupyter: python3
 execute: 
-  enabled: true
+  cache: true
 ---
 
 Overfitting occurs when a machine learning model performs very well on the training data, but fails to generalize well on unseen data. It happens when the model captures noise and random fluctuations in the training data instead of the underlying pattern or relationship.

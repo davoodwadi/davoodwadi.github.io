@@ -5,7 +5,7 @@ format:
     code-fold: false
 jupyter: python3
 execute: 
-  enabled: true
+  cache: true
 ---
 
 In machine learning and statistics, multiple linear regression is a commonly used technique to model the relationship between a dependent variable and multiple independent variables. It assumes a linear relationship between the independent variables and the dependent variable.

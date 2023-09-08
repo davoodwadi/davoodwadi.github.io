@@ -147,9 +147,11 @@ First, select a question that can be answered using machine learning. I expect t
 
 Your study should involve reading and understanding some background material. Your study must involve running some experiments. You are free to use (or not) any of the tools or models we have seen in class.
 
+
 **Study plan**: *(1 upload per group)* Please submit a one-page summary of your proposed research question and study to ZoneCours. I will meet with each group to discuss study plans during the lecture on Week 9. I will send you a schedule the day before. We will probably only have about 15 minutes so please make sure that your study plan is clear and precise. You may also include questions that you would like us to discuss at the end of the document.
 
 **The group report**: *(1 upload per group)* Your report must contain a description of the question you are trying to answer, a clear description of the model/algorithm you are studying, a survey of related work which proper references, an empirical section that reports your results, and a conclusion that summarizes your findings and (if pertinent) highlights possible future directions of investigation. Your report should be no longer than 10 pages in length (plus references) for pairs or 13 pages (plus references) for teams of three.
+
 
 **The individual report**: *(1 upload per student)* You will also submit a brief individual report (at most one page), which will: (1) Describe the parts of the project you worked on (which machine learning methods you applied, which preprocessing steps you performed on the data, which parts of the term paper you wrote, who you worked with on what parts, etc.) and what parts of the project your teammates worked on. (2) What you learned from the project. The purpose of the individual report is to facilitate fair grading and to allow the instructor to understand well what you learned from the project.
 
@@ -158,8 +160,41 @@ Project Report (30%)
 * Clarity/Relevance of problem statement and description of approach: 10%
 * Discussion of relationship to previous work and references: 4%
 * Design and execution of experiments: 10%
-Figures/Tables/Writing: easily readable, properly labeled, * informative: 5%
+* Figures/Tables/Writing: easily readable, properly labeled, 
+* informative: 5%
 * Indiviual report: 1%
+
+
+#### Project Topic
+
+Concretely, your project could take one of the following forms:
+
+* A competition on [kaggle.com](https://kaggle.com) that you try multiple ML methods on and can achieve a validation set performance in the top 100 on the leaderboard.
+* A benchmark task on [paperswithcode](https://paperswithcode.com) (e.g. [Speech Recognition](https://paperswithcode.com/task/speech-recognition)) where you try multiple methods and compare their performance.
+* A task in your own field whereby you apply multiple ML methods to solve the task.
+* An ML method that you apply to a new task (e.g. [Multi-head attention](https://paperswithcode.com/method/multi-head-attention) applied to time-series prediction)
+
+*Note*. The list above is not exhaustive. You are encouraged to be creative about the topic. Pick a topic that you find interesting and is relevant. The appropriateness of the topic will be discussed and resolved in the session on [Study plan](#timeline).
+
+#### Group Report Structure
+Your group report should read like a published paper. Similarly, your poster presentation should have a similar structure to conference posters. You might want to check out similar papers to your topic on the structure of your report (e.g. [A Comparison of Deep Learning Approach for Underwater Object Detection](https://www.jurnal.iaii.or.id/index.php/RESTI/article/view/3931/573)).
+
+Regardless of your topic, as a general rule of thumb, your Group Report should be structured as follows:
+
+1. Introduction:
+    Use this section to introduce the topic, its relevance, and a summary of the whole paper. This section should address the question, "Why the target audience of the paper should care about your work?"
+
+2. Related Work:
+    This section discusses what has been done, in prior research, on your topic. While most of the cited papers should be from academic publications, it is not uncommon to see non-academic references in papers (e.g. [stackoverflow](https://stackoverflow.com)). You might want to use academic search engines (e.g. [SemancticScholar](https://semanticscholar.org)) to find relavant papers.
+
+3. Experiments
+    This section should cover the steps you take to answer the question you posed in the Introduction. This includes data preparation, model and hyper-parameter selection, and evaluation steps.
+
+4. Results
+    In this section you present the resutls of your experiments with appropriate tables and figures.
+
+5. Conclusion
+    In your final section, you would summarize what you did in the paper, acknowledge the limitations of your work (All papers have this; no work is perfect.), suggest future research directions to address your limitations.
 
 #### Timeline
 
@@ -174,7 +209,7 @@ Figures/Tables/Writing: easily readable, properly labeled, * informative: 5%
 
 
 ### Project Presentation (10%)
-Make a poster that describes your project. You can think of a poster as supporting material for your oral presentation (in that way it is similar to slides). It could also follow a similar structure: begin by motivating your work, then (quickly) highlight related work, talk in depth about your solution, then go into results (pictures and tables are good tools for that), finally conclude and perhaps mention one or two ideas for future work.
+Make a poster that describes your project [**You do not need to print your poster**]. You can think of a poster as supporting material for your oral presentation (in that way it is similar to slides). It could also follow a similar structure: begin by motivating your work, then (quickly) highlight related work, talk in depth about your solution, then go into results (pictures and tables are good tools for that), finally conclude and perhaps mention one or two ideas for future work.
 
 * Project Presentation (10%)
     + Clarity of presentation: 3%
@@ -194,8 +229,9 @@ Make a poster that describes your project. You can think of a poster as supporti
 ### Capsule Quizzes (10%)
 * In-class quizzes of the capsules
 * Capsule quizzes are counted for 10% of your final grade.
-    + Quiz 0, **TBA**.
-    + Quiz 1, **TBA**.
+* Time to complete each quiz is 10 minutes.
+    + Quiz 0, **20 September 11:30 AM to 22 September 11:30 AM**.
+    + Quiz 1, **27 September 11:30 AM to 29 September 11:30 AM**.
     + Quiz 2, **TBA**.
     + Quiz 3, **TBA**.
     + Quiz 4, **TBA**.

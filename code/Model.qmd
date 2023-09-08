@@ -5,7 +5,7 @@ format:
     code-fold: false
 jupyter: python3
 execute: 
-  enabled: true
+  cache: true
 ---
 
 Model capacity refers to the ability of a machine learning model to capture and represent complex relationships between the input variables (features) and the target variable (labels). It determines the complexity and flexibility of the model in fitting the training data.
