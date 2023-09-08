@@ -25,6 +25,7 @@ format:
 * Week 3
     + [Linear least squares for classification](code/Linear_classification.qmd)
     + [SVM for classification](code/SVM.qmd)
+    + [Naive Bayes](code/naive.qmd)
     
 
 ### Contact Information
