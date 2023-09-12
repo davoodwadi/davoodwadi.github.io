@@ -42,7 +42,7 @@ Where
 - $\alpha>0$ is the smoothing prior, which accounts for features not present in the learning samples and prevents zero probabilities in further computations. 
   + Setting $\alpha=1$ is called Laplace smoothing, while $\alpha<1$ is called Lidstone smoothing.
 
-For a comrehensive analysis of Naive Bayes algorithms, visit [this link](https://scikit-learn.org/stable/modules/naive_bayes.html#multinomial-naive-bayes)
+For a comrehensive analysis of Naive Bayes algorithms, visit [this link](https://scikit-learn.org/stable/modules/naive_bayes.html#multinomial-naive-bayes).
 
 Here's a step-by-step overview of how Multinomial Naive Bayes works:
 
@@ -64,6 +64,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import numpy as np
 ```
 
 Next, let's create an example dataset consisting of text documents and corresponding class labels:
@@ -77,6 +78,13 @@ documents = ['The sun is shining',
 labels = ['positive', 'positive', 'negative', 'negative']
 ```
 
+Next, we need to split the dataset into a training set and a test set:
+
+```{python}
+doc_train, doc_test, y_train, y_test = train_test_split(documents, labels, test_size=0.2, random_state=42)
+print(doc_train)
+```
+
 Now, let's create a **CountVectorizer** object to extract features from the text documents:
 
 ```{python}
@@ -86,26 +94,42 @@ vectorizer = CountVectorizer()
 We can then use the **fit_transform()** method of the vectorizer to transform the documents into a feature matrix:
 
 ```{python}
-X = vectorizer.fit_transform(documents)
+x_train = vectorizer.fit_transform(doc_train)
+print(x_train.todense())
+print(vectorizer.vocabulary_)
+
+i2w = {i:w for w,i in vectorizer.vocabulary_.items()}
+doc = x_train.toarray().copy().astype(str)
+for i in range(doc.shape[0]):
+  for j in range(doc.shape[1]):
+    if doc[i,j]=='1':
+      doc[i,j] = str(i2w[j])
+print(doc)
 ```
 
-Next, we need to split the dataset into a training set and a test set:
 
-```{python}
-X_train, X_test, y_train, y_test = train_test_split(X, labels, test_size=0.2, random_state=42)
-```
 
 Now, let's create a **MultinomialNB** object and train it on the training set:
 
 ```{python}
 model = MultinomialNB()
-model.fit(X_train, y_train)
+model.fit(x_train, y_train)
 ```
 
 We can then use the trained model to classify the instances in the test set:
 
 ```{python}
-y_pred = model.predict(X_test)
+x_test = vectorizer.transform(doc_test)
+y_pred = model.predict(x_test)
+print(doc_test)
+print(x_test.todense())
+doc = x_test.toarray().copy().astype(str)
+for i in range(doc.shape[0]):
+  for j in range(doc.shape[1]):
+    if doc[i,j]=='1':
+      doc[i,j] = str(i2w[j])
+print(doc)
+print(y_pred)
 ```
 
 Finally, let's calculate the accuracy of the model:
