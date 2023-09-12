@@ -53,6 +53,7 @@ from sklearn.datasets import make_classification
 
 np.random.seed(0)
 X, y = make_classification(n_samples=100, n_features=1, n_informative=1, n_redundant=0, n_clusters_per_class=1)
+y = y*2 - 1
 ```
 
 We have created a dataset with 100 samples, 1 feature, and 1 informative features.
@@ -61,7 +62,7 @@ Now, let's visualize the data using a scatter plot:
 
 ```{python}
 plt.scatter(X[y == 1], y[y == 1], color='b', label='Class 1')
-plt.scatter(X[y == 0], y[y == 0], color='r', label='Class 0')
+plt.scatter(X[y == -1], y[y == -1], color='r', label='Class 0')
 plt.xlabel('Feature')
 plt.ylabel('Label')
 plt.legend()
@@ -82,7 +83,7 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Create an SVM classifier object
-svm = SVC(kernel='linear')
+svm = SVC(kernel='linear', C=1e10)
 
 # Train the SVM classifier
 svm.fit(X_train, y_train)
@@ -130,12 +131,28 @@ def plot_decision_boundary(classifier, X, y):
     sv_y = y[i_sv]
     print(f'Support vectors are: \nX={sv_x}\ny={sv_y}')
 
+    # get w and b
+    w = svm.coef_
+    b = svm.intercept_
+    print(f'W={w}\nb={b}')
+    # print(f"wX-b:\n{w*X-b}")
+
+    # where the decision function is zero
+    ind_0 = np.where((yy<=5e-2) & (yy>=-5e-2))[0]
+    # print(ind_0)
+    distance1 = xx[ind_0].mean() - sv_x[0]
+    distance2 = xx[ind_0].mean() - sv_x[1]
+    print(f'\ndistance to \nsupport 1: {distance1} \nsupport 2:{distance2}')
+
     # Plot the decision boundary and support vectors
+    plt.hlines(0,-2, 3)
     plt.scatter(X, y, c=y, cmap=plt.cm.Paired, edgecolors='k')
     plt.scatter(xx, yy, color='black', linewidth=3)
     plt.scatter(sv_x,sv_y, color='red')
+    plt.scatter(X,w*X-b,color='yellow', alpha=0.5)
+    plt.scatter(xx[ind_0], np.zeros(len(ind_0),), marker='x', color='red')
     plt.xlim(x_min, x_max)
-    plt.ylim(-0.2, 1.2)
+    # plt.ylim(-0.2, 1.2)
     plt.xlabel('Feature')
     plt.ylabel('label')
     plt.show()
@@ -151,5 +168,6 @@ The function calculates the minimum and maximum values of the two features to de
 Finally, it plots the decision boundary by contouring the predicted class labels and scatter plots the training data points.
 
 Running this code will display the decision boundary and the support vectors.
+
 
 This is how we can implement SVM for classification in Python. SVM is a versatile algorithm and can be further fine-tuned by selecting different kernels and hyperparameters for better performance.
