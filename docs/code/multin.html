@@ -197,6 +197,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="multinomial-naive-bayes" class="level2">
 <h2 class="anchored" data-anchor-id="multinomial-naive-bayes">Multinomial Naive Bayes</h2>
 <p>Multinomial Naive Bayes is specifically designed for problems with discrete features. It assumes that the features are generated from a multinomial distribution and that the features are conditionally independent given the class label. This assumption simplifies the conditional probability calculation and makes the algorithm computationally efficient.</p>
+<p>The formula for the multinomial distribution:</p>
+<p><span class="math inline">\(p(x_i | y) = \frac{n_{yi} + \alpha}{n_y + \alpha n}\)</span></p>
+<p>Where</p>
+<ul>
+<li><span class="math inline">\(n_{yi}\)</span> is the number of times feature i appears in class y</li>
+<li><span class="math inline">\(n_y\)</span> is the number of time class y appears</li>
+<li><span class="math inline">\(\alpha&gt;0\)</span> is the smoothing prior, which accounts for features not present in the learning samples and prevents zero probabilities in further computations.
+<ul>
+<li>Setting <span class="math inline">\(\alpha=1\)</span> is called Laplace smoothing, while <span class="math inline">\(\alpha&lt;1\)</span> is called Lidstone smoothing.</li>
+</ul></li>
+</ul>
+<p>For a comrehensive analysis of Naive Bayes algorithms, visit <a href="https://scikit-learn.org/stable/modules/naive_bayes.html#multinomial-naive-bayes">this link</a></p>
 <p>Here’s a step-by-step overview of how Multinomial Naive Bayes works:</p>
 <ol type="1">
 <li><strong>Preparing the Dataset</strong>: First, we need a dataset consisting of samples with features and corresponding class labels. The features should be discrete, such as word counts in text documents.</li>
