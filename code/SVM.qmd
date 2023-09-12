@@ -124,9 +124,16 @@ def plot_decision_boundary(classifier, X, y):
     # Use the classifier to make predictions on the mesh grid
     yy = classifier.decision_function(xx)
 
+    # get support vectors
+    i_sv = classifier.support_
+    sv_x = X[i_sv]
+    sv_y = y[i_sv]
+    print(f'Support vectors are: \nX={sv_x}\ny={sv_y}')
+
     # Plot the decision boundary and support vectors
     plt.scatter(X, y, c=y, cmap=plt.cm.Paired, edgecolors='k')
-    plt.plot(xx, yy, color='black', linewidth=3)
+    plt.scatter(xx, yy, color='black', linewidth=3)
+    plt.scatter(sv_x,sv_y, color='red')
     plt.xlim(x_min, x_max)
     plt.ylim(-0.2, 1.2)
     plt.xlabel('Feature')
