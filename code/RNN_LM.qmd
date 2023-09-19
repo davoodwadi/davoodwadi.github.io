@@ -69,21 +69,21 @@ test_list = test_string.split("\n")
 train_list[:5]
 ```
 
+
+
 ```{python}
 import spacy
 
 nlp = spacy.load("en_core_web_sm")
-doc = nlp("Apple is looking at buying U.K. startup for $1 billion")
+doc = nlp('''"Let's go to N.Y.!"''')
 
 for token in doc:
-    print(token.text)    
+    print(token.text)
+
+nlp.vocab.strings['Let']
 ```
 
-The `preprocess_dataset()` function uses the `LanguageModelingDataset` class to load the dataset from the files `train.txt`, `valid.txt`, and `test.txt`. We specify the `text_field` argument as `TEXT`, which is defined using the `Field` class from `torchtext.data`. We also use `torchtext`'s pre-trained GloVe word embeddings (vectors='glove.6B.100d') to initialize the vocabulary.
 
-Lastly, we use the `BPTTIterator` class to create iterators for the training, validation, and test sets. `BPTT` stands for "backpropagation through time," which means that we feed the network a sequence of words and propagate the gradients back through the entire sequence.
-
-Note: If you encounter errors during the download of GloVe word embeddings, you can download them manually and save them in the current working directory. You can find the GloVe embeddings at [https://nlp.stanford.edu/projects/glove/](https://nlp.stanford.edu/projects/glove/).
 
 ## 3. Defining the RNN Language Model
 
