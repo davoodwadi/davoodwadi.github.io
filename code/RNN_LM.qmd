@@ -1,0 +1,249 @@
+
+---
+title: ""
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  cache: true
+---
+
+
+# Recurrent Neural Networks (RNNs) for Language Modeling in PyTorch
+
+In this tutorial, we will explore how to use Recurrent Neural Networks (RNNs) for language modeling using PyTorch. Language modeling is the task of predicting the probability of a sequence of words occurring in a given language. RNNs are particularly well-suited for this task, as they can capture the sequential nature of language.
+
+## 1. Setting up the Environment
+
+Before we begin, make sure you have PyTorch installed. You can install PyTorch by following the instructions on the official website ([pytorch.org](https://pytorch.org/)).
+
+Next, let's import the required libraries and set the random seed for reproducibility.
+
+```{python}
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+from torch.utils.data import DataLoader
+import numpy as np
+import random
+
+# Set the random seed for reproducibility
+random.seed(42)
+```
+
+## 2. Preparing the Dataset
+
+To train our language model, we need a dataset consisting of sentences or sequences of words. In this tutorial, we will use a simplified version of the [WikiText-2](https://metatext.io/datasets/wikitext-103-&-2). *Created by Merity et al. at 2016, the WikiText-103 & 2 Dataset contains word and character level tokens extracted from Wikipedia, in English language. Containing 100M+ in TOKENS file format.*
+
+```{python}
+path = '../wikitext-2/'
+train_path = path + 'wiki.train.tokens'
+valid_path = path + 'wiki.valid.tokens'
+test_path = path + 'wiki.test.tokens'
+
+def read_file(path):
+    # Open the file in read mode
+    with open(file_path, 'r') as file:
+        # Read the contents of the file
+        file_contents = file.read()
+    return file_contents
+
+train_string = read_file(train_path)
+valid_string = read_file(valid_path)
+test_string = read_file(test_path)
+print(train_string[:100])
+```
+
+Now, we need to preprocess our dataset. We will take care of tokenization, converting words to numerical indices, and creating batches of sequences for training.
+
+## Tokenization
+
+We first need to turn our very large string into a list of strings.
+
+```{python}
+train_list = train_string.split("\n")
+valid_list = valid_string.split("\n")
+test_list = test_string.split("\n")
+train_list[:5]
+```
+
+```{python}
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+doc = nlp("Apple is looking at buying U.K. startup for $1 billion")
+
+for token in doc:
+    print(token.text)    
+```
+
+The `preprocess_dataset()` function uses the `LanguageModelingDataset` class to load the dataset from the files `train.txt`, `valid.txt`, and `test.txt`. We specify the `text_field` argument as `TEXT`, which is defined using the `Field` class from `torchtext.data`. We also use `torchtext`'s pre-trained GloVe word embeddings (vectors='glove.6B.100d') to initialize the vocabulary.
+
+Lastly, we use the `BPTTIterator` class to create iterators for the training, validation, and test sets. `BPTT` stands for "backpropagation through time," which means that we feed the network a sequence of words and propagate the gradients back through the entire sequence.
+
+Note: If you encounter errors during the download of GloVe word embeddings, you can download them manually and save them in the current working directory. You can find the GloVe embeddings at [https://nlp.stanford.edu/projects/glove/](https://nlp.stanford.edu/projects/glove/).
+
+## 3. Defining the RNN Language Model
+
+Next, we define our language model using an RNN. Here, we will use a simple LSTM (Long Short-Term Memory) architecture. The LSTM cell has been shown to be particularly effective in capturing long-range dependencies in sequential data.
+
+```{python}
+class RNNLanguageModel(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_dim, num_layers):
+        super(RNNLanguageModel, self).__init__()
+        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers, batch_first=True)
+        self.fc = nn.Linear(hidden_dim, vocab_size)
+        
+    def forward(self, x):
+        embedded = self.embedding(x)
+        output, _ = self.lstm(embedded)
+        output = self.fc(output.reshape(-1, output.size(2)))
+        return output
+```
+
+In the `__init__` method, we define the components of our model:
+- `embedding`: an embedding layer to convert word indices to dense word representations.
+- `lstm`: an LSTM layer to process the word embeddings, capturing the sequential dependencies.
+- `fc`: a fully connected linear layer to map the LSTM output to the vocabulary size, predicting the next word in the sequence.
+
+In the `forward` method, we pass the input sequence through the layers. The output of the LSTM layer is reshaped and passed through the fully connected layer to obtain the predicted probabilities for each word in the vocabulary.
+
+## 4. Training the RNN Language Model
+
+Now, let's define a function to train our RNN Language Model.
+
+```{python}
+def train_model(model, train_iter, val_iter, num_epochs, lr):
+    optimizer = optim.Adam(model.parameters(), lr=lr)
+    criterion = nn.CrossEntropyLoss()
+    
+    best_val_loss = float('inf')
+    
+    for epoch in range(num_epochs):
+        model.train()
+        train_loss = 0
+        
+        for batch in train_iter:
+            optimizer.zero_grad()
+            
+            x = batch.text[:, :-1]
+            y = batch.text[:, 1:].flatten()
+            
+            output = model(x)
+            loss = criterion(output, y)
+            
+            loss.backward()
+            optimizer.step()
+            
+            train_loss += loss.item()
+        
+        train_loss /= len(train_iter)
+        
+        model.eval()
+        val_loss = 0
+        
+        with torch.no_grad():
+            for batch in val_iter:
+                x = batch.text[:, :-1]
+                y = batch.text[:, 1:].flatten()
+                
+                output = model(x)
+                loss = criterion(output, y)
+                
+                val_loss += loss.item()
+        
+        val_loss /= len(val_iter)
+        
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            torch.save(model.state_dict(), 'language_model.pt')
+        
+        print(f'Epoch: {epoch+1}/{num_epochs}, Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}')
+```
+
+In the `train_model` function, we define the training loop:
+- We initialize the optimizer and the loss function.
+- For each epoch, we iterate over the training data.
+- For each batch, we compute the forward pass, calculate the loss, compute the gradients, and update the model's parameters using the optimizer.
+- After each epoch, we evaluate the model on the validation data and save the model if the validation loss improves.
+- Finally, we print the epoch number, training loss, and validation loss.
+
+## 5. Generating Text with the RNN Language Model
+
+Lastly, let's define a function to generate text using our trained language model.
+
+```{python}
+def generate_text(model, seed_text, max_length):
+    model.eval()
+    
+    with torch.no_grad():
+        tokens = seed_text.split()
+        current_length = len(tokens)
+        
+        while current_length < max_length:
+            x = torch.tensor([[TEXT.vocab.stoi[token] for token in tokens]]).to(device)
+            
+            output = model(x)
+            last_word_logits = output[0, -1]
+            
+            probabilities = F.softmax(last_word_logits, dim=0).numpy()
+            predicted_index = np.random.choice(len(probabilities), p=probabilities)
+            predicted_word = TEXT.vocab.itos[predicted_index]
+            
+            tokens.append(predicted_word)
+            current_length += 1
+            
+    generated_text = ' '.join(tokens)
+    return generated_text
+```
+
+In the `generate_text` function, we generate text of a given maximum length using the trained language model:
+- We initialize the model in evaluation mode.
+- We tokenize the seed text into a list of words.
+- We repeatedly generate the next word in the sequence until we reach the maximum length.
+- For each step, we pass the input sequence through the model to obtain the logits for the next word.
+- We apply softmax to the logits to obtain word probabilities and sample the next word using `np.random.choice()`.
+- We append the predicted word to the list of tokens and update the current length accordingly.
+- Finally, we concatenate the tokens and return the generated text.
+
+## Putting It All Together
+
+Now, let's put everything together and train our RNN language model.
+
+```{python}
+# Set the device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+# Preprocess the dataset
+train_iter, val_iter, test_iter = preprocess_dataset()
+
+# Define the model
+vocab_size = len(train_iter.dataset.fields['text'].vocab)
+embedding_dim = 100
+hidden_dim = 128
+num_layers = 2
+model = RNNLanguageModel(vocab_size, embedding_dim, hidden_dim, num_layers).to(device)
+
+# Train the model
+num_epochs = 10
+learning_rate = 0.001
+train_model(model, train_iter, val_iter, num_epochs, learning_rate)
+
+# Generate text using the trained model
+seed_text = "The weather is"
+max_length = 20
+generated_text = generate_text(model, seed_text, max_length)
+print(generated_text)
+```
+
+In this code snippet, we perform the following steps:
+- We set the device to CUDA if available, otherwise fallback to CPU.
+- We preprocess the dataset using the `preprocess_dataset()` function, which returns iterators for training, validation, and testing.
+- We define the model architecture using the `RNNLanguageModel` class.
+- We train the model using the `train_model()` function.
+- We generate text using the `generate_text()` function, providing a seed text and maximum length.
+
+That's it! You have now learned how to use RNNs for language modeling in PyTorch. You can further experiment by changing the model architecture, hyperparameters, or using different datasets. Happy coding!

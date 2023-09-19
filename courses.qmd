@@ -30,12 +30,17 @@ format:
     + [Precision, Recall, F1-Score](code/prf1.qmd)
     + [Precision-Recall Curve](code/precis.qmd)
 * Week 5
-    + [Introduction to Pytorch](code/pytorch_intro.qmd)
+    + [Introduction to PyTorch](code/pytorch_intro.qmd)
+    + [Dataset class in PyTorch](code/datasets_pytorch.qmd)
+    + [Batching and Dataloader in PyTorch](code/dataloader_pytorch.qmd)
+    + [Backpropagation with PyTorch](code/backpropagation_pytorch.qmd)
     + [Linear regression with gradient descent](code/gradie2.qmd)
     + [Classification using MLP with Pytorch](code/MLP_pytorch.qmd)
 
+
 * Week 6
     + [Introduction to RNNs](code/RNN_timeseries.qmd)
+
 
 ### Contact Information
 ::: {.callout-note appearance="minimal" collapse=true}
