@@ -110,6 +110,11 @@ format:
     + [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_nn_summary.pdf)
     + Exercises [(colab)](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week5-NeuralNetworks/Neural_Networks_questions.ipynb)
 
+- Useful links
+    + [Image Kernels](https://setosa.io/ev/image-kernels/)
+    + [Visualizing what ConvNets learn](https://cs231n.github.io/understanding-cnn/)
+
+
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}

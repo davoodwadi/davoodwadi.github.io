@@ -39,7 +39,6 @@ format:
     + [Linear regression with gradient descent](code/gradie2.qmd)
     + [Classification using MLP with Pytorch](code/MLP_pytorch.qmd)
 
-
 * Week 6
     + [Introduction to RNNs](code/RNN_timeseries.qmd)
 
