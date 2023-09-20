@@ -30,7 +30,7 @@ format:
     + [Precision, Recall, F1-Score](code/prf1.qmd)
     + [Precision-Recall Curve](code/precis.qmd)
 * Week 4
-    + [Introduction to PyTorch (Part 1)](Introduction_to_PyTorch.ipynb)
+    + [Introduction to PyTorch (Part 1)](Introduction_to_PyTorch.ipynb) ([colab](https://github.com/davoodwadi/davoodwadi.github.io/blob/main/Introduction_to_PyTorch.ipynb))
 * Week 5
     + [Introduction to PyTorch (Part 2)](code/pytorch_intro.qmd)
     + [Dataset class in PyTorch](code/datasets_pytorch.qmd)
