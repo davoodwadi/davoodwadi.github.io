@@ -40,7 +40,9 @@ format:
     + [Classification using MLP with Pytorch](code/MLP_pytorch.qmd)
 
 * Week 6
+    + Minibatch training in Pytorch ([colab](Minibatch_PyTorch.ipynb))
     + [Introduction to RNNs](code/RNN_timeseries.qmd)
+    
 
 
 ### Contact Information
