@@ -40,8 +40,11 @@ format:
     + [Classification using MLP with Pytorch](code/MLP_pytorch.qmd)
 
 * Week 6
-    + Minibatch training in Pytorch ([colab](Minibatch_PyTorch.ipynb))
+    + [Minibatch training in Pytorch](Minibatch_PyTorch.ipynb)
     + [Introduction to RNNs](code/RNN_timeseries.qmd)
+
+* Week 11
+    + [Singular Value Decomposition with PyTorch](SVD.ipynb)
     
 
 
