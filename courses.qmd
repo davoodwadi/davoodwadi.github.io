@@ -50,6 +50,9 @@ format:
 * Week 11
     + [Singular Value Decomposition with PyTorch](SVD.ipynb)
     + [Singular Value Decomposition for MovieLens100k](SVD_movielens100k.ipynb)
+* Week 12
+    + [Value iteration](code/value%20iteration.qmd)
+    + [Policy iteration](code/policy%20iteration.qmd)
     
 
 
