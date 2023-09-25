@@ -43,8 +43,12 @@ format:
     + [Minibatch training in Pytorch](Minibatch_PyTorch.ipynb)
     + [Introduction to RNNs](code/RNN_timeseries.qmd)
 
+* Week 10
+    + [Multi-GPU training with DataParallel](code/DataParallel.qmd)
+
 * Week 11
     + [Singular Value Decomposition with PyTorch](SVD.ipynb)
+    + [Singular Value Decomposition for MovieLens100k](SVD_movielens100k.ipynb)
     
 
 
