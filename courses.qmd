@@ -45,6 +45,7 @@ format:
 
 * Week 10
     + [Multi-GPU training with DataParallel](code/DataParallel.qmd)
+    + [Multi-Node training with DistributedDataParallel](code/DistributedDataParallel.qmd)
 
 * Week 11
     + [Singular Value Decomposition with PyTorch](SVD.ipynb)
