@@ -42,6 +42,7 @@ format:
 * Week 6
     + [Minibatch training in Pytorch](Minibatch_PyTorch.ipynb)
     + [Batch Normalization](Batch_normalization.ipynb)
+    + [High accuracy: CIFAR-10](High_accuracy_CIFAR10.ipynb)
     + [Introduction to RNNs](code/RNN_timeseries.qmd)
 
 * Week 10
