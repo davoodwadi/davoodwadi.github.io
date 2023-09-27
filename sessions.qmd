@@ -113,6 +113,8 @@ format:
 - Useful links
     + [Image Kernels](https://setosa.io/ev/image-kernels/)
     + [Visualizing what ConvNets learn](https://cs231n.github.io/understanding-cnn/)
+    + [CNN excel example (fast.ai)](https://github.com/fastai/course22p2/raw/master/xl/conv-example.xlsx)
+    + Convolution to matrix ([page 7](https://inria.hal.science/inria-00112631/))
 
 
 :::

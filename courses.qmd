@@ -41,6 +41,7 @@ format:
 
 * Week 6
     + [Minibatch training in Pytorch](Minibatch_PyTorch.ipynb)
+    + [Batch Normalization](Batch_normalization.ipynb)
     + [Introduction to RNNs](code/RNN_timeseries.qmd)
 
 * Week 10
