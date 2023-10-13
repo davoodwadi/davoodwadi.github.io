@@ -45,6 +45,7 @@ format:
     + [High accuracy: CIFAR-10](High_accuracy_CIFAR10.ipynb)
     + [Introduction to RNNs](code/RNN_timeseries.qmd)
     + [Time dependence](linear_separation.ipynb)
+    + [Language modeling (RNN and Transformer)](code/LM.ipynb)
 
 * Week 10
     + [Multi-GPU training with DataParallel](code/DataParallel.qmd)
