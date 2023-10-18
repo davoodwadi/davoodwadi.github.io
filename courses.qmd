@@ -47,6 +47,8 @@ format:
     + [Time dependence](linear_separation.ipynb)
     + [Language modeling (RNN and Transformer)](code/LM.ipynb)
 
+* Week 7
+    + [K-Means implementation (session 7 - in-class code)](session_7.ipynb)
 * Week 10
     + [Multi-GPU training with DataParallel](code/DataParallel.qmd)
     + [Multi-Node training with DistributedDataParallel](code/DistributedDataParallel.qmd)
