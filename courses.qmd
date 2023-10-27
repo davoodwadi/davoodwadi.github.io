@@ -47,6 +47,9 @@ format:
     + [Time dependence](linear_separation.ipynb)
     + [Language modeling (RNN and Transformer)](code/LM.ipynb)
 
+* Week 7
+    + [Unsupervised Learning (in-class notebook)](Session_7_Unsupervised_Learning.ipynb)
+    
 * Week 10
     + [Multi-GPU training with DataParallel](code/DataParallel.qmd)
     + [Multi-Node training with DistributedDataParallel](code/DistributedDataParallel.qmd)
