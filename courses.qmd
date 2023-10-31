@@ -266,13 +266,12 @@ Make a poster that describes your project [**You do not need to print your poste
 * In-class quizzes of the capsules
 * Capsule quizzes are counted for 10% of your final grade.
 * Time to complete each quiz is 10 minutes.
-    + Quiz 0, **20 September 11:30 AM to 22 September 11:30 AM**.
-    + Quiz 1, **27 September 11:30 AM to 29 September 11:30 AM**.
-    + Quiz 2, **TBA**.
-    + Quiz 3, **TBA**.
-    + Quiz 4, **TBA**.
-    + Quiz 5, **TBA**.
-    + Quiz 6, **TBA**.
+    + Quiz 1, **Sep 20, 2023 11:30 AM to Sep 22, 2023 11:30 AM**.
+    + Quiz 2, **Sep 27, 2023 11:30 AM to Sep 29, 2023 11:30 AM**.
+    + Quiz 3 - CNNs and RNNs, **Nov 6, 2023 12:00 AM to Nov 8, 2023 12:00 AM**.
+    + Quiz 4 - Unsupervised Learning, **Nov 13, 2023 12:00 AM to Nov 15, 2023 12:00 AM**.
+    + Quiz 5 - Reinforcement Learning, **Nov 20, 2023 12:00 AM to Nov 22, 2023 12:00 AM**.
+    + Quiz 6 - Parallel Computing, **Nov 27, 2023 12:00 AM to Nov 29, 2023 12:00 AM**.
 
 ## In-class Tools
 * [Cups pacing webapp](https://ml1-pace.onrender.com/ml1)
