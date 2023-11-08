@@ -269,8 +269,8 @@ Make a poster that describes your project [**You do not need to print your poste
     + Quiz 2, **Sep 27, 2023 11:30 AM to Sep 29, 2023 11:30 AM**.
     + Quiz 3 - CNNs and RNNs, **Nov 6, 2023 12:00 AM to Nov 8, 2023 12:00 AM**.
     + Quiz 4 - Unsupervised Learning, **Nov 13, 2023 12:00 AM to Nov 15, 2023 12:00 AM**.
-    + Quiz 5 - Reinforcement Learning, **Nov 20, 2023 12:00 AM to Nov 22, 2023 12:00 AM**.
-    + Quiz 6 - Parallel Computing, **Nov 27, 2023 12:00 AM to Nov 29, 2023 12:00 AM**.
+    + Quiz 5 - Parallel Computing, **Nov 20, 2023 12:00 AM to Nov 22, 2023 12:00 AM**.
+    + Quiz 6 - Reinforcement Learning, **Nov 27, 2023 12:00 AM to Nov 29, 2023 12:00 AM**.
 
 ## In-class Tools
 * [Cups pacing webapp](https://ml1-pace.onrender.com/ml1)
