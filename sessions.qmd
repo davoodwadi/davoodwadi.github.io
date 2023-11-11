@@ -192,7 +192,9 @@ format:
 
     [Case Presentation and class execution](https://www.cs.toronto.edu/~lcharlin/courses/60629/case_Decathlon-preparation.pdf) (answer to Question 1 must be submitted by the 13 at the latest)
 
-* [Class slides](https://www.cs.toronto.edu/~lcharlin/courses/60629/case_Decathlon-diapos.pdf)
+- [Class slides - main](/RS/RS_slides.pptx)
+
+* [Class slides - case study](https://www.cs.toronto.edu/~lcharlin/courses/60629/case_Decathlon-diapos.pdf)
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 12 - Sequential decision making I
