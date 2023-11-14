@@ -194,7 +194,10 @@ format:
 
 - [Class slides - main](/RS/RS_slides.pptx)
 
-* [Class slides - case study](https://www.cs.toronto.edu/~lcharlin/courses/60629/case_Decathlon-diapos.pdf)
+- [SVD excel example (fast.ai)](data/xl/collab_filter.xlsx) 
+
+- [Class slides - case study](https://www.cs.toronto.edu/~lcharlin/courses/60629/case_Decathlon-diapos.pdf)
+
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 12 - Sequential decision making I
