@@ -213,7 +213,9 @@ format:
 
 * In-class material:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl-summary.pdf)
+    - [Slides](RL/RL1_slides.pptx)
     - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week12-MDPs/value_and_policy_iteration_question.ipynb))
+    - [First RL Example](/RL/First%20RL%20example.ipynb) 
 :::
 ::: {.callout-note appearance="minimal" collapse="false"}
 ### Week 13 - Sequential decision making II
@@ -232,6 +234,7 @@ format:
 * In-class material:
     - [Summary](https://www.cs.toronto.edu/~lcharlin/courses/60629/slides_rl2-summary.pdf)
     - Exercises ([colab](https://colab.research.google.com/github/lcharlin/80-629/blob/master/week13-RL/Monte_Carlo_Question.ipynb))
+    - [On policy first-visit Monte Carlo](RL/On-policy%20first-visit%20MC%20control%20(for%20soft%20policies).ipynb)
 :::
 
 ::: {.callout-note appearance="minimal" collapse="false"}
