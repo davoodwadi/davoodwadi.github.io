@@ -26,5 +26,19 @@
     "title": "MATH60629A - Machine Learning I (Fall 2023)",
     "section": "In-class Tools",
     "text": "In-class Tools\n\nCups pacing webapp"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Davood Wadi",
+    "section": "",
+    "text": "I’m a researcher and educator with a focus on Digital Marketing and the application of Artificial Intelligence in Marketing.\nI currently teach the following courses:"
+  },
+  {
+    "objectID": "index.html#experiences",
+    "href": "index.html#experiences",
+    "title": "Davood Wadi",
+    "section": "Experiences",
+    "text": "Experiences\n\nPhD in Marketing - HEC Montreal (Best 2023 Thesis Award Nominee)\nPartner with intelChain.io as AI Scientist\n\nSome of the apps I built: RAG (Retrieval Augmented Generation) chatbot that answers based on the Streamlit documentation"
   }
 ]

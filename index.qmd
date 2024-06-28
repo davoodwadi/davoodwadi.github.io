@@ -29,3 +29,6 @@ I currently teach the following courses:
 
 * PhD in Marketing - HEC Montreal (*Best 2023 Thesis Award Nominee*)
 * Partner with [intelChain.io](https://intelChain.io) as AI Scientist
+
+Some of the apps I built:
+[RAG (Retrieval Augmented Generation) chatbot that answers based on the Streamlit documentation](app.html)
