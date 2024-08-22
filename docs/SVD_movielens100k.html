@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davood Wadi - SVD</title>
+<title>svd_movielens100k – Davood Wadi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,13 +94,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -105,42 +112,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Davood Wadi</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.qmd"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Courses</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making" rel="" target="">
+    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making">
  <span class="dropdown-text">MIT ADSP</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./courses.html" rel="" target="">
+    <a class="dropdown-item" href="./courses.html">
  <span class="dropdown-text">MATH60629A</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -153,7 +160,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#activesgd" id="toc-activesgd" class="nav-link active" data-scroll-target="#activesgd">activeSGD</a></li>
+  <li><a href="#svd" id="toc-svd" class="nav-link active" data-scroll-target="#svd">SVD</a>
+  <ul class="collapse">
+  <li><a href="#activesgd" id="toc-activesgd" class="nav-link" data-scroll-target="#activesgd">activeSGD</a></li>
+  </ul></li>
   <li><a href="#get-recommendations" id="toc-get-recommendations" class="nav-link" data-scroll-target="#get-recommendations">Get recommendations</a></li>
   <li><a href="#visualize-embeddings" id="toc-visualize-embeddings" class="nav-link" data-scroll-target="#visualize-embeddings">Visualize embeddings</a></li>
   </ul>
@@ -162,30 +172,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">SVD</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
 
 <p><a href="https://colab.research.google.com/github/davoodwadi/davoodwadi.github.io/blob/main/SVD_movielens100k.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
-<div class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="6953b61a-adc9-48ed-e607-a600245528a4" data-execution_count="2">
+<div id="cell-3" class="cell" data-outputid="6953b61a-adc9-48ed-e607-a600245528a4" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="st">'https://files.grouplens.org/datasets/movielens/ml-100k.zip'</span> <span class="st">'./'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--2023-09-25 12:22:25--  https://files.grouplens.org/datasets/movielens/ml-100k.zip
@@ -207,7 +203,7 @@ Total wall clock time: 1.0s
 Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="9effa0de-b285-4944-9a4f-c5c4f084105d" data-execution_count="3">
+<div id="cell-4" class="cell" data-outputid="9effa0de-b285-4944-9a4f-c5c4f084105d" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>unzip <span class="st">'./ml-100k.zip'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Archive:  ./ml-100k.zip
@@ -237,7 +233,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
   inflating: ml-100k/ub.test         </code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="cd397b1f-3282-46ed-9770-ea226600aa39" data-execution_count="4">
+<div id="cell-5" class="cell" data-outputid="cd397b1f-3282-46ed-9770-ea226600aa39" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>movie_columns <span class="op">=</span> [<span class="st">'movie id'</span> , <span class="st">'movie title'</span> , <span class="st">'release date'</span> , <span class="st">'video release date'</span> ,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">'IMDb URL'</span> , <span class="st">'unknown'</span> , <span class="st">'Action'</span> , <span class="st">'Adventure'</span> , <span class="st">'Animation'</span> ,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Children's"</span> , <span class="st">'Comedy'</span> , <span class="st">'Crime'</span> , <span class="st">'Documentary'</span> , <span class="st">'Drama'</span> , <span class="st">'Fantasy'</span> ,</span>
@@ -251,7 +247,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -546,7 +542,6 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
 </tbody>
 </table>
 
-
 <p>1682 rows × 24 columns</p>
 </div>
     <div class="colab-df-buttons">
@@ -754,7 +749,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-execution_count="5">
+<div id="cell-6" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>genres <span class="op">=</span> movies.columns[<span class="dv">6</span>:].to_numpy()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_genre(row):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  genre_int <span class="op">=</span> row[<span class="dv">6</span>:]</span>
@@ -762,7 +757,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return genres[index[0]]</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="st">' '</span>.join(genres[index[<span class="dv">0</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="9952bdc6-1d41-4675-f69e-09da130f9c9e" data-execution_count="6">
+<div id="cell-7" class="cell" data-outputid="9952bdc6-1d41-4675-f69e-09da130f9c9e" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'Genre'</span>] <span class="op">=</span> movies.<span class="bu">apply</span>(create_genre, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -771,7 +766,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1066,7 +1061,6 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
 </tbody>
 </table>
 
-
 <p>1682 rows × 25 columns</p>
 </div>
     <div class="colab-df-buttons">
@@ -1274,7 +1268,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="6788dec1-3ce5-405f-fdb5-7c82b20cf222" data-execution_count="7">
+<div id="cell-9" class="cell" data-outputid="6788dec1-3ce5-405f-fdb5-7c82b20cf222" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>users <span class="op">=</span> pd.read_csv(<span class="st">'./ml-100k/u.user'</span>, sep<span class="op">=</span><span class="st">'|'</span>, encoding<span class="op">=</span><span class="st">'latin-1'</span>, names <span class="op">=</span> [<span class="st">'user id'</span> , <span class="st">'age'</span> , <span class="st">'gender'</span> , <span class="st">'occupation'</span> , <span class="st">'zip code'</span>])</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>users</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -1283,7 +1277,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1385,7 +1379,6 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
 </tr>
 </tbody>
 </table>
-
 
 <p>943 rows × 5 columns</p>
 </div>
@@ -1594,7 +1587,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="81b2ff12-6909-45d8-ba3d-895ba83ff30b" data-execution_count="8">
+<div id="cell-10" class="cell" data-outputid="81b2ff12-6909-45d8-ba3d-895ba83ff30b" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ratings <span class="op">=</span> pd.read_csv(<span class="st">'./ml-100k/u.data'</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, names <span class="op">=</span> [<span class="st">'uid'</span>, <span class="st">'mid'</span>, <span class="st">'rating'</span>, <span class="st">'timestamp'</span>])</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ratings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -1603,7 +1596,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1693,7 +1686,6 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
 </tr>
 </tbody>
 </table>
-
 
 <p>100000 rows × 4 columns</p>
 </div>
@@ -1902,7 +1894,7 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="30c7ef6a-5cbf-4e0a-9fa3-28f8a0851c88" data-execution_count="9">
+<div id="cell-11" class="cell" data-outputid="30c7ef6a-5cbf-4e0a-9fa3-28f8a0851c88" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ratings.rating.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>4    34174
@@ -1913,7 +1905,9 @@ Downloaded: 1 files, 4.7M in 0.5s (9.91 MB/s)</code></pre>
 Name: rating, dtype: int64</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="a81af0ef-fa13-42c7-ce42-b235a18db695" data-execution_count="10">
+<section id="svd" class="level1">
+<h1>SVD</h1>
+<div id="cell-13" class="cell" data-outputid="a81af0ef-fa13-42c7-ce42-b235a18db695" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a_pivot <span class="op">=</span> pd.pivot_table(ratings, values <span class="op">=</span> <span class="st">'rating'</span>, columns <span class="op">=</span> <span class="st">'mid'</span>, index <span class="op">=</span> <span class="st">'uid'</span>, fill_value <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>a_pivot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -1922,7 +1916,7 @@ Name: rating, dtype: int64</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">mid</th>
@@ -2241,7 +2235,6 @@ Name: rating, dtype: int64</code></pre>
 </tbody>
 </table>
 
-
 <p>943 rows × 1682 columns</p>
 </div>
     <div class="colab-df-buttons">
@@ -2449,7 +2442,7 @@ Name: rating, dtype: int64</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="2161c8d7-1fc4-4b41-a8ec-a318fe405410" data-execution_count="11">
+<div id="cell-14" class="cell" data-outputid="2161c8d7-1fc4-4b41-a8ec-a318fe405410" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> a_pivot.to_numpy()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> torch.tensor(a).<span class="bu">float</span>()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2463,25 +2456,25 @@ Name: rating, dtype: int64</code></pre>
         [-1.,  5., -1.,  ..., -1., -1., -1.]])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="59ce2bb2-7921-4af0-d002-c7425570ae15" data-execution_count="12">
+<div id="cell-15" class="cell" data-outputid="59ce2bb2-7921-4af0-d002-c7425570ae15" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a.numel()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>1586126</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="f3941869-37a4-47f3-e885-af3006651ac7" data-execution_count="13">
+<div id="cell-16" class="cell" data-outputid="f3941869-37a4-47f3-e885-af3006651ac7" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(a<span class="op">==</span>(<span class="op">-</span><span class="dv">1</span>)).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>tensor(1486126)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="e5487f81-2dab-4828-cdbd-0cbdd7d37ae2" data-execution_count="14">
+<div id="cell-17" class="cell" data-outputid="e5487f81-2dab-4828-cdbd-0cbdd7d37ae2" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>torch.Size([943, 1682])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="c34ba608-0e99-4e4b-bf09-269879487736" data-execution_count="15">
+<div id="cell-18" class="cell" data-outputid="c34ba608-0e99-4e4b-bf09-269879487736" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> torch.randn(a.shape[<span class="dv">0</span>], k, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> torch.randn(k, a.shape[<span class="dv">1</span>],  requires_grad<span class="op">=</span><span class="va">True</span>)</span>
@@ -2490,7 +2483,7 @@ Name: rating, dtype: int64</code></pre>
 <pre><code>(torch.Size([943, 20]), torch.Size([20, 1682]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="d888199f-8c93-43af-8242-286f7745e6de" data-execution_count="16">
+<div id="cell-19" class="cell" data-outputid="d888199f-8c93-43af-8242-286f7745e6de" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>optim <span class="op">=</span> torch.optim.SGD([u, v], lr <span class="op">=</span> <span class="fl">0.5</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>epoch <span class="op">=</span> <span class="dv">1000</span></span>
@@ -2518,7 +2511,7 @@ epoch 900: rmse loss 2.0665</code></pre>
 </div>
 <section id="activesgd" class="level2">
 <h2 class="anchored" data-anchor-id="activesgd">activeSGD</h2>
-<div class="cell" data-outputid="86d44149-30c6-4a80-d474-f072ec31c5fc" data-execution_count="17">
+<div id="cell-21" class="cell" data-outputid="86d44149-30c6-4a80-d474-f072ec31c5fc" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>davoodwadi<span class="op">/</span>active<span class="op">-</span>lr<span class="op">/</span>main<span class="op">/</span>optimizers<span class="op">/</span>ActiveSGD.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--2023-09-25 12:23:21--  https://raw.githubusercontent.com/davoodwadi/active-lr/main/optimizers/ActiveSGD.py
@@ -2534,10 +2527,10 @@ ActiveSGD.py          0%[                    ]       0  --.-KB/s               A
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="18">
+<div id="cell-22" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ActiveSGD <span class="im">import</span> ActiveSGD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="2bfafee1-8b3d-4b59-f4f4-f954eda1f3cc" data-execution_count="19">
+<div id="cell-23" class="cell" data-outputid="2bfafee1-8b3d-4b59-f4f4-f954eda1f3cc" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">200</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> torch.randn(a.shape[<span class="dv">0</span>], k, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> torch.randn(k, a.shape[<span class="dv">1</span>],  requires_grad<span class="op">=</span><span class="va">True</span>)</span>
@@ -2546,7 +2539,7 @@ ActiveSGD.py          0%[                    ]       0  --.-KB/s               A
 <pre><code>(torch.Size([943, 200]), torch.Size([200, 1682]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="0f689060-b402-4596-ffe1-5479bad71f4f" data-execution_count="20">
+<div id="cell-24" class="cell" data-outputid="0f689060-b402-4596-ffe1-5479bad71f4f" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>stepSize <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>optim <span class="op">=</span> ActiveSGD([u, v], stepSize<span class="op">=</span>stepSize, lr <span class="op">=</span> <span class="fl">0.5</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
@@ -2573,7 +2566,7 @@ epoch 800: rmse loss 0.0159
 epoch 900: rmse loss 0.0123</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="066689f9-636e-4d1a-878c-f8ca2f24e3e0" data-execution_count="21">
+<div id="cell-25" class="cell" data-outputid="066689f9-636e-4d1a-878c-f8ca2f24e3e0" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  a_hat <span class="op">=</span> u <span class="op">@</span> v</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>a_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2594,9 +2587,10 @@ epoch 900: rmse loss 0.0123</code></pre>
 </div>
 </div>
 </section>
+</section>
 <section id="get-recommendations" class="level1">
 <h1>Get recommendations</h1>
-<div class="cell" data-execution_count="22">
+<div id="cell-27" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> watched(uid):</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  watched <span class="op">=</span> ratings[ratings.uid<span class="op">==</span>uid]</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  ret <span class="op">=</span> watched.mid.to_numpy()</span>
@@ -2614,10 +2608,10 @@ epoch 900: rmse loss 0.0123</code></pre>
 <span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  ret <span class="op">=</span> movies[<span class="op">~</span>movies[<span class="st">'movie id'</span>].isin(ret)][<span class="st">'movie title'</span>]</span>
 <span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> ret</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="23">
+<div id="cell-28" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>uid <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="67d0679b-5e40-4f2c-e5db-ea77aafb0319" data-execution_count="24">
+<div id="cell-29" class="cell" data-outputid="67d0679b-5e40-4f2c-e5db-ea77aafb0319" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>watched_liked(uid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>0                                       Toy Story (1995)
@@ -2634,7 +2628,7 @@ epoch 900: rmse loss 0.0123</code></pre>
 Name: movie title, Length: 163, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="d5c76431-3174-4f78-d2e7-f6a22692dd48" data-execution_count="25">
+<div id="cell-30" class="cell" data-outputid="d5c76431-3174-4f78-d2e7-f6a22692dd48" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>watched(uid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>0              Toy Story (1995)
@@ -2651,7 +2645,7 @@ Name: movie title, Length: 163, dtype: object</code></pre>
 Name: movie title, Length: 272, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="00ae033e-fdc7-4dbd-e666-3a0591c979c2" data-execution_count="26">
+<div id="cell-31" class="cell" data-outputid="00ae033e-fdc7-4dbd-e666-3a0591c979c2" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>nw <span class="op">=</span> not_watched(uid)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>nw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -2669,13 +2663,13 @@ Name: movie title, Length: 272, dtype: object</code></pre>
 Name: movie title, Length: 1410, dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="d7de46a4-cfa1-4ed2-a445-9263454ee91a" data-execution_count="27">
+<div id="cell-32" class="cell" data-outputid="d7de46a4-cfa1-4ed2-a445-9263454ee91a" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>nw.index.to_numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>array([ 272,  273,  274, ..., 1679, 1680, 1681])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="f3a7ebcb-8934-4512-f32f-43c0d2dc59e1" data-execution_count="28">
+<div id="cell-33" class="cell" data-outputid="f3a7ebcb-8934-4512-f32f-43c0d2dc59e1" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="op">=</span> pd.DataFrame(a_hat, index<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>, a_hat.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>), columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>, a_hat.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>prediction_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -2684,7 +2678,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -2979,7 +2973,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tbody>
 </table>
 
-
 <p>943 rows × 1682 columns</p>
 </div>
     <div class="colab-df-buttons">
@@ -3187,7 +3180,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="b8e61688-521c-41a3-ba92-34d167863278" data-execution_count="29">
+<div id="cell-34" class="cell" data-outputid="b8e61688-521c-41a3-ba92-34d167863278" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> pd.merge(movies[[<span class="st">'movie id'</span>, <span class="st">'movie title'</span>, <span class="st">'Genre'</span>]], ratings[ratings.uid<span class="op">==</span>uid][[<span class="st">'mid'</span>, <span class="st">'rating'</span>]], left_on<span class="op">=</span><span class="st">'movie id'</span>, right_on<span class="op">=</span><span class="st">'mid'</span>, how<span class="op">=</span><span class="st">'left'</span>).drop(<span class="st">'mid'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>predicted <span class="op">=</span> predicted.set_index(<span class="st">'movie id'</span>)</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>predicted[<span class="st">'predicted_rating'</span>] <span class="op">=</span> prediction_df.loc[uid] <span class="co"># choose the user</span></span>
@@ -3199,7 +3192,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3309,7 +3302,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tr>
 </tbody>
 </table>
-
 
 <p>1682 rows × 5 columns</p>
 </div>
@@ -3518,7 +3510,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="56ee1a09-b90c-4960-ba66-1d511b0d5f99" data-execution_count="30">
+<div id="cell-35" class="cell" data-outputid="56ee1a09-b90c-4960-ba66-1d511b0d5f99" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>min_rev <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>popular_movies <span class="op">=</span> predicted[predicted.rating_count<span class="op">&gt;</span>min_rev]</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>popular_movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3528,7 +3520,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3638,7 +3630,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tr>
 </tbody>
 </table>
-
 
 <p>334 rows × 5 columns</p>
 </div>
@@ -3847,7 +3838,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="ca4bb283-fd4a-46a1-c4d6-b3057c71b23d" data-execution_count="31">
+<div id="cell-36" class="cell" data-outputid="ca4bb283-fd4a-46a1-c4d6-b3057c71b23d" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>popular_movies_like <span class="op">=</span> popular_movies[popular_movies.predicted_rating<span class="op">&gt;=</span><span class="dv">4</span>]</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>popular_movies_like</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -3856,7 +3847,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3966,7 +3957,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tr>
 </tbody>
 </table>
-
 
 <p>148 rows × 5 columns</p>
 </div>
@@ -4175,7 +4165,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="4f265aef-2f63-452e-9f9e-4c6553b393dc" data-execution_count="32">
+<div id="cell-37" class="cell" data-outputid="4f265aef-2f63-452e-9f9e-4c6553b393dc" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>popular_movies_like[popular_movies_like.rating.isna()].sort_values(by<span class="op">=</span><span class="st">'predicted_rating'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 
@@ -4183,7 +4173,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4678,7 +4668,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tbody>
 </table>
 
-
 </div>
     <div class="colab-df-buttons">
 
@@ -4888,28 +4877,28 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </section>
 <section id="visualize-embeddings" class="level1">
 <h1>Visualize embeddings</h1>
-<div class="cell" data-execution_count="33">
+<div id="cell-39" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="a9328684-f42b-4ab9-abbd-91089ba4c90a" data-execution_count="34">
+<div id="cell-40" class="cell" data-outputid="a9328684-f42b-4ab9-abbd-91089ba4c90a" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>v_array <span class="op">=</span> v.detach().numpy()</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>v_array.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>(200, 1682)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="35">
+<div id="cell-41" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, perplexity<span class="op">=</span><span class="dv">40</span>)</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>Xs <span class="op">=</span> tsne.fit_transform(v_array.T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="1c65b238-09bb-41e1-e0b4-55c866257b30" data-execution_count="36">
+<div id="cell-42" class="cell" data-outputid="1c65b238-09bb-41e1-e0b4-55c866257b30" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>Xs.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>(1682, 2)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="67ee5842-c785-481c-c5f1-791252cd8edb" data-execution_count="37">
+<div id="cell-43" class="cell" data-outputid="67ee5842-c785-481c-c5f1-791252cd8edb" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>Xs[:,<span class="dv">0</span>], y<span class="op">=</span>Xs[:,<span class="dv">1</span>], hue<span class="op">=</span>movies.Horror)</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Feature 1'</span>)</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Feature 2'</span>)</span>
@@ -4918,10 +4907,14 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <pre><code>Text(0.5, 1.0, 'Movie embeddings')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="SVD_movielens100k_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="SVD_movielens100k_files/figure-html/cell-40-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-outputid="94dddf2e-0322-471c-d9d2-efc4ef8948a1" data-execution_count="38">
+</div>
+<div id="cell-44" class="cell" data-outputid="94dddf2e-0322-471c-d9d2-efc4ef8948a1" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="st">'god'</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>predicted[predicted[<span class="st">'movie title'</span>].<span class="bu">str</span>.contains(title, case<span class="op">=</span><span class="va">False</span>, regex<span class="op">=</span><span class="va">False</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
@@ -4930,7 +4923,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -5000,7 +4993,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tr>
 </tbody>
 </table>
-
 
 </div>
     <div class="colab-df-buttons">
@@ -5208,7 +5200,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="24c0a07e-91af-43e7-f7de-cb0dee9d0bb2" data-execution_count="39">
+<div id="cell-45" class="cell" data-outputid="24c0a07e-91af-43e7-f7de-cb0dee9d0bb2" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>movie1<span class="op">=</span><span class="dv">127</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>movie2<span class="op">=</span><span class="dv">187</span></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -5222,10 +5214,14 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <pre><code>Text(0.5, 1.0, 'Movie embeddings')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="SVD_movielens100k_files/figure-html/cell-42-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="SVD_movielens100k_files/figure-html/cell-42-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-outputid="7ad9ec5e-6f54-4add-d1b9-fd4779c7d9e6" data-execution_count="40">
+</div>
+<div id="cell-46" class="cell" data-outputid="7ad9ec5e-6f54-4add-d1b9-fd4779c7d9e6" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>popular_index <span class="op">=</span> predicted[predicted.rating_count<span class="op">&gt;</span><span class="dv">300</span>].index.to_numpy()<span class="op">-</span><span class="dv">1</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>popular_index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
@@ -5234,7 +5230,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
        287, 293, 299, 312, 404, 747])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="14ce01b2-0e43-4b67-a4b8-0830eac9fe2c" data-execution_count="41">
+<div id="cell-47" class="cell" data-outputid="14ce01b2-0e43-4b67-a4b8-0830eac9fe2c" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>Xs[:,<span class="dv">0</span>], y<span class="op">=</span>Xs[:,<span class="dv">1</span>])</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(x <span class="op">=</span> Xs[popular_index, <span class="dv">0</span>], y <span class="op">=</span> Xs[popular_index, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>) <span class="co"># godfather</span></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.scatter(x = Xs[182, 0], y = Xs[182, 1], color='green') # goodfellas</span></span>
@@ -5245,10 +5241,14 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <pre><code>Text(0.5, 1.0, 'Movie embeddings')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="SVD_movielens100k_files/figure-html/cell-44-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="SVD_movielens100k_files/figure-html/cell-44-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-outputid="5efd9884-48c0-4588-b3d3-7f2c198a4f15" data-execution_count="42">
+</div>
+<div id="cell-48" class="cell" data-outputid="5efd9884-48c0-4588-b3d3-7f2c198a4f15" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>unpop_index <span class="op">=</span> predicted[predicted.rating_count<span class="op">&lt;</span><span class="dv">2</span>].index.to_numpy()<span class="op">-</span><span class="dv">1</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>unpop_index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
@@ -5267,7 +5267,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
        1673, 1674, 1675, 1676, 1677, 1678, 1679, 1680, 1681])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="c04490a6-e448-4f54-d550-33a2d7ef98e0" data-execution_count="43">
+<div id="cell-49" class="cell" data-outputid="c04490a6-e448-4f54-d550-33a2d7ef98e0" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>Xs[:,<span class="dv">0</span>], y<span class="op">=</span>Xs[:,<span class="dv">1</span>])</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(x <span class="op">=</span> Xs[unpop_index, <span class="dv">0</span>], y <span class="op">=</span> Xs[unpop_index, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Feature 1'</span>)</span>
@@ -5277,10 +5277,14 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <pre><code>Text(0.5, 1.0, 'Movie embeddings')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="SVD_movielens100k_files/figure-html/cell-46-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="SVD_movielens100k_files/figure-html/cell-46-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-outputid="4e8ccb94-714a-4fc1-9ec1-89a9ada70ab3" data-execution_count="44">
+</div>
+<div id="cell-50" class="cell" data-outputid="4e8ccb94-714a-4fc1-9ec1-89a9ada70ab3" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>predicted.iloc[Xs[:,<span class="dv">0</span>]<span class="op">&lt;-</span><span class="fl">1.9</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 
@@ -5288,7 +5292,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -5607,7 +5611,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tbody>
 </table>
 
-
 </div>
     <div class="colab-df-buttons">
 
@@ -5814,7 +5817,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="21bf4bba-91dc-42b7-8482-44548b19190e" data-execution_count="45">
+<div id="cell-51" class="cell" data-outputid="21bf4bba-91dc-42b7-8482-44548b19190e" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>Xs[:,<span class="dv">0</span>], y<span class="op">=</span>Xs[:,<span class="dv">1</span>])</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(x <span class="op">=</span> Xs[Xs[:,<span class="dv">0</span>]<span class="op">&lt;-</span><span class="fl">1.9</span>,<span class="dv">0</span>], y <span class="op">=</span> Xs[Xs[:,<span class="dv">0</span>]<span class="op">&lt;-</span><span class="fl">1.9</span>,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Feature 1'</span>)</span>
@@ -5824,10 +5827,14 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <pre><code>Text(0.5, 1.0, 'Movie embeddings')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="SVD_movielens100k_files/figure-html/cell-48-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="SVD_movielens100k_files/figure-html/cell-48-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-outputid="d3f092ae-2cb6-4938-9fd3-b6ac9ea0f383" data-execution_count="46">
+</div>
+<div id="cell-52" class="cell" data-outputid="d3f092ae-2cb6-4938-9fd3-b6ac9ea0f383" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>predicted.iloc[Xs[:,<span class="dv">0</span>]<span class="op">&gt;</span><span class="fl">1.9</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="46">
 
@@ -5835,7 +5842,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -5921,7 +5928,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tr>
 </tbody>
 </table>
-
 
 </div>
     <div class="colab-df-buttons">
@@ -6129,7 +6135,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="5a8ae474-df79-4c37-fff1-a5334c2eb70f" data-execution_count="47">
+<div id="cell-53" class="cell" data-outputid="5a8ae474-df79-4c37-fff1-a5334c2eb70f" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>most_watched <span class="op">=</span> predicted[predicted.rating_count<span class="op">&gt;</span><span class="dv">390</span>].index.to_numpy()<span class="op">-</span><span class="dv">1</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>most_watched</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
@@ -6137,7 +6143,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
        299])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="f9b80810-5150-461d-8f81-2aa6d99297bc" data-execution_count="48">
+<div id="cell-54" class="cell" data-outputid="f9b80810-5150-461d-8f81-2aa6d99297bc" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>titles <span class="op">=</span> predicted[predicted.rating_count<span class="op">&gt;</span><span class="dv">390</span>][<span class="st">'movie title'</span>].tolist()</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>titles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
@@ -6157,7 +6163,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
  'Air Force One (1997)']</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="e334054e-6817-4535-e92c-92a877a065f3" data-execution_count="49">
+<div id="cell-55" class="cell" data-outputid="e334054e-6817-4535-e92c-92a877a065f3" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>Xs[most_watched,<span class="dv">0</span>], y<span class="op">=</span>Xs[most_watched,<span class="dv">1</span>], hue<span class="op">=</span>titles, s<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.scatter(x = Xs[Xs[:,0]&lt;-1.9,0], y = Xs[Xs[:,0]&lt;-1.9,1], color='red')</span></span>
@@ -6167,10 +6173,14 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.legend(loc='lower right')</span></span>
 <span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>legend <span class="op">=</span> plt.legend(title<span class="op">=</span><span class="st">'Labels'</span>, loc<span class="op">=</span><span class="st">'upper left'</span>, labels<span class="op">=</span>titles, bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="SVD_movielens100k_files/figure-html/cell-52-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="SVD_movielens100k_files/figure-html/cell-52-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-outputid="230fc66f-550a-4049-b30a-7226a2984c7a" data-execution_count="50">
+</div>
+<div id="cell-56" class="cell" data-outputid="230fc66f-550a-4049-b30a-7226a2984c7a" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate r (radial distance)</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.sqrt((Xs<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>))</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>r.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -6178,7 +6188,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <pre><code>(1682,)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="34a932aa-cbb1-40a0-9783-2008de7c8693" data-execution_count="51">
+<div id="cell-57" class="cell" data-outputid="34a932aa-cbb1-40a0-9783-2008de7c8693" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate θ (polar angle) in radians</span></span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>theta_rad <span class="op">=</span> np.arctan2(Xs[:,<span class="dv">1</span>], Xs[:,<span class="dv">0</span>])</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>theta_rad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -6187,7 +6197,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
         0.58894116,  1.3571696 ], dtype=float32)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="ecd65ee1-730d-4e4b-dca9-c88d07969b76" data-execution_count="52">
+<div id="cell-58" class="cell" data-outputid="ecd65ee1-730d-4e4b-dca9-c88d07969b76" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>r, y<span class="op">=</span>theta_rad)</span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'r'</span>)</span>
 <span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'theta'</span>)</span>
@@ -6196,10 +6206,14 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <pre><code>Text(0.5, 1.0, 'Movie embeddings')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="SVD_movielens100k_files/figure-html/cell-55-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="SVD_movielens100k_files/figure-html/cell-55-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-outputid="d8eaf890-0931-4b56-c6bb-f491cbdcdf52" data-execution_count="53">
+</div>
+<div id="cell-59" class="cell" data-outputid="d8eaf890-0931-4b56-c6bb-f491cbdcdf52" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>r, y<span class="op">=</span>theta_rad)</span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>ax.scatter(x <span class="op">=</span> r[r<span class="op">&gt;</span><span class="fl">1.8</span>], y <span class="op">=</span> theta_rad[r<span class="op">&gt;</span><span class="fl">1.8</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'r'</span>)</span>
@@ -6209,10 +6223,14 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 <pre><code>Text(0.5, 1.0, 'Movie embeddings')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="SVD_movielens100k_files/figure-html/cell-56-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="SVD_movielens100k_files/figure-html/cell-56-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-outputid="e6786a08-3f77-47c9-90e4-761a8204304a" data-execution_count="54">
+</div>
+<div id="cell-60" class="cell" data-outputid="e6786a08-3f77-47c9-90e4-761a8204304a" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>predicted.iloc[(r<span class="op">&gt;</span><span class="fl">1.8</span>)<span class="op">&amp;</span>(theta_rad<span class="op">&gt;</span><span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 
@@ -6220,7 +6238,7 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
     <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -6322,7 +6340,6 @@ Name: movie title, Length: 1410, dtype: object</code></pre>
 </tr>
 </tbody>
 </table>
-
 
 </div>
     <div class="colab-df-buttons">
@@ -6570,18 +6587,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -6613,11 +6619,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -6627,8 +6672,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -6640,7 +6694,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -6684,6 +6861,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -6709,6 +6887,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -6769,6 +6973,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

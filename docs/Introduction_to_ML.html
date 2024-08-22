@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davood Wadi - MATH60629A Fall 2022</title>
+<title>MATH60629A Fall 2022 – Davood Wadi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,17 +94,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -107,42 +141,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Davood Wadi</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.qmd"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Courses</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making" rel="" target="">
+    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making">
  <span class="dropdown-text">MIT ADSP</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./courses.html" rel="" target="">
+    <a class="dropdown-item" href="./courses.html">
  <span class="dropdown-text">MATH60629A</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -191,7 +225,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="tutorial-an-introduction-to-practical-machine-learning" class="level1">
 <h1>Tutorial: An Introduction to Practical Machine Learning</h1>
@@ -248,7 +284,7 @@ r_n
 <section id="start" class="level2">
 <h2 class="anchored" data-anchor-id="start">Start</h2>
 <p>Following this brief introduction, we now dive into the problem.</p>
-<div class="cell" data-outputid="4cb1925c-c400-4c66-fbaa-2acfec742bae">
+<div id="cell-4" class="cell" data-outputid="4cb1925c-c400-4c66-fbaa-2acfec742bae">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We first download the repo to get access to data and some utility code (This is specifically for colab.)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>rm <span class="op">-</span>rf <span class="dv">80</span><span class="op">-</span><span class="dv">629</span><span class="op">/</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>git clone https:<span class="op">//</span>github.com<span class="op">/</span>lcharlin<span class="op">/</span><span class="dv">80</span><span class="op">-</span><span class="dv">629</span><span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -268,7 +304,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <li><code>pandas</code> for data wrangling</li>
 <li><code>sklearn</code> (scikit-learn) for machine learning models and useful machine learning related routines</li>
 </ul>
-<div class="cell">
+<div id="cell-6" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
@@ -297,7 +333,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <h4 class="anchored" data-anchor-id="details">Details</h4>
 <p>We will use the publically available <a href="https://grouplens.org/datasets/movielens/">movielens dataset</a>. The group behind movielens has released several useful datasets in the last 20 years. Here we will focus on the <a href="https://grouplens.org/datasets/movielens/1m/">ML-1M data</a> (it contains 1M ratings) but we will also use movie tags from the <a href="https://grouplens.org/datasets/movielens/20m/">ML-20M dataset</a> (20M ratings).</p>
 <p>Except for downloading the dataset (to save you some time), I have not processed nor modified the data in any way.</p>
-<div class="cell">
+<div id="cell-8" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ROOT_DIR<span class="op">=</span><span class="st">'80-629/week4-PracticalSession'</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>DATA_DIR<span class="op">=</span>os.path.join(ROOT_DIR, <span class="st">'dat/ml-1m/'</span>) <span class="co"># this is where most of our data lives</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>DATA_DIR_20ML<span class="op">=</span>os.path.join(ROOT_DIR, <span class="st">'dat/ml-20m/'</span>) <span class="co"># for the tags data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -307,25 +343,25 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <h4 class="anchored" data-anchor-id="load-movie-namesgenres">Load Movie Names/Genres</h4>
 <p>We begin by loading the data that describes movies in the ML-1M dataset. Each line in the file contains one entry in the following format <code>MovieID::Name::Genres</code>.</p>
 <p>After loading into a pandas <code>dataFrame</code> structure, we will have movie names (<code>mName</code>), IDs (<code>mid</code>), and movie genres (<code>mGenres</code>)</p>
-<div class="cell">
+<div id="cell-10" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>movies_pd <span class="op">=</span> pd.read_csv(os.path.join(DATA_DIR, <span class="st">'movies.dat'</span>),</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                        sep<span class="op">=</span><span class="st">'::'</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                        names<span class="op">=</span>[<span class="st">'mid'</span>, <span class="st">'mName'</span>, <span class="st">'mGenres'</span>], engine<span class="op">=</span><span class="st">'python'</span>,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                        encoding<span class="op">=</span><span class="st">'latin-1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="4a7f0494-232b-47d5-a60d-5c3e55ef3268">
+<div id="cell-11" class="cell" data-outputid="4a7f0494-232b-47d5-a60d-5c3e55ef3268">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The dataset contains </span><span class="sc">{</span>movies_pd<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> movies'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The dataset contains 3883 movies</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="b542617f-0d0f-4326-881e-444344faee45">
+<div id="cell-12" class="cell" data-outputid="b542617f-0d0f-4326-881e-444344faee45">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>display(movies_pd.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -372,7 +408,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 </div>
 </div>
 <p>Using pandas we can also search for movies by <code>mid</code> or by their name:</p>
-<div class="cell" data-outputid="c626fbc4-2cd2-4f11-c1c0-43f16648f610">
+<div id="cell-14" class="cell" data-outputid="c626fbc4-2cd2-4f11-c1c0-43f16648f610">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mid <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>display(movies_pd[movies_pd.mid<span class="op">==</span>mid])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -383,7 +419,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -408,7 +444,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -434,7 +470,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <section id="load-ratings" class="level4">
 <h4 class="anchored" data-anchor-id="load-ratings">Load Ratings</h4>
 <p>Using a similar routine as above, we load the ratings data which is in this format <code>UserID::MovieID::Rating::Timestamp</code>, and we will name the column UserID with <code>uid</code>, the column MovieID with <code>mid</code>, the rating with <code>rating</code>, and the time of the rating with <code>timestamp</code>.</p>
-<div class="cell" data-outputid="47614b7e-ba1a-46ff-b4e6-f23ccf5086e2">
+<div id="cell-16" class="cell" data-outputid="47614b7e-ba1a-46ff-b4e6-f23ccf5086e2">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ratings_pd <span class="op">=</span> pd.read_csv(os.path.join(DATA_DIR, <span class="st">'ratings.dat'</span>),</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                         sep<span class="op">=</span><span class="st">'::'</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                         names<span class="op">=</span>[<span class="st">'uid'</span>, <span class="st">'mid'</span>, <span class="st">'rating'</span>, <span class="st">'timestamp'</span>],</span>
@@ -447,7 +483,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -499,7 +535,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-outputid="5c28c977-94f0-4595-b79b-0e23e78687eb">
+<div id="cell-17" class="cell" data-outputid="5c28c977-94f0-4595-b79b-0e23e78687eb">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""The dataset contains </span><span class="sc">{</span>ratings_pd<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> ratings,</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ss">      from </span><span class="sc">{</span>ratings_pd<span class="sc">.</span>uid<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss"> users,</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ss">      and </span><span class="sc">{</span>ratings_pd<span class="sc">.</span>mid<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss"> items."""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -513,7 +549,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <section id="load-user-socio-demographics-information" class="level4">
 <h4 class="anchored" data-anchor-id="load-user-socio-demographics-information">Load User Socio-Demographics Information</h4>
 <p>The file is in this format <code>UserID::Gender::Age::Occupation::Zip-code</code>, which we will load in a <code>dataFrame</code> with the following column names <code>uid,gender,age,occupation,zip</code>.</p>
-<div class="cell" data-outputid="db4a5db9-66c6-4e84-bf63-e950f4fe18c3">
+<div id="cell-19" class="cell" data-outputid="db4a5db9-66c6-4e84-bf63-e950f4fe18c3">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>users_pd <span class="op">=</span> pd.read_csv(os.path.join(DATA_DIR, <span class="st">'users.dat'</span>),</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                       sep<span class="op">=</span><span class="st">'::'</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                       names<span class="op">=</span>[<span class="st">'uid'</span>, <span class="st">'gender'</span>, <span class="st">'age'</span>, <span class="st">'occupation'</span>, <span class="st">'zip'</span>],</span>
@@ -524,7 +560,7 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -582,22 +618,21 @@ Unpacking objects: 100% (77/77), done.</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-outputid="636320d4-ccb9-41d7-ecbc-a0968cc23fb4">
+<div id="cell-20" class="cell" data-outputid="636320d4-ccb9-41d7-ecbc-a0968cc23fb4">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'This table contains </span><span class="sc">{</span>users_pd<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> users'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>This table contains 6040 users</code></pre>
 </div>
 </div>
 <p>Further we will truncate the 5-digit zip codes and only keep the leading two digits. The reason is that we will treat this variable as a categorical one and with only ~6K users and &gt;3.4K unique zip codes, it is unlikely that we can learn precise enough coefficients for this feature.</p>
-<div class="cell" data-scrolled="true" data-outputid="75d857ce-0269-42e2-d58b-ee016cf92ecc">
+<div id="cell-22" class="cell" data-scrolled="true" data-outputid="75d857ce-0269-42e2-d58b-ee016cf92ecc">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'We originally have </span><span class="sc">{</span>users_pd<span class="sc">.</span><span class="bu">zip</span><span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss"> different zip codes'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>users_pd[<span class="st">'zip'</span>] <span class="op">=</span> users_pd[<span class="st">'zip'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[:<span class="dv">2</span>])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>display(users_pd[<span class="st">'zip'</span>].head())</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'By only keep the first two digits of each zip code, </span><span class="ch">\</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ss">we reduced the unique number of zip codes to </span><span class="sc">{</span>users_pd<span class="sc">.</span><span class="bu">zip</span><span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss">.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>We originally have 3439 different zip codes
-By only keep the first two digits of each zip code, we reduced the unique number of zip codes to 100.</code></pre>
+<pre><code>We originally have 3439 different zip codes</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <pre><code>0    48
@@ -607,23 +642,26 @@ By only keep the first two digits of each zip code, we reduced the unique number
 4    55
 Name: zip, dtype: object</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>By only keep the first two digits of each zip code, we reduced the unique number of zip codes to 100.</code></pre>
+</div>
 </div>
 </section>
 <section id="load-movie-tags" class="level4">
 <h4 class="anchored" data-anchor-id="load-movie-tags">Load Movie Tags</h4>
 <p>The remaining data to be loaded are the movie tags (we will actually use the tags from the ml-20M dataset). The tags are user generated. Further each movie-tag pair comes with an affinity score (intuitively, if numerous users have used a tag on a particular movie than the tag-movie pair will have a high affinity).</p>
 <p>We will load the csv data <code>movieId,tagId,relevance</code> into a <code>dataFrame</code> with the columns <code>mid,tid,relevance</code>.</p>
-<div class="cell" data-outputid="be4ddb51-86e3-47d1-c46e-2cf696908429">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load ml-20m tags</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tags_scores <span class="op">=</span> pd.read_csv(os.path.join(DATA_DIR_20ML, <span class="st">'genome-scores.csv.gz'</span>),</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                          skiprows<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                          names<span class="op">=</span>[<span class="st">'mid'</span>, <span class="st">'tid'</span>, <span class="st">'relevance'</span>])</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>display(tags_scores.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-24" class="cell" data-outputid="be4ddb51-86e3-47d1-c46e-2cf696908429">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load ml-20m tags</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>tags_scores <span class="op">=</span> pd.read_csv(os.path.join(DATA_DIR_20ML, <span class="st">'genome-scores.csv.gz'</span>),</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                          skiprows<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                          names<span class="op">=</span>[<span class="st">'mid'</span>, <span class="st">'tid'</span>, <span class="st">'relevance'</span>])</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>display(tags_scores.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -699,10 +737,10 @@ Name: zip, dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-scrolled="true" data-outputid="7b3d3ed1-cb23-409d-fbd6-b6d00161e80c">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The data contains </span><span class="sc">{</span>tags_scores<span class="sc">.</span>tid<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss"> unique tags.'</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Affinities (relevances) are contained in the </span><span class="sc">{</span>tags_scores<span class="sc">.</span>relevance<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">--</span><span class="sc">{</span>tags_scores<span class="sc">.</span>relevance<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> range.'</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>display(tags_scores.relevance.describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-25" class="cell" data-scrolled="true" data-outputid="7b3d3ed1-cb23-409d-fbd6-b6d00161e80c">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The data contains </span><span class="sc">{</span>tags_scores<span class="sc">.</span>tid<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss"> unique tags.'</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Affinities (relevances) are contained in the </span><span class="sc">{</span>tags_scores<span class="sc">.</span>relevance<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">--</span><span class="sc">{</span>tags_scores<span class="sc">.</span>relevance<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> range.'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>display(tags_scores.relevance.describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The data contains 1128 unique tags.
 Affinities (relevances) are contained in the 0.00024999999999997247--1.0 range.</code></pre>
@@ -721,14 +759,14 @@ Name: relevance, dtype: float64</code></pre>
 </div>
 <p>From above we see that affinities (relevance) basically span the 0 to 1 range, and have an average of 0.12.</p>
 <p>We also load the tag names. This will be useful for exploration purposes.</p>
-<div class="cell" data-outputid="da17bc40-8539-48a1-d135-20f4d440fb2e">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tags_names <span class="op">=</span> pd.read_csv(os.path.join(DATA_DIR_20ML, <span class="st">'genome-tags.csv'</span>), skiprows<span class="op">=</span><span class="dv">1</span>, names<span class="op">=</span>[<span class="st">'tid'</span>, <span class="st">'tName'</span>])</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>display(tags_names.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-28" class="cell" data-outputid="da17bc40-8539-48a1-d135-20f4d440fb2e">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tags_names <span class="op">=</span> pd.read_csv(os.path.join(DATA_DIR_20ML, <span class="st">'genome-tags.csv'</span>), skiprows<span class="op">=</span><span class="dv">1</span>, names<span class="op">=</span>[<span class="st">'tid'</span>, <span class="st">'tName'</span>])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>display(tags_names.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -795,20 +833,20 @@ Name: relevance, dtype: float64</code></pre>
 </div>
 <p>Since we loaded tag scores from a different dataset (ml-20M), we only need the tags that correspond to movies in the original data (ml-1M). Luckily, since both datasets are from movielens, the movie ids (<code>mid</code>) are the same across these two datasets (i.e., not need for messy string match).</p>
 <p>(Note: Pandas’ functionalities allow you to do operations similar to what you would do in SQL for relational databases.)</p>
-<div class="cell" data-outputid="974645ec-a3eb-4d2c-d217-87f0d0ef456e">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tags_scores <span class="op">=</span> tags_scores.loc[tags_scores[<span class="st">'mid'</span>].isin(ratings_pd[<span class="st">'mid'</span>].unique())]</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tags_scores.mid.nunique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-30" class="cell" data-outputid="974645ec-a3eb-4d2c-d217-87f0d0ef456e">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tags_scores <span class="op">=</span> tags_scores.loc[tags_scores[<span class="st">'mid'</span>].isin(ratings_pd[<span class="st">'mid'</span>].unique())]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tags_scores.mid.nunique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>3470</code></pre>
 </div>
 </div>
 <p>We lost a few movies compared to the original count of 3706 but we can live with that.</p>
 <p>Next, instead of using the tag scores, we only keep the highly relevant tags for each movie. In other words, we assume that the presence of a tag is more meaningful than its absence. This also has the side benefit of reducing the number of available tags per movie.</p>
-<div class="cell" data-scrolled="true" data-outputid="31932a8f-f7ce-4426-a9fa-1cd07724a56b">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only high-relevance tags (here this is defined as having a relevance above 0.9)</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'unique tags:'</span>, tags_scores[<span class="st">'tid'</span>].nunique())</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tags_scores_high <span class="op">=</span> tags_scores.loc[tags_scores[<span class="st">'relevance'</span>] <span class="op">&gt;</span> <span class="fl">0.9</span>]</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'unique tags w. high relevance:'</span>, tags_scores_high[<span class="st">'tid'</span>].nunique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-32" class="cell" data-scrolled="true" data-outputid="31932a8f-f7ce-4426-a9fa-1cd07724a56b">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only high-relevance tags (here this is defined as having a relevance above 0.9)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'unique tags:'</span>, tags_scores[<span class="st">'tid'</span>].nunique())</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>tags_scores_high <span class="op">=</span> tags_scores.loc[tags_scores[<span class="st">'relevance'</span>] <span class="op">&gt;</span> <span class="fl">0.9</span>]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'unique tags w. high relevance:'</span>, tags_scores_high[<span class="st">'tid'</span>].nunique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>unique tags: 1128
 unique tags w. high relevance: 968</code></pre>
@@ -819,15 +857,15 @@ unique tags w. high relevance: 968</code></pre>
 <h4 class="anchored" data-anchor-id="explore-tags">Explore tags</h4>
 <p>Let’s get some understanding of how these tags are used. To help, we first build a <code>dataFrame</code> that contains, the tag names, the movie name, and its relevance (recall that currently these are in three different tables, as the tag relevance contains tag and movie IDs but not their names).</p>
 <p>Pandas’ <code>merge</code> function can be used to join two dataFrames that share a common key. (This is an operation inspired by inner joins in SQL.)</p>
-<div class="cell" data-scrolled="true" data-outputid="de4e685c-79ce-47c5-b35a-fece1dcbbe17">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tags_high_names_movies <span class="op">=</span> pd.merge(tags_scores_high, tags_names, how<span class="op">=</span><span class="st">'inner'</span>, on<span class="op">=</span><span class="st">'tid'</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>tags_high_names_movies <span class="op">=</span> pd.merge(tags_high_names_movies, movies_pd, how<span class="op">=</span><span class="st">'inner'</span>, on<span class="op">=</span><span class="st">'mid'</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>display(tags_high_names_movies.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-35" class="cell" data-scrolled="true" data-outputid="de4e685c-79ce-47c5-b35a-fece1dcbbe17">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tags_high_names_movies <span class="op">=</span> pd.merge(tags_scores_high, tags_names, how<span class="op">=</span><span class="st">'inner'</span>, on<span class="op">=</span><span class="st">'tid'</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tags_high_names_movies <span class="op">=</span> pd.merge(tags_high_names_movies, movies_pd, how<span class="op">=</span><span class="st">'inner'</span>, on<span class="op">=</span><span class="st">'mid'</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>display(tags_high_names_movies.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -892,17 +930,17 @@ unique tags w. high relevance: 968</code></pre>
 </div>
 </div>
 <p>Similarly as above we can search for top movies according to a particular tag:</p>
-<div class="cell" data-outputid="bd7df760-4a87-40a1-be96-52c912e50019">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tag <span class="op">=</span> <span class="st">'scary'</span> <span class="co"># This is the (sub) tag we search for</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>display(tags_high_names_movies[</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    tags_high_names_movies.tName.<span class="bu">str</span>.contains(tag,</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                                               regex<span class="op">=</span><span class="va">False</span>, case<span class="op">=</span><span class="va">False</span>)].sort_values(by<span class="op">=</span>[<span class="st">'relevance'</span>],</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                                                                                    ascending<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-37" class="cell" data-outputid="bd7df760-4a87-40a1-be96-52c912e50019">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tag <span class="op">=</span> <span class="st">'scary'</span> <span class="co"># This is the (sub) tag we search for</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>display(tags_high_names_movies[</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    tags_high_names_movies.tName.<span class="bu">str</span>.contains(tag,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>                                               regex<span class="op">=</span><span class="va">False</span>, case<span class="op">=</span><span class="va">False</span>)].sort_values(by<span class="op">=</span>[<span class="st">'relevance'</span>],</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                                                                                    ascending<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1123,18 +1161,18 @@ unique tags w. high relevance: 968</code></pre>
 <p>In the current dataset, every movie-tag id pair is a separate entry (row of the <code>dataFrame</code>). Thinking ahead, we will want to use all tags as covariates to predict a single rating. As such, we want to construct a data matrix where each line corresponds to a single example.</p>
 <p>To do so, we re-encode <code>tid</code>s using a 1-of-K encoding (also known as using dummy variables). This is important to encode categorial variables (e.g., “cats” and “dogs”) which may be represented numerically but but which cannit be ordered. For example, here each tag has a numerical index (e.g., tag <code>scary</code> is id <code>882</code>) but tags cannot be compared using their numbers (e.g., tag <code>882</code> is not “bigger” than tag <code>880</code> or smaller than tag <code>900</code>). 1-of-K encoding deals with this by encoding each tag as a binary vector of length <span class="math inline">\(K\)</span> with a single non-zero value which corresponds to the tag. In the present case, <span class="math inline">\(K=968\)</span> tags, and tag <code>scary</code> would have a <code>1</code> at position <code>882</code>.</p>
 <p>Below we see that our data now has 971 columns: 968 for tag ids, 1 for <code>mid</code>, and 1 for <code>relevance</code>, and 1 for the pandas index.</p>
-<div class="cell" data-outputid="40201045-20e8-4088-acbb-346e372ad68b">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print(tags_scores_high.shape)</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>tags_scores_high_dum <span class="op">=</span> pd.get_dummies(tags_scores_high, columns<span class="op">=</span>[<span class="st">'tid'</span>])</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>tags_scores_high_dum <span class="op">=</span> tags_scores_high_dum.reset_index()</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(tags_scores_high_dum.shape)</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>display(tags_scores_high_dum.head())</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>tags_per_movie <span class="op">=</span> tags_scores_high_dum.groupby(<span class="st">"mid"</span>).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-39" class="cell" data-outputid="40201045-20e8-4088-acbb-346e372ad68b">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print(tags_scores_high.shape)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>tags_scores_high_dum <span class="op">=</span> pd.get_dummies(tags_scores_high, columns<span class="op">=</span>[<span class="st">'tid'</span>])</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>tags_scores_high_dum <span class="op">=</span> tags_scores_high_dum.reset_index()</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(tags_scores_high_dum.shape)</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>display(tags_scores_high_dum.head())</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>tags_per_movie <span class="op">=</span> tags_scores_high_dum.groupby(<span class="st">"mid"</span>).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1290,33 +1328,41 @@ unique tags w. high relevance: 968</code></pre>
 </div>
 </div>
 <p>With this data we can then explore the distribution of movies per tag (and tags per movie below).</p>
-<div class="cell" data-outputid="1192289e-fb28-4b80-b95b-daad27fce585">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>th <span class="op">=</span> tags_scores_high.groupby(<span class="st">"tid"</span>).count()</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>hists <span class="op">=</span> th.hist(bins<span class="op">=</span><span class="dv">50</span>, column<span class="op">=</span><span class="st">"mid"</span>, xlabelsize<span class="op">=</span><span class="dv">15</span>, ylabelsize<span class="op">=</span><span class="dv">15</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>hists.set_ylabel(<span class="st">"Tags"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>hists.set_xlabel(<span class="st">"Movies per tag"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>hists.set_title(<span class="st">"Histogram of Movies per tag"</span>, size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-41" class="cell" data-outputid="1192289e-fb28-4b80-b95b-daad27fce585">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>th <span class="op">=</span> tags_scores_high.groupby(<span class="st">"tid"</span>).count()</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>hists <span class="op">=</span> th.hist(bins<span class="op">=</span><span class="dv">50</span>, column<span class="op">=</span><span class="st">"mid"</span>, xlabelsize<span class="op">=</span><span class="dv">15</span>, ylabelsize<span class="op">=</span><span class="dv">15</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>hists.set_ylabel(<span class="st">"Tags"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>hists.set_xlabel(<span class="st">"Movies per tag"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>hists.set_title(<span class="st">"Histogram of Movies per tag"</span>, size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Introduction_to_ML_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Introduction_to_ML_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In this histogram each bar corresponds to the number of tags (y-axis) associated with a particular number of movies. For example, there are 350 tags that were used to tag a small number of movies (&lt;5). On the other hand, the most popular tag was used to tag 210 movies.</p>
 <p>We note that the distribution is heavily skewed to the left which indicates that most tags are only used on a small number of movies.</p>
-<div class="cell" data-outputid="70059bd3-e34c-4122-c619-d8ebc4f58c2a">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tname <span class="op">=</span> tags_names.at[tags_names.tid.eq(th.mid.idxmax()).idxmax(), <span class="st">'tName'</span>]</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The most popular tag "</span><span class="sc">{</span>tname<span class="sc">}</span><span class="ss">" has been used for </span><span class="sc">{</span>th<span class="sc">.</span>mid<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> movies'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-43" class="cell" data-outputid="70059bd3-e34c-4122-c619-d8ebc4f58c2a">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tname <span class="op">=</span> tags_names.at[tags_names.tid.eq(th.mid.idxmax()).idxmax(), <span class="st">'tName'</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The most popular tag "</span><span class="sc">{</span>tname<span class="sc">}</span><span class="ss">" has been used for </span><span class="sc">{</span>th<span class="sc">.</span>mid<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> movies'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The most popular tag "comedy" has been used for 210 movies</code></pre>
 </div>
 </div>
 <p>Using the same recipe, we can do something similar for movies instead of tags</p>
-<div class="cell" data-outputid="ce3649a0-d1ab-4321-bc38-89e99ff0be95">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>hists <span class="op">=</span> tags_scores_high.groupby(<span class="st">"mid"</span>).count().hist(bins<span class="op">=</span><span class="dv">40</span>, column<span class="op">=</span><span class="st">"tid"</span>, xlabelsize<span class="op">=</span><span class="dv">15</span>, ylabelsize<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>hists[<span class="dv">0</span>][<span class="dv">0</span>].set_ylabel(<span class="st">"Movies"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>hists[<span class="dv">0</span>][<span class="dv">0</span>].set_xlabel(<span class="st">"Tags per movie"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>hists[<span class="dv">0</span>][<span class="dv">0</span>].set_title(<span class="st">"Histogram of Tags per movie"</span>, size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-45" class="cell" data-outputid="ce3649a0-d1ab-4321-bc38-89e99ff0be95">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>hists <span class="op">=</span> tags_scores_high.groupby(<span class="st">"mid"</span>).count().hist(bins<span class="op">=</span><span class="dv">40</span>, column<span class="op">=</span><span class="st">"tid"</span>, xlabelsize<span class="op">=</span><span class="dv">15</span>, ylabelsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>hists[<span class="dv">0</span>][<span class="dv">0</span>].set_ylabel(<span class="st">"Movies"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>hists[<span class="dv">0</span>][<span class="dv">0</span>].set_xlabel(<span class="st">"Tags per movie"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>hists[<span class="dv">0</span>][<span class="dv">0</span>].set_title(<span class="st">"Histogram of Tags per movie"</span>, size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Introduction_to_ML_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="Introduction_to_ML_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In this histogram each bar corresponds to the number of movies (y-axis) associated with a particular number of tags. For example, there are a bit less than 500 movies that received exactly 1 tags. On the other hand, the most popular movie received almost 40 tags.</p>
@@ -1324,40 +1370,49 @@ unique tags w. high relevance: 968</code></pre>
 <section id="question-1" class="level4">
 <h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
 <p>What is the most popular movie in terms of tag (the one with almost 40 tags)? Bonus: Can you list the top 5 movies in terms of number of tags?</p>
-<div class="cell" data-outputid="138bb07f-d9ea-4e84-845a-daeb0132a0c8">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mh <span class="op">=</span> ...</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mname <span class="op">=</span> ...</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The most popular movie "</span><span class="sc">{</span>mname<span class="sc">}</span><span class="ss">" has </span><span class="sc">{</span>mh<span class="sc">.</span>tid<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> tags'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-48" class="cell" data-outputid="138bb07f-d9ea-4e84-845a-daeb0132a0c8">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>mh <span class="op">=</span> ...</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mname <span class="op">=</span> ...</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The most popular movie "</span><span class="sc">{</span>mname<span class="sc">}</span><span class="ss">" has </span><span class="sc">{</span>mh<span class="sc">.</span>tid<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> tags'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>AttributeError: 'ellipsis' object has no attribute 'tid'</code></pre>
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-41-42b5822ccd73&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">      1</span> mh <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">...</span>
+<span class="ansi-green-fg ansi-bold">      2</span> mname <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">...</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f'The most popular movie "{mname}" has {mh.tid.max()} tags'</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">AttributeError</span>: 'ellipsis' object has no attribute 'tid'</pre>
+</div>
 </div>
 </div>
 <p>In the next few steps we further pre-process our data in order to create a dataset for supervised learning. Recall, that we wish to predict user-movie preferences from user and movie features.</p>
-<div class="cell">
+<div id="cell-50" class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Join users, ratings, and tags</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>data_pd <span class="op">=</span> pd.merge(users_pd, ratings_pd, how<span class="op">=</span><span class="st">'inner'</span>, on<span class="op">=</span><span class="st">'uid'</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>data_pd <span class="op">=</span> pd.merge(data_pd, tags_per_movie, how<span class="op">=</span><span class="st">'inner'</span>, on<span class="op">=</span><span class="st">'mid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For the purpose of this tutorial, we will only use a small fraction of our dataset to ensure that all operations (and especially model fitting) can be done in a matter of minutes.</p>
-<div class="cell">
+<div id="cell-52" class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shuffle data and keep 2% of the ratings.</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (this small percentage ensures that all computations in this tutorial are fast)</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>data_pd <span class="op">=</span> data_pd.sample(frac<span class="op">=</span><span class="fl">0.02</span>, random_state<span class="op">=</span><span class="dv">1234</span>)</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_pd.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can have a look at our current dataset.</p>
-<div class="cell">
+<div id="cell-54" class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Final descriptive stats of our dataset.'</span>)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\t</span><span class="st">- </span><span class="sc">%d</span><span class="st"> items'</span>   <span class="op">%</span> data_pd[<span class="st">'mid'</span>].nunique())</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\t</span><span class="st">- </span><span class="sc">%d</span><span class="st"> users'</span>   <span class="op">%</span> data_pd[<span class="st">'uid'</span>].nunique())</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\t</span><span class="st">- </span><span class="sc">%d</span><span class="st"> ratings'</span> <span class="op">%</span> data_pd.shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice that we have several categorical variables (e.g., gender, occupation, zip, mid). Below, we transform these using dummy variables (just like we did above for tags).</p>
-<div class="cell">
+<div id="cell-56" class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_pd.shape)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>display(data_pd[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div id="cell-57" class="cell" data-scrolled="false">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">'gender'</span>,<span class="st">'occupation'</span>,<span class="st">'zip'</span>,<span class="st">'mid'</span>,<span class="st">'uid'</span>]</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data_pd_dum <span class="op">=</span> pd.get_dummies(data_pd, columns<span class="op">=</span>cols)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_pd_dum.shape)</span>
@@ -1366,7 +1421,7 @@ unique tags w. high relevance: 968</code></pre>
 <p>While we used pandas to create dummies, <code>scikit-learn</code> has similar capacities. The <code>preprocessing</code> module is detailed <a href="https://scikit-learn.org/stable/modules/preprocessing.html">here</a>. You can also checkout the section on <a href="https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing-categorical-features">Categorical features</a>.</p>
 <p>We are ready to construct our first dataset. We will first use a subset of the columns (not including tags).</p>
 <p>Below you will also note that we split our data into train and test using <code>train_test_split</code> from scikit-learn.</p>
-<div class="cell">
+<div id="cell-60" class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>attributes <span class="op">=</span> <span class="st">"mid_*|uid_*|gender_*|age|zip_*|occupation_*"</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data_pd_dum.<span class="bu">filter</span>(regex<span class="op">=</span>(<span class="st">'('</span><span class="op">+</span>attributes<span class="op">+</span><span class="st">')'</span>))</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape)</span>
@@ -1381,7 +1436,7 @@ unique tags w. high relevance: 968</code></pre>
 </div>
 <p><em>Recommender Systems note:</em> We split the dataset without looking at users and items. In other words, more active users and popular items will be (on average) more represented in the heldout data. If this is not desired, for example one may wish a fairer treatment of users. We could then ensure that each user has the same amount of data in the heldout set (and similarly for items).</p>
 <p><em>Recommender Systems note #2:</em> Practically speaking it would make more sense to divide ratings by timestamp. That is, train on ratings up to some date and test on ratings after that date (future ratings).</p>
-<div class="cell">
+<div id="cell-62" class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train.shape, X_test.shape, y_train.shape, y_test.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><a id="modelling"></a> # Section 2: Modelling</p>
@@ -1395,7 +1450,7 @@ unique tags w. high relevance: 968</code></pre>
 <p>It is often helpful to use a very simple benchmark to compare against the performance of our models.</p>
 <p>Our initial benchmark is a model which simply predicts the mean (train) rating.</p>
 <p><em>Recommender Systems note:</em> We could obtain a slightly better model by predicting with a user- or item-specific mean instead of the global mean.</p>
-<div class="cell">
+<div id="cell-66" class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check accuracy of constant predictor</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Constant predictor"</span>)</span>
@@ -1418,7 +1473,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <p><span class="math inline">\(\theta_{1:6}\)</span> are the parameters, <span class="math inline">\(\text{gender}_u\)</span> stands for the gender of user <span class="math inline">\(u\)</span> and similarly for other covariates. Also, <span class="math inline">\(x_{\text{uid}_u}\)</span> represents the identity of the user and similarly for <span class="math inline">\(x_{\text{mid}_i}\)</span> and movies.</p>
 <p>Note that some of these variables are categorial so in fact they are associated with a vector of parameters. For example, zip is a categorical variable with 100 different possible values and so <span class="math inline">\(\theta_{\text{zip}}\)</span> has 100 dimensions.</p>
 <p>Training this model involves minimizing the train MSE, this is exactly what the <code>LinearRegression</code> class does. (This is a <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html">least-squares problem</a> and it can be solved in closed form.)</p>
-<div class="cell">
+<div id="cell-69" class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create linear regression object</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> linear_model.LinearRegression()</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1427,7 +1482,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of parameters: "</span>, reg.coef_.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div id="cell-70" class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make train predictions</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y_train_pred <span class="op">=</span> reg.predict(X_train)</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1445,7 +1500,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <p>Instead of the previous $ := $.</p>
 <p>Note: - <span class="math inline">\(||\cdot||_2\)</span> stands for the 2-Norm. That is, the square root of the sum of the operand’s squared elements. - <span class="math inline">\(\alpha\)</span> is a hyper-parameter which denotes the strength of the regularizer (if <span class="math inline">\(\alpha=0\)</span> the regularizer vanishes and if <span class="math inline">\(\alpha=\infty\)</span> all parameters must be equal to exactly 0). A hyperparameter is a parameter that is not learned during training but set a priori (here, learning <span class="math inline">\(\alpha\)</span> along with the <span class="math inline">\(\theta\)</span>s would lead to a <span class="math inline">\(\alpha=0\)</span>).</p>
 <p>During learning the model must then tradeoff performance (MSE) and complexity (high <span class="math inline">\(\theta\)</span>s). There are different names for this particular regularizer including weight decay, L2-regularization, and ridge (regression). Scikit-learn offers the <code>Ridge</code> class from the <code>linear_model</code> package to fit regularized linear regression models.</p>
-<div class="cell">
+<div id="cell-72" class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create linear regression object</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>regr <span class="op">=</span> linear_model.Ridge(alpha<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1460,7 +1515,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 </div>
 <p><strong>Question 3</strong> Explain why there are 7,184 parameters.</p>
 <p><strong>Hint:</strong> Don’t forget the intercept/bias term</p>
-<div class="cell">
+<div id="cell-74" class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make train predictions</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>y_train_pred <span class="op">=</span> regr.predict(X_train)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1477,7 +1532,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <p><strong>Question 4</strong> How do you find the “best” value of <span class="math inline">\(\alpha\)</span> for a given model and dataset?</p>
 <p><strong>Hint:</strong> Have a look at the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeCV.html#sklearn.linear_model.RidgeCV">RidgeCV</a>, a cross-validation enabled version of Ridge.</p>
 <p><strong>Answer:</strong> See below.</p>
-<div class="cell">
+<div id="cell-76" class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create linear regression object</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>regRCV <span class="op">=</span> ...</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1487,7 +1542,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of parameters: </span><span class="sc">%d</span><span class="st">, estimated alpha: </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> (regRCV.coef_.shape[<span class="dv">0</span>], regRCV.alpha_))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Technical remark: since the optimization is often done in log space, it’s typical for the set of <span class="math inline">\(\alpha\)</span>’s to be powers of 10.</p>
-<div class="cell">
+<div id="cell-78" class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make train predictions</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>y_train_pred <span class="op">=</span> ...</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1505,14 +1560,14 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <p>You should also remember to <strong>never select model hyperparameters based on performance on test set</strong>, this would give you over-optimistic results because you are effectively using your test set to tune your models (its hyperparameters). The main purpose of the test set is to provide an unbiased way of comparing different models.</p>
 <hr>
 <p>Armed with a good model we can explore the learned model including some of its predictions</p>
-<div class="cell">
+<div id="cell-80" class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helper function to return non-zero columns</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> non_zero(row, columns):</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    col_name <span class="op">=</span> <span class="bu">list</span>(columns[<span class="op">~</span>(row <span class="op">==</span> <span class="dv">0</span>)])[<span class="dv">0</span>]</span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#r = re.sub('mid_','',l)</span></span>
 <span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> col_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div id="cell-81" class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get number of ratings per movie (popularity)</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>mids <span class="op">=</span> X_test.<span class="bu">filter</span>(regex<span class="op">=</span>(<span class="st">'mid_*'</span>))</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>y_mid_cols <span class="op">=</span> mids.<span class="bu">apply</span>(<span class="kw">lambda</span> x: non_zero(x, mids.columns), axis<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1525,7 +1580,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>err <span class="op">=</span> (y_test_pred<span class="op">-</span>y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div id="cell-82" class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># only plot a subsample for higher readability</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>subn <span class="op">=</span> <span class="dv">500</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>fig, (ax0, ax1) <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>)</span>
@@ -1553,7 +1608,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <p>The last term on the right-hand side (bolded) is the only difference wrt to our previous model.</p>
 <p><strong>Question 5:</strong> How do you think that this new model will compare to the previous model of Section 2.2? Can you say something definitive about its performance?</p>
 <p><strong>Hint:</strong> One model is a special case of another.</p>
-<div class="cell">
+<div id="cell-86" class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is very similar to how we constructed our dataset above except that we add the tags columns</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>X_tags <span class="op">=</span> data_pd_dum.<span class="bu">filter</span>(regex<span class="op">=</span>(<span class="st">'('</span><span class="op">+</span>attributes<span class="op">+</span><span class="st">"|tid_*"</span><span class="op">+</span><span class="st">')'</span>))</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_tags.shape)</span>
@@ -1563,7 +1618,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    X_tags, rating, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">1234</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train_tags.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div id="cell-87" class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create linear regression object</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>regr_tags <span class="op">=</span> linear_model.Ridge(alpha<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1575,7 +1630,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 <span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"fitting time: </span><span class="sc">%.2f</span><span class="st"> seconds"</span> <span class="op">%</span> fit_time)</span>
 <span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number of parameters:"</span>, regr_tags.coef_.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div id="cell-88" class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make train predictions</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>y_train_pred <span class="op">=</span> regr_tags.predict(X_train_tags)</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1600,7 +1655,7 @@ f(x_{ui}) = \theta_\text{gender} x_{\text{gender}_u} + \theta_{\text{age}} x_{\t
 f(x) = f_\text{o} ( \sum_{j=0}^{|\text{hidden n.}|} \theta'_{j} f_\text{h}( \sum_{i=0}^{|p|}\theta_{ij} x_i ) )
 \]</span> where - <span class="math inline">\(\theta_{ij}\)</span> are the parameters of input <span class="math inline">\(i\)</span> and neuron <span class="math inline">\(j\)</span> in the hidden layer. - <span class="math inline">\(f_h\)</span> is the activation function of the hidden layer - <span class="math inline">\(\theta'_{j}\)</span> are the parameters that connect the neuron <span class="math inline">\(j\)</span> in the hidden layer to the output layer. - <span class="math inline">\(f_o\)</span> is the activation function of the output layer</p>
 <p>An intuitive way of visualization a neural net (especially large ones) is to draw neurons as nodes and connections between neurons as arcs:</p>
-<div class="cell">
+<div id="cell-91" class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a 1 hidden layer neural net, where the input has 10 dimensions (p=10) and the output 1</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>input_dims <span class="op">=</span> <span class="dv">10</span> <span class="co"># p</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>hidden_layers_size <span class="op">=</span> [<span class="dv">4</span>] <span class="co"># number of hidden neurons for each hidden layer (adding a dimension adds a layer)</span></span>
@@ -1609,7 +1664,7 @@ f(x) = f_\text{o} ( \sum_{j=0}^{|\text{hidden n.}|} \theta'_{j} f_\text{h}( \sum
 <span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>network <span class="op">=</span> DrawNN( [input_dims] <span class="op">+</span> hidden_layers_size <span class="op">+</span> [output_dims] )</span>
 <span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>network.draw()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-scrolled="true">
+<div id="cell-92" class="cell" data-scrolled="true">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a neural network on this data.</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>regr_nn <span class="op">=</span> neural_network.MLPRegressor(alpha<span class="op">=</span><span class="fl">0.1</span>, <span class="co"># l2-regularization (weight decay)</span></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>                                      hidden_layer_sizes<span class="op">=</span><span class="bu">tuple</span>(hidden_layers_size),</span>
@@ -1626,7 +1681,7 @@ f(x) = f_\text{o} ( \sum_{j=0}^{|\text{hidden n.}|} \theta'_{j} f_\text{h}( \sum
 </div>
 <p>Much like previous models we can regularize a neural net to combat overfitting: - Here we use the same L2-penalty regularizer on all parameters. The strength of this regularizer is given by <span class="math inline">\(\alpha\)</span>. - In addition, we use a second regularizer called <code>early-stopping</code>. Learning the parameters of a neural network is done iteratively using a method called gradient descent (as opposed to linear regression, there is no analytical solution for the parameters given the objective function). Early stopping simply evaluates the validation error after each iteration. It stops learning when the validation error stops improving. This can happen before the training loss converges. When it does not, then this regularizer has no effect on learning. In <code>scikit-learn</code>, the MLPRegressor class with <code>early_stopping=True</code> automatically splits a validation set from the training set to be used by this regularizer. The disadvantage, of course, is that this reduces the amount of data used to fit parameters.</p>
 <p><strong>Question 6:</strong> Why does this model come with the possibility to set the random seed (i.e., <code>random_state</code>) while linear regression did not?</p>
-<div class="cell">
+<div id="cell-95" class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make train predictions</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>y_train_pred <span class="op">=</span> regr_nn.predict(X_train_tags.values)</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1642,7 +1697,7 @@ f(x) = f_\text{o} ( \sum_{j=0}^{|\text{hidden n.}|} \theta'_{j} f_\text{h}( \sum
 <span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Test Mean squared error: 1.0465</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is our updated table of results</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Model</th>
@@ -1741,18 +1796,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1784,11 +1828,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1798,8 +1881,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1811,7 +1903,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1855,6 +2070,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1880,6 +2096,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1940,6 +2182,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

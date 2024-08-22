@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davood Wadi - Week 12 - Sequential Decision Making I</title>
+<title>value_and_policy_iteration_question_noise_prob – Davood Wadi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,17 +94,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -107,42 +141,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Davood Wadi</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.qmd"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Courses</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making" rel="" target="">
+    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making">
  <span class="dropdown-text">MIT ADSP</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../courses.html" rel="" target="">
+    <a class="dropdown-item" href="../courses.html">
  <span class="dropdown-text">MATH60629A</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -155,7 +189,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#value-and-policy-iteration-exercices" id="toc-value-and-policy-iteration-exercices" class="nav-link active" data-scroll-target="#value-and-policy-iteration-exercices">Value and Policy Iteration Exercices</a></li>
+  <li><a href="#week-12---sequential-decision-making-i" id="toc-week-12---sequential-decision-making-i" class="nav-link active" data-scroll-target="#week-12---sequential-decision-making-i">Week 12 - Sequential Decision Making I</a>
+  <ul class="collapse">
+  <li><a href="#value-and-policy-iteration-exercices" id="toc-value-and-policy-iteration-exercices" class="nav-link" data-scroll-target="#value-and-policy-iteration-exercices">Value and Policy Iteration Exercices</a></li>
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">0. Preliminaries</a>
   <ul class="collapse">
   <li><a href="#tic-tac-toe" id="toc-tic-tac-toe" class="nav-link" data-scroll-target="#tic-tac-toe">0.1 Tic-Tac-Toe</a></li>
@@ -168,6 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions." id="toc-note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions." class="nav-link" data-scroll-target="#note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions."><em>Note.</em> The value iteration algorithm is not accounting for stochastic transitions.</a>
   <ul class="collapse">
   <li><a href="#value-iteration-algorithms---code-completion" id="toc-value-iteration-algorithms---code-completion" class="nav-link" data-scroll-target="#value-iteration-algorithms---code-completion">1.2 Value iteration algorithms - code completion</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#note.-if-noise_prob0-theres-a-posibility-of-getting-stuck-as-non-terminal-states-due-to-the-calculation-of-v-based-on-a-deterministic-environment." id="toc-note.-if-noise_prob0-theres-a-posibility-of-getting-stuck-as-non-terminal-states-due-to-the-calculation-of-v-based-on-a-deterministic-environment." class="nav-link" data-scroll-target="#note.-if-noise_prob0-theres-a-posibility-of-getting-stuck-as-non-terminal-states-due-to-the-calculation-of-v-based-on-a-deterministic-environment."><em>Note.</em> If <code>NOISE_PROB&gt;0</code> there’s a posibility of getting stuck as non-terminal states due to the calculation of <span class="math inline">\(v\)</span> based on a deterministic environment.</a>
   <ul class="collapse">
@@ -182,24 +219,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Week 12 - Sequential Decision Making I</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
 
 <p><a href="https://colab.research.google.com/github/davoodwadi/davoodwadi.github.io/blob/main/week12-MDPs/value_and_policy_iteration_question_NOISE_PROB.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+<section id="week-12---sequential-decision-making-i" class="level1">
+<h1>Week 12 - Sequential Decision Making I</h1>
 <section id="value-and-policy-iteration-exercices" class="level2">
 <h2 class="anchored" data-anchor-id="value-and-policy-iteration-exercices">Value and Policy Iteration Exercices</h2>
 <p>Author: Massimo Caccia massimo.p.caccia@gmail.com <br></p>
@@ -211,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="tic-tac-toe" class="level3">
 <h3 class="anchored" data-anchor-id="tic-tac-toe">0.1 Tic-Tac-Toe</h3>
 <p>Let’s take a simple example: Tic-Tac-Toe (also known as Tic-tac-toe, noughts and crosses, or Xs and Os). Definition: it is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.</p>
-<div class="cell" data-outputid="47ceff3c-43a0-459c-8b9e-583fce27d9b7" data-execution_count="1">
+<div id="cell-5" class="cell" data-outputid="47ceff3c-43a0-459c-8b9e-583fce27d9b7" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.display <span class="im">import</span> HTML</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Image(url<span class="op">=</span> <span class="st">"https://bjc.edc.org/bjc-r/img/3-lists/TTT1_img/Three%20States</span><span class="sc">%20o</span><span class="st">f%20TTT.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -241,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The algorithm will be tested on a simple Gridworld similar to the one presented at slide 12.</p>
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">1.1 Setup</h3>
-<div class="cell" data-outputid="0d922270-8f3c-4843-d281-4cf1b24c297d" data-execution_count="2">
+<div id="cell-13" class="cell" data-outputid="0d922270-8f3c-4843-d281-4cf1b24c297d" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#imports</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>lcharlin<span class="op">/</span><span class="dv">80</span><span class="op">-</span><span class="dv">629</span><span class="op">/</span>master<span class="op">/</span>week12<span class="op">-</span>MDPs<span class="op">/</span>gridWorldGame.py</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -261,7 +286,7 @@ gridWorldGame.py      0%[                    ]       0  --.-KB/s               g
 </div>
 </div>
 <p>Let’s set some variables. <br> <code>SMALL_ENOUGH</code> is a threshold we will utilize to determine the convergence of value iteration<br> <code>GAMMA</code> is the discount factor denoted <span class="math inline">\(\gamma\)</span> in the slides (see slide 36) <br> <code>ALL_POSSIBLE_ACTIONS</code> are the actions you can take in the GridWold, as in slide 12. In this simple grid world, we will have four actions: Up, Down, Right, Left. <br> <code>NOISE_PROB</code> defines how stochastic the environement is. It is the probability that the environment takes you where a random action would.</p>
-<div class="cell" data-execution_count="118">
+<div id="cell-15" class="cell" data-execution_count="118">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SMALL_ENOUGH <span class="op">=</span> <span class="fl">1e-3</span> <span class="co"># threshold to declare convergence</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>GAMMA <span class="op">=</span> <span class="fl">0.9</span>         <span class="co"># discount factor</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ALL_POSSIBLE_ACTIONS <span class="op">=</span> (<span class="st">'U'</span>, <span class="st">'D'</span>, <span class="st">'L'</span>, <span class="st">'R'</span>) <span class="co"># Up, Down, Left, Right</span></span>
@@ -273,7 +298,7 @@ gridWorldGame.py      0%[                    ]       0  --.-KB/s               g
 <h2 class="anchored" data-anchor-id="note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions."><em>Note.</em> The value iteration algorithm is not accounting for stochastic transitions.</h2>
 <p>Need to set <code>NOISE_PROB=0</code></p>
 <p>Now we will set up a the Gridworld. <br> It has the following Rewards:</p>
-<div class="cell" data-outputid="a2cc9b30-7c1c-41c6-f8a4-be9c01a6ba26" data-execution_count="119">
+<div id="cell-18" class="cell" data-outputid="a2cc9b30-7c1c-41c6-f8a4-be9c01a6ba26" data-execution_count="119">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> standard_grid(noise_prob<span class="op">=</span>NOISE_PROB)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"rewards:"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>print_values(grid.rewards, grid)</span>
@@ -293,7 +318,7 @@ gridWorldGame.py      0%[                    ]       0  --.-KB/s               g
 </div>
 <p>There are three absorbing states: (0,3),(1,3), and (1,1)</p>
 <p>Next, we will define a random inital policy <span class="math inline">\(\pi\)</span>. <br> Remember that a policy maps states to actions <span class="math inline">\(\pi : S \rightarrow A\)</span>.</p>
-<div class="cell" data-outputid="21050a42-7eaf-456e-8be0-00cf2ef87edf" data-execution_count="120">
+<div id="cell-21" class="cell" data-outputid="21050a42-7eaf-456e-8be0-00cf2ef87edf" data-execution_count="120">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>grid.actions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="120">
 <pre><code>{(0, 0): ('D', 'R'),
@@ -307,7 +332,7 @@ gridWorldGame.py      0%[                    ]       0  --.-KB/s               g
  (2, 3): ('L', 'U')}</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="50443f62-9c68-4e63-ff61-11c1da950560" data-execution_count="121">
+<div id="cell-22" class="cell" data-outputid="50443f62-9c68-4e63-ff61-11c1da950560" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>policy <span class="op">=</span> {}</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> grid.actions.keys():</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    policy[s] <span class="op">=</span> np.random.choice(ALL_POSSIBLE_ACTIONS)</span>
@@ -327,7 +352,7 @@ gridWorldGame.py      0%[                    ]       0  --.-KB/s               g
 </div>
 <p>Note that there is no policy in the absorbing/terminal states (hence the Not Available “N/A”).</p>
 <p>Next, we will randomly initialize the value fonction</p>
-<div class="cell" data-outputid="cec263b9-0478-46b9-9195-b880251ad62d" data-execution_count="122">
+<div id="cell-25" class="cell" data-outputid="cec263b9-0478-46b9-9195-b880251ad62d" data-execution_count="122">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>np.random.uniform()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>grid.actions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="122">
@@ -342,7 +367,7 @@ gridWorldGame.py      0%[                    ]       0  --.-KB/s               g
  (2, 3): ('L', 'U')}</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="eaa1f512-dec4-4901-e7cc-edbec4d2a309" data-execution_count="126">
+<div id="cell-26" class="cell" data-outputid="eaa1f512-dec4-4901-e7cc-edbec4d2a309" data-execution_count="126">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>grid.set_state((<span class="dv">0</span>,<span class="dv">0</span>))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>grid.move(<span class="st">'R'</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>grid.current_state()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -350,7 +375,7 @@ gridWorldGame.py      0%[                    ]       0  --.-KB/s               g
 <pre><code>(0, 1)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="890e6dc5-6c65-4afe-f039-c5bb1117b85b" data-execution_count="127">
+<div id="cell-27" class="cell" data-outputid="890e6dc5-6c65-4afe-f039-c5bb1117b85b" data-execution_count="127">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>) <span class="co"># make sure this is reproducable</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> {}</span>
@@ -380,7 +405,7 @@ gridWorldGame.py      0%[                    ]       0  --.-KB/s               g
 <p><span class="math display">\[
 V(s) = \underset{a}{max}\big\{ \sum_{s'}  p(s'|s,a)(r + \gamma*V(s') \big\}
 \]</span> Note that in the current gridWorld, <span class="math inline">\(p(s'|s,a)\)</span> is deterministic. <br> Also, remember that in value iteration, the policy is implicit. <br> Thus, you don’t need to update it at every iteration. <br> Run the algorithm until convergence.</p>
-<div class="cell" data-outputid="70eb6cb3-87ed-42f9-800c-446c4c9f1598" data-execution_count="128">
+<div id="cell-30" class="cell" data-outputid="70eb6cb3-87ed-42f9-800c-446c4c9f1598" data-execution_count="128">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>policy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="128">
 <pre><code>{(0, 0): 'R',
@@ -396,9 +421,10 @@ V(s) = \underset{a}{max}\big\{ \sum_{s'}  p(s'|s,a)(r + \gamma*V(s') \big\}
 </div>
 </section>
 </section>
+</section>
 <section id="note.-if-noise_prob0-theres-a-posibility-of-getting-stuck-as-non-terminal-states-due-to-the-calculation-of-v-based-on-a-deterministic-environment." class="level1">
 <h1><em>Note.</em> If <code>NOISE_PROB&gt;0</code> there’s a posibility of getting stuck as non-terminal states due to the calculation of <span class="math inline">\(v\)</span> based on a deterministic environment.</h1>
-<div class="cell" data-outputid="c85e712d-590d-4ec2-b4de-6d402d580fb3" data-execution_count="129">
+<div id="cell-32" class="cell" data-outputid="c85e712d-590d-4ec2-b4de-6d402d580fb3" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>iteration<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>: <span class="co"># run the algorithm until convergence</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"iteration </span><span class="sc">%d</span><span class="st">: "</span> <span class="op">%</span> iteration)</span>
@@ -5441,32 +5467,79 @@ iteration 1712:
  0.89|</code></pre>
 </div>
 <div class="cell-output cell-output-error">
-<pre><code>KeyboardInterrupt: ignored</code></pre>
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-129-131b4b75b3c0&gt;</span> in <span class="ansi-cyan-fg">&lt;cell line: 2&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg ansi-bold">      2</span> <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span> <span class="ansi-red-fg"># run the algorithm until convergence</span>
+<span class="ansi-green-fg ansi-bold">      3</span>     print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"iteration %d: "</span> <span class="ansi-blue-fg">%</span> iteration<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">     </span>print_values<span class="ansi-blue-fg">(</span>V<span class="ansi-blue-fg">,</span> grid<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">      5</span>     print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"\n\n"</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">      6</span> 
+
+<span class="ansi-green-fg">/content/gridWorldGame.py</span> in <span class="ansi-cyan-fg">print_values</span><span class="ansi-blue-fg">(V, g)</span>
+<span class="ansi-green-fg ansi-bold">    123</span>       v <span class="ansi-blue-fg">=</span> V<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">(</span>i<span class="ansi-blue-fg">,</span>j<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    124</span>       <span class="ansi-green-fg">if</span> v <span class="ansi-blue-fg">&gt;=</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 125</span><span class="ansi-red-fg">         </span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">" %.2f|"</span> <span class="ansi-blue-fg">%</span> v<span class="ansi-blue-fg">,</span> end<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">""</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    126</span>       <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    127</span>         print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"%.2f|"</span> <span class="ansi-blue-fg">%</span> v<span class="ansi-blue-fg">,</span> end<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">""</span><span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># -ve sign takes up an extra space</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/ipykernel/iostream.py</span> in <span class="ansi-cyan-fg">write</span><span class="ansi-blue-fg">(self, string)</span>
+<span class="ansi-green-fg ansi-bold">    400</span>             is_child <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span><span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_is_master_process<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    401</span>             <span class="ansi-red-fg"># only touch the buffer in the IO thread to avoid races</span>
+<span class="ansi-green-fg">--&gt; 402</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>pub_thread<span class="ansi-blue-fg">.</span>schedule<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> <span class="ansi-blue-fg">:</span> self<span class="ansi-blue-fg">.</span>_buffer<span class="ansi-blue-fg">.</span>write<span class="ansi-blue-fg">(</span>string<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    403</span>             <span class="ansi-green-fg">if</span> is_child<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    404</span>                 <span class="ansi-red-fg"># mp.Pool cannot be trusted to flush promptly (or ever),</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/ipykernel/iostream.py</span> in <span class="ansi-cyan-fg">schedule</span><span class="ansi-blue-fg">(self, f)</span>
+<span class="ansi-green-fg ansi-bold">    201</span>             self<span class="ansi-blue-fg">.</span>_events<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    202</span>             <span class="ansi-red-fg"># wake event thread (message content is ignored)</span>
+<span class="ansi-green-fg">--&gt; 203</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_event_pipe<span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">b''</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    204</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    205</span>             f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/zmq/sugar/socket.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, data, flags, copy, track, routing_id, group)</span>
+<span class="ansi-green-fg ansi-bold">    616</span>                 )
+<span class="ansi-green-fg ansi-bold">    617</span>             data<span class="ansi-blue-fg">.</span>group <span class="ansi-blue-fg">=</span> group
+<span class="ansi-green-fg">--&gt; 618</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> super<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span>data<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">=</span>flags<span class="ansi-blue-fg">,</span> copy<span class="ansi-blue-fg">=</span>copy<span class="ansi-blue-fg">,</span> track<span class="ansi-blue-fg">=</span>track<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    619</span> 
+<span class="ansi-green-fg ansi-bold">    620</span>     def send_multipart(
+
+<span class="ansi-green-fg">zmq/backend/cython/socket.pyx</span> in <span class="ansi-cyan-fg">zmq.backend.cython.socket.Socket.send</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">zmq/backend/cython/socket.pyx</span> in <span class="ansi-cyan-fg">zmq.backend.cython.socket.Socket.send</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">zmq/backend/cython/socket.pyx</span> in <span class="ansi-cyan-fg">zmq.backend.cython.socket._send_copy</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/zmq/backend/cython/checkrc.pxd</span> in <span class="ansi-cyan-fg">zmq.backend.cython.checkrc._check_rc</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
+</div>
 </div>
 </div>
 <p>Now that the value function is trained, use it to find the optimal policy.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>deterministic_grid <span class="op">=</span> standard_grid(noise_prob<span class="op">=</span><span class="fl">0.</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> policy.keys():</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    best_a <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    best_value <span class="op">=</span> <span class="bu">float</span>(<span class="st">'-inf'</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># loop through all possible actions to find the best current action</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a <span class="kw">in</span> ALL_POSSIBLE_ACTIONS:</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        deterministic_grid.set_state(s)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> deterministic_grid.move(a)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[deterministic_grid.current_state()]</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> v <span class="op">&gt;</span> best_value:</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>            best_value <span class="op">=</span> v</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>            best_a <span class="op">=</span> a</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    policy[s] <span class="op">=</span> best_a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-34" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>deterministic_grid <span class="op">=</span> standard_grid(noise_prob<span class="op">=</span><span class="fl">0.</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> policy.keys():</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    best_a <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    best_value <span class="op">=</span> <span class="bu">float</span>(<span class="st">'-inf'</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># loop through all possible actions to find the best current action</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a <span class="kw">in</span> ALL_POSSIBLE_ACTIONS:</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        deterministic_grid.set_state(s)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> deterministic_grid.move(a)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[deterministic_grid.current_state()]</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> v <span class="op">&gt;</span> best_value:</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>            best_value <span class="op">=</span> v</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>            best_a <span class="op">=</span> a</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    policy[s] <span class="op">=</span> best_a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now print your policy and make sure it leads to the upper-right corner which is the termnial state returning the most rewards.</p>
-<div class="cell" data-outputid="14e375dd-c019-4423-dfee-6b8d8cbd5003">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"values:"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"policy:"</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-36" class="cell" data-outputid="14e375dd-c019-4423-dfee-6b8d8cbd5003">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"values:"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"policy:"</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>values:
 ---------------------------
@@ -5488,14 +5561,14 @@ policy:
 <h2 class="anchored" data-anchor-id="policy-iteration">2. Policy Iteration</h2>
 <p>You will be tested on your capacity to <strong>complete the poliy iteration algorithm</strong>. <br> You can find details about the algorithm at slide 47 of the slide deck. <br> The algorithm will be tested on a simple Gridworld similar to the one presented at slide 12. <br> This Gridworld is however simpler because the MDP is deterministic. <br></p>
 <p>First we will define a random inital policy. <br> Remember that a policy maps states to actions.</p>
-<div class="cell" data-outputid="6b636778-1165-42ab-a04d-036ff1ce6b94">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>policy <span class="op">=</span> {}</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> grid.actions.keys():</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    policy[s] <span class="op">=</span> np.random.choice(ALL_POSSIBLE_ACTIONS)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initial policy</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"initial policy:"</span>)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-40" class="cell" data-outputid="6b636778-1165-42ab-a04d-036ff1ce6b94">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>policy <span class="op">=</span> {}</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> grid.actions.keys():</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    policy[s] <span class="op">=</span> np.random.choice(ALL_POSSIBLE_ACTIONS)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initial policy</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"initial policy:"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>initial policy:
 ---------------------------
@@ -5507,20 +5580,20 @@ policy:
 </div>
 </div>
 <p>Next, we will randomly initialize the value fonction</p>
-<div class="cell" data-outputid="607fd60a-b2f1-4804-ec48-fabf7a12c832">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize V(s) - value function</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> {}</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> grid.all_states()</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> states:</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s <span class="kw">in</span> grid.actions:</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        V[s] <span class="op">=</span> np.random.random()</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># terminal state</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>        V[s] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># initial value for all states in grid</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-42" class="cell" data-outputid="607fd60a-b2f1-4804-ec48-fabf7a12c832">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize V(s) - value function</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> {}</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> grid.all_states()</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> states:</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s <span class="kw">in</span> grid.actions:</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        V[s] <span class="op">=</span> np.random.random()</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># terminal state</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        V[s] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># initial value for all states in grid</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>---------------------------
  0.28| 0.77| 0.09| 0.00|
@@ -5543,61 +5616,61 @@ V^\pi(s) =  \sum_{s'}  p(s'|s,\pi(s))(r + \gamma*V^\pi(s')
 \]</span></p>
 <p>This is the part of code you will have to complete. <br></p>
 <p>Note that in the current gridWorld, p(s’|s,a) is deterministic. <br> Run the algorithm until convergence.</p>
-<div class="cell" data-outputid="b20c7553-d4ef-414e-8fa9-54ee712376d1">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>iteration<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># repeat until the policy does not change</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"values (iteration </span><span class="sc">%d</span><span class="st">)"</span> <span class="op">%</span> iteration)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    print_values(V, grid)</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"policy (iteration </span><span class="sc">%d</span><span class="st">)"</span> <span class="op">%</span> iteration)</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    print_policy(policy, grid)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. policy evaluation step</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this implementation does multiple policy-evaluation steps</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this is different than in the algorithm from the slides</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># which does a single one.</span></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>        biggest_change <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> s <span class="kw">in</span> states:</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>            old_v <span class="op">=</span> V[s]</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>            <span class="co"># V(s) only has value if it's not a terminal state</span></span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> s <span class="kw">in</span> policy:</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>                a <span class="op">=</span> policy[s]</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>                grid.set_state(s)</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>                r <span class="op">=</span> grid.move(a) <span class="co"># reward</span></span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>                sprime <span class="op">=</span> grid.current_state() <span class="co"># s'</span></span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>                V[s] <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[sprime]</span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>            biggest_change <span class="op">=</span> <span class="bu">max</span>(biggest_change, np.<span class="bu">abs</span>(old_v <span class="op">-</span> V[s]))</span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> biggest_change <span class="op">&lt;</span> SMALL_ENOUGH:</span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">#2. policy improvement step</span></span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    is_policy_converged <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> states:</span>
-<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">in</span> policy:</span>
-<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>            old_a <span class="op">=</span> policy[s]</span>
-<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>            new_a <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>            best_value <span class="op">=</span> <span class="bu">float</span>(<span class="st">'-inf'</span>)</span>
-<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>            <span class="co"># loop through all possible actions to find the best current action</span></span>
-<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> a <span class="kw">in</span> ALL_POSSIBLE_ACTIONS:</span>
-<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>                grid.set_state(s)</span>
-<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>                r <span class="op">=</span> grid.move(a)</span>
-<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a>                sprime <span class="op">=</span> grid.current_state()</span>
-<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a>                v <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[sprime]</span>
-<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> v <span class="op">&gt;</span> best_value:</span>
-<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>                    best_value <span class="op">=</span> v</span>
-<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a>                    new_a <span class="op">=</span> a</span>
-<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> new_a <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">'problem'</span>)</span>
-<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a>            policy[s] <span class="op">=</span> new_a</span>
-<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> new_a <span class="op">!=</span> old_a:</span>
-<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a>                is_policy_converged <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> is_policy_converged:</span>
-<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a>    iteration<span class="op">+=</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-45" class="cell" data-outputid="b20c7553-d4ef-414e-8fa9-54ee712376d1">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>iteration<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># repeat until the policy does not change</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"values (iteration </span><span class="sc">%d</span><span class="st">)"</span> <span class="op">%</span> iteration)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    print_values(V, grid)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"policy (iteration </span><span class="sc">%d</span><span class="st">)"</span> <span class="op">%</span> iteration)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    print_policy(policy, grid)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. policy evaluation step</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this implementation does multiple policy-evaluation steps</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this is different than in the algorithm from the slides</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># which does a single one.</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>        biggest_change <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> s <span class="kw">in</span> states:</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>            old_v <span class="op">=</span> V[s]</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>            <span class="co"># V(s) only has value if it's not a terminal state</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> s <span class="kw">in</span> policy:</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>                a <span class="op">=</span> policy[s]</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>                grid.set_state(s)</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>                r <span class="op">=</span> grid.move(a) <span class="co"># reward</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>                sprime <span class="op">=</span> grid.current_state() <span class="co"># s'</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>                V[s] <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[sprime]</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>            biggest_change <span class="op">=</span> <span class="bu">max</span>(biggest_change, np.<span class="bu">abs</span>(old_v <span class="op">-</span> V[s]))</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> biggest_change <span class="op">&lt;</span> SMALL_ENOUGH:</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">#2. policy improvement step</span></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    is_policy_converged <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> states:</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">in</span> policy:</span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>            old_a <span class="op">=</span> policy[s]</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>            new_a <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>            best_value <span class="op">=</span> <span class="bu">float</span>(<span class="st">'-inf'</span>)</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>            <span class="co"># loop through all possible actions to find the best current action</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> a <span class="kw">in</span> ALL_POSSIBLE_ACTIONS:</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>                grid.set_state(s)</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>                r <span class="op">=</span> grid.move(a)</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>                sprime <span class="op">=</span> grid.current_state()</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>                v <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[sprime]</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> v <span class="op">&gt;</span> best_value:</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>                    best_value <span class="op">=</span> v</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>                    new_a <span class="op">=</span> a</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> new_a <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">'problem'</span>)</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>            policy[s] <span class="op">=</span> new_a</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> new_a <span class="op">!=</span> old_a:</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>                is_policy_converged <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> is_policy_converged:</span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>    iteration<span class="op">+=</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>values (iteration 0)
 ---------------------------
@@ -5891,11 +5964,11 @@ policy (iteration 16)
 </div>
 </div>
 <p>Now print your policy and make sure it leads to the upper-right corner which is the termnial state returning the most rewards.</p>
-<div class="cell" data-outputid="b7ac132e-7634-423e-f49f-51d078c646ae">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"final values:"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"final policy:"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-47" class="cell" data-outputid="b7ac132e-7634-423e-f49f-51d078c646ae">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"final values:"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"final policy:"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>final values:
 ---------------------------
@@ -5955,18 +6028,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -5998,11 +6060,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -6012,8 +6113,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -6025,7 +6135,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -6069,6 +6302,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -6094,6 +6328,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -6154,6 +6414,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

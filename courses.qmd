@@ -1,5 +1,7 @@
 ---
 title: "MATH60629A - Machine Learning I (Fall 2023)"
+aliases:
+  - index.html
 resources:
     - "*.pdf"
 format:

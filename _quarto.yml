@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+    - "!index.qmd"
 
 website:
   title: "Davood Wadi"
@@ -9,11 +13,11 @@ website:
       - href: index.qmd
         text: Home
       - text: Courses
-        menu:        
-          - text: MIT ADSP 
+        menu:
+          - text: MIT ADSP
             url: https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making
 
-          - text: MATH60629A 
+          - text: MATH60629A
             url: courses.qmd
 
 format:
@@ -21,8 +25,6 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
-execute: 
+execute:
   cache: true
-
-
-
+  freeze: true

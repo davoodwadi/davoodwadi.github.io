@@ -1,0 +1,1 @@
+{"headings":["make-the-data-channel_first","activation-explosion","normalize-the-data","set-the-correct-device","lets-put-this-in-pytorch-module-class-to-use-forward-and-backward","move-model-and-data-to-gpu","train-for-3-epochs","adding-relu","making-the-model-deep","solution-batch-normalization"],"entries":[]}

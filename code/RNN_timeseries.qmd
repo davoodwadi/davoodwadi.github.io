@@ -9,7 +9,7 @@ execute:
 ---
 
 
-Sure! In this tutorial, I will explain how to use a Recurrent Neural Network (RNN) to predict time series data using the PyTorch library. 
+In this tutorial, I will explain how to use a Recurrent Neural Network (RNN) to predict time series data using the PyTorch library. 
 
 First, let's start by installing the required packages. We need to install PyTorch and matplotlib for visualization.
 
@@ -19,6 +19,10 @@ First, let's start by installing the required packages. We need to install PyTor
 ```
 
 Now that we have the necessary packages installed, let's import them into our code.
+
+```{python}
+import matplotlib.pyplot as plt
+```
 
 ```{python}
 import torch
@@ -48,6 +52,9 @@ Let's visualize the generated time series using matplotlib.
 
 ```{python}
 plt.figure(figsize=(10, 6))
+# using .tolist method instead of
+# .numpy() because of dependency issues
+# in numpy>2 and torch>2
 plt.plot(t, value)
 plt.xlabel('Time')
 plt.ylabel('Value')
@@ -175,9 +182,9 @@ with torch.no_grad():
     y_pred, h = model(x_test, h)
 # Plot the results
 plt.figure(figsize=(10, 6))
-plt.plot(t, value, label='Ground Truth')
-plt.plot(t[10:110], output.detach().numpy(), label='Predicted train')
-plt.plot(t[110:], y_pred.detach().numpy(), label='Predicted test')
+plt.plot(t.tolist(), value.tolist(), label='Ground Truth')
+plt.plot(t[10:110].tolist(), output.detach().tolist(), label='Predicted train')
+plt.plot(t[110:].tolist(), y_pred.detach().tolist(), label='Predicted test')
 plt.xlabel('Time')
 plt.ylabel('Value')
 plt.title('Time Series Prediction')

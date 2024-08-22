@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davood Wadi - Make the data channel_first</title>
+<title>batch_normalization – Davood Wadi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -102,42 +109,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Davood Wadi</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.qmd"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Courses</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making" rel="" target="">
+    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making">
  <span class="dropdown-text">MIT ADSP</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./courses.html" rel="" target="">
+    <a class="dropdown-item" href="./courses.html">
  <span class="dropdown-text">MATH60629A</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -150,7 +157,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#activation-explosion" id="toc-activation-explosion" class="nav-link active" data-scroll-target="#activation-explosion">Activation explosion</a></li>
+  <li><a href="#make-the-data-channel_first" id="toc-make-the-data-channel_first" class="nav-link active" data-scroll-target="#make-the-data-channel_first">Make the data <code>channel_first</code></a></li>
+  <li><a href="#activation-explosion" id="toc-activation-explosion" class="nav-link" data-scroll-target="#activation-explosion">Activation explosion</a></li>
   <li><a href="#normalize-the-data" id="toc-normalize-the-data" class="nav-link" data-scroll-target="#normalize-the-data">Normalize the data</a>
   <ul class="collapse">
   <li><a href="#set-the-correct-device" id="toc-set-the-correct-device" class="nav-link" data-scroll-target="#set-the-correct-device">Set the correct device</a></li>
@@ -171,25 +179,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Make the data <code>channel_first</code></h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
 
 <p><a href="https://colab.research.google.com/github/davoodwadi/davoodwadi.github.io/blob/main/Batch_normalization.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
-<div class="cell" data-outputid="8370a7cc-a3fc-41d6-f380-b4910be21a16" data-execution_count="190">
+<div id="cell-1" class="cell" data-outputid="8370a7cc-a3fc-41d6-f380-b4910be21a16" data-execution_count="190">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch, numpy <span class="im">as</span> np, matplotlib.pyplot <span class="im">as</span> plt, torch.nn <span class="im">as</span> nn</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> Dataset, DataLoader</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> datasets</span>
@@ -211,13 +205,13 @@ Files already downloaded and verified</code></pre>
  torch.Size([10000]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="9f81d5a4-8bbd-41c2-a279-6f415f44e30f" data-execution_count="191">
+<div id="cell-2" class="cell" data-outputid="9f81d5a4-8bbd-41c2-a279-6f415f44e30f" data-execution_count="191">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cifar_train.data.<span class="bu">min</span>(), cifar_train.data.<span class="bu">max</span>(), cifar_test.data.<span class="bu">min</span>(), cifar_test.data.<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="191">
 <pre><code>(0, 255, 0, 255)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="e34ad4de-5a91-472b-c3e5-9b5a540ee856" data-execution_count="192">
+<div id="cell-3" class="cell" data-outputid="e34ad4de-5a91-472b-c3e5-9b5a540ee856" data-execution_count="192">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x_train.<span class="bu">min</span>(), x_train.<span class="bu">max</span>(), x_test.<span class="bu">min</span>(), x_test.<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="192">
 <pre><code>(tensor(0, dtype=torch.uint8),
@@ -226,11 +220,13 @@ Files already downloaded and verified</code></pre>
  tensor(255, dtype=torch.uint8))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="193">
+<section id="make-the-data-channel_first" class="level3">
+<h3 class="anchored" data-anchor-id="make-the-data-channel_first">Make the data <code>channel_first</code></h3>
+<div id="cell-5" class="cell" data-execution_count="193">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> channel_first(x):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> x.permute(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="9097f861-841a-4fc8-9e4a-811db86486e6" data-execution_count="194">
+<div id="cell-6" class="cell" data-outputid="9097f861-841a-4fc8-9e4a-811db86486e6" data-execution_count="194">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> channel_first(x_train).<span class="bu">float</span>()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> channel_first(x_test).<span class="bu">float</span>()</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>x_train.shape, x_test.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -238,13 +234,13 @@ Files already downloaded and verified</code></pre>
 <pre><code>(torch.Size([50000, 3, 32, 32]), torch.Size([10000, 3, 32, 32]))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="dcb6a896-e3a3-40d8-cd77-971166a15e70" data-execution_count="195">
+<div id="cell-7" class="cell" data-outputid="dcb6a896-e3a3-40d8-cd77-971166a15e70" data-execution_count="195">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x_train.<span class="bu">min</span>(), x_train.<span class="bu">max</span>(), x_test.<span class="bu">min</span>(), x_test.<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="195">
 <pre><code>(tensor(0.), tensor(255.), tensor(0.), tensor(255.))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="93472408-bad3-4504-b956-e0b3589c10fd" data-execution_count="203">
+<div id="cell-8" class="cell" data-outputid="93472408-bad3-4504-b956-e0b3589c10fd" data-execution_count="203">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> nn.Conv2d(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, padding <span class="op">=</span> <span class="dv">1</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>nn.init.constant_(w.weight, <span class="fl">1.1</span>) <span class="co"># set weight as 1.1</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>w.weight.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -252,9 +248,10 @@ Files already downloaded and verified</code></pre>
 <pre><code>torch.Size([3, 3, 3, 3])</code></pre>
 </div>
 </div>
+</section>
 <section id="activation-explosion" class="level2">
 <h2 class="anchored" data-anchor-id="activation-explosion">Activation explosion</h2>
-<div class="cell" data-outputid="218fefa3-a424-4a8c-e654-eb8041798ce3" data-execution_count="204">
+<div id="cell-10" class="cell" data-outputid="218fefa3-a424-4a8c-e654-eb8041798ce3" data-execution_count="204">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x_train[:<span class="dv">100</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> w(x)</span>
@@ -306,7 +303,7 @@ mean: 2.3241797145925663e+31, SD: 1.2425547509240132e+31
 </section>
 <section id="normalize-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="normalize-the-data">Normalize the data</h2>
-<div class="cell" data-outputid="a1466cc3-120e-49ea-dac1-50d5e613a8c3" data-execution_count="216">
+<div id="cell-12" class="cell" data-outputid="a1466cc3-120e-49ea-dac1-50d5e613a8c3" data-execution_count="216">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> (x_train<span class="op">-</span>x_train.mean())<span class="op">/</span>x_train.std()</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> (x_test<span class="op">-</span>x_test.mean())<span class="op">/</span>x_test.std()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>x_train.mean(), x_train.std(), x_test.mean(), x_test.std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -316,10 +313,10 @@ mean: 2.3241797145925663e+31, SD: 1.2425547509240132e+31
 </div>
 <section id="set-the-correct-device" class="level3">
 <h3 class="anchored" data-anchor-id="set-the-correct-device">Set the correct device</h3>
-<div class="cell" data-execution_count="3">
+<div id="cell-14" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> <span class="st">'cuda'</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">'cpu'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="219">
+<div id="cell-15" class="cell" data-execution_count="219">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> dataset(Dataset):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.x <span class="op">=</span> x</span>
@@ -331,7 +328,7 @@ mean: 2.3241797145925663e+31, SD: 1.2425547509240132e+31
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, index):</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">self</span>.x[index], <span class="va">self</span>.y[index]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="220">
+<div id="cell-16" class="cell" data-execution_count="220">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bs<span class="op">=</span><span class="dv">64</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>trainset <span class="op">=</span> dataset(x_train, y_train)</span>
@@ -339,7 +336,7 @@ mean: 2.3241797145925663e+31, SD: 1.2425547509240132e+31
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(trainset, batch_size<span class="op">=</span>bs, shuffle<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>valid_loader <span class="op">=</span> DataLoader(testset, batch_size<span class="op">=</span>bs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="300ce973-d6ab-42e6-f80d-c4846b034eed" data-execution_count="253">
+<div id="cell-17" class="cell" data-outputid="300ce973-d6ab-42e6-f80d-c4846b034eed" data-execution_count="253">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ni <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nh <span class="op">=</span> <span class="dv">8</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>layer_filters <span class="op">=</span> [ni, nh, <span class="dv">2</span><span class="op">*</span>nh, <span class="dv">4</span><span class="op">*</span>nh]</span>
@@ -363,20 +360,20 @@ mean: 2.3241797145925663e+31, SD: 1.2425547509240132e+31
 </section>
 <section id="lets-put-this-in-pytorch-module-class-to-use-forward-and-backward" class="level2">
 <h2 class="anchored" data-anchor-id="lets-put-this-in-pytorch-module-class-to-use-forward-and-backward">let’s put this in pytorch <code>module</code> class to use <code>forward</code> and <code>backward</code></h2>
-<div class="cell" data-outputid="4242445c-07e6-4fb1-88e3-65b792a38383" data-execution_count="257">
+<div id="cell-19" class="cell" data-outputid="4242445c-07e6-4fb1-88e3-65b792a38383" data-execution_count="257">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>h, w <span class="op">=</span> x_train.shape[<span class="dv">2</span>:]</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>h,w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="257">
 <pre><code>(32, 32)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="6acb2203-8b1d-4499-f5ad-27fa44635e1c" data-execution_count="263">
+<div id="cell-20" class="cell" data-outputid="6acb2203-8b1d-4499-f5ad-27fa44635e1c" data-execution_count="263">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dv">32</span><span class="op">/</span>(<span class="dv">2</span><span class="op">**</span>layer_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="263">
 <pre><code>4.0</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="299">
+<div id="cell-22" class="cell" data-execution_count="299">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ConvNet(nn.Module):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, layer_filters, stride, kernel_size<span class="op">=</span><span class="dv">3</span>, h<span class="op">=</span><span class="dv">32</span>, w<span class="op">=</span><span class="dv">32</span>, num_classes<span class="op">=</span><span class="dv">10</span>):</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">super</span>(ConvNet, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
@@ -394,14 +391,14 @@ mean: 2.3241797145925663e+31, SD: 1.2425547509240132e+31
 <span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="va">self</span>.classification(x)</span>
 <span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="0f5d23a5-8d06-4eb7-a946-79214394fb7e" data-execution_count="268">
+<div id="cell-23" class="cell" data-outputid="0f5d23a5-8d06-4eb7-a946-79214394fb7e" data-execution_count="268">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>bx, by <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(train_loader))</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>bx.shape, by.shape, layer_filters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="268">
 <pre><code>(torch.Size([64, 3, 32, 32]), torch.Size([64]), [3, 8, 16, 32])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="5a8d4025-3964-46e8-8ddf-20ff108933a8" data-execution_count="272">
+<div id="cell-24" class="cell" data-outputid="5a8d4025-3964-46e8-8ddf-20ff108933a8" data-execution_count="272">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>stride <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -421,13 +418,13 @@ mean: 2.3241797145925663e+31, SD: 1.2425547509240132e+31
 </div>
 <section id="move-model-and-data-to-gpu" class="level3">
 <h3 class="anchored" data-anchor-id="move-model-and-data-to-gpu">Move model and data to GPU</h3>
-<div class="cell" data-execution_count="283">
+<div id="cell-26" class="cell" data-execution_count="283">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gpu(bx, by, model):</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  bx, by <span class="op">=</span> bx.to(device), by.to(device)</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  model <span class="op">=</span> model.to(device)</span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> bx, by, model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="75556ad7-eb1f-4b7c-987d-e712cb7c7bf0" data-execution_count="284">
+<div id="cell-27" class="cell" data-outputid="75556ad7-eb1f-4b7c-987d-e712cb7c7bf0" data-execution_count="284">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>bx, by, model <span class="op">=</span> gpu(bx, by, model)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> model(bx)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>output.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -435,7 +432,7 @@ mean: 2.3241797145925663e+31, SD: 1.2425547509240132e+31
 <pre><code>torch.Size([64, 10])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="d657fd0c-c1a8-4e82-a666-7927ee67ac31" data-execution_count="285">
+<div id="cell-28" class="cell" data-outputid="d657fd0c-c1a8-4e82-a666-7927ee67ac31" data-execution_count="285">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> bx</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> layer_name <span class="kw">in</span> model.layers.keys():</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(layer_name)</span>
@@ -458,7 +455,7 @@ x mean: -0.022542566061019897, sd: 0.17484818398952484
 </section>
 <section id="train-for-3-epochs" class="level3">
 <h3 class="anchored" data-anchor-id="train-for-3-epochs">Train for 3 epochs</h3>
-<div class="cell" data-execution_count="286">
+<div id="cell-30" class="cell" data-execution_count="286">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_eval(model, optimizer, train_loader, valid_loader, epoch<span class="op">=</span><span class="dv">3</span>):</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  loss_fn <span class="op">=</span> nn.CrossEntropyLoss()</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(epoch):</span>
@@ -491,7 +488,7 @@ x mean: -0.022542566061019897, sd: 0.17484818398952484
 <span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>    accuracy <span class="op">=</span> correct<span class="op">/</span>total</span>
 <span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'epoch </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">; loss </span><span class="sc">{</span>np<span class="sc">.</span>mean(losses)<span class="sc">:.4f}</span><span class="ss">; accuracy </span><span class="sc">{</span>accuracy<span class="sc">:.2f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="d1c166e5-462c-457e-9a4d-9ab54dba0d6b" data-execution_count="300">
+<div id="cell-31" class="cell" data-outputid="d1c166e5-462c-457e-9a4d-9ab54dba0d6b" data-execution_count="300">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>stride <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> <span class="fl">0.001</span></span>
@@ -516,7 +513,7 @@ epoch 9; loss 1.7652; accuracy 0.36</code></pre>
 </section>
 <section id="adding-relu" class="level2">
 <h2 class="anchored" data-anchor-id="adding-relu">Adding ReLU</h2>
-<div class="cell" data-execution_count="312">
+<div id="cell-33" class="cell" data-execution_count="312">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ConvNet(nn.Module):</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, layer_filters, stride, kernel_size<span class="op">=</span><span class="dv">3</span>, h<span class="op">=</span><span class="dv">32</span>, w<span class="op">=</span><span class="dv">32</span>, num_classes<span class="op">=</span><span class="dv">10</span>):</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">super</span>(ConvNet, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
@@ -538,7 +535,7 @@ epoch 9; loss 1.7652; accuracy 0.36</code></pre>
 <span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
 <span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="ac91dff0-a789-4745-b9e3-88baa87ca863" data-execution_count="314">
+<div id="cell-34" class="cell" data-outputid="ac91dff0-a789-4745-b9e3-88baa87ca863" data-execution_count="314">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>stride <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>layer_filters <span class="op">=</span> [ni, nh, <span class="dv">2</span><span class="op">*</span>nh, <span class="dv">4</span><span class="op">*</span>nh]</span>
@@ -557,7 +554,7 @@ epoch 9; loss 1.7652; accuracy 0.36</code></pre>
 )</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="30327a5c-71f5-45c8-e628-712cf3037498" data-execution_count="315">
+<div id="cell-35" class="cell" data-outputid="30327a5c-71f5-45c8-e628-712cf3037498" data-execution_count="315">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>bx, by, model <span class="op">=</span> gpu(bx, by, model)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> bx</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> layer_name <span class="kw">in</span> model.layers.keys():</span>
@@ -580,7 +577,7 @@ x mean: 0.02778497524559498, sd: 0.046145956963300705
 </div>
 </div>
 <p><strong>ReLU removes half of SD</strong></p>
-<div class="cell" data-outputid="8deb7e54-9f76-410d-d1d8-1f22e81d9310" data-execution_count="316">
+<div id="cell-37" class="cell" data-outputid="8deb7e54-9f76-410d-d1d8-1f22e81d9310" data-execution_count="316">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>stride <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> <span class="fl">0.001</span></span>
@@ -604,26 +601,26 @@ epoch 9; loss 1.7111; accuracy 0.36</code></pre>
 </section>
 <section id="making-the-model-deep" class="level1">
 <h1>Making the model deep</h1>
-<div class="cell" data-outputid="89de9cdc-9567-401d-f29d-3d94d9333ac7" data-execution_count="328">
+<div id="cell-39" class="cell" data-outputid="89de9cdc-9567-401d-f29d-3d94d9333ac7" data-execution_count="328">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>layer_filters[num_layers], h<span class="op">/</span>(<span class="dv">2</span><span class="op">**</span>num_layers) <span class="op">*</span> w<span class="op">/</span>(<span class="dv">2</span><span class="op">**</span>num_layers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="328">
 <pre><code>(32, 0.0625)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="fd5a9026-035a-469d-f4b5-8b90beec4a2f" data-execution_count="325">
+<div id="cell-40" class="cell" data-outputid="fd5a9026-035a-469d-f4b5-8b90beec4a2f" data-execution_count="325">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>layer_filters[num_layers] <span class="op">*</span> h<span class="op">/</span>(<span class="dv">2</span><span class="op">**</span>num_layers) <span class="op">*</span> w<span class="op">/</span>(<span class="dv">2</span><span class="op">**</span>num_layers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="325">
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="78aa96e1-1c56-44d1-8284-97b58721f65b" data-execution_count="329">
+<div id="cell-41" class="cell" data-outputid="78aa96e1-1c56-44d1-8284-97b58721f65b" data-execution_count="329">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>num_layers <span class="op">=</span> <span class="bu">len</span>(layer_filters)<span class="op">-</span><span class="dv">1</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>num_layers, (layer_filters[num_layers] <span class="op">*</span> <span class="bu">int</span>(h<span class="op">/</span>(<span class="dv">2</span><span class="op">**</span>num_layers) <span class="op">*</span> w<span class="op">/</span>(<span class="dv">2</span><span class="op">**</span>num_layers)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="329">
 <pre><code>(7, 0)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="21d8e0e6-f73b-4682-ff62-9e735de167ab" data-execution_count="330">
+<div id="cell-42" class="cell" data-outputid="21d8e0e6-f73b-4682-ff62-9e735de167ab" data-execution_count="330">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>ni <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>nh <span class="op">=</span> <span class="dv">32</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>depth <span class="op">=</span> <span class="dv">5</span></span>
@@ -647,13 +644,13 @@ epoch 9; loss 1.7111; accuracy 0.36</code></pre>
 )</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="dd04af3f-50a8-48d4-b87d-25d8effe4115" data-execution_count="331">
+<div id="cell-43" class="cell" data-outputid="dd04af3f-50a8-48d4-b87d-25d8effe4115" data-execution_count="331">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>layer_filters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="331">
 <pre><code>[3, 32, 32, 32, 32, 32]</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="55aaff0c-c5ca-4433-835b-26390bea8252" data-execution_count="332">
+<div id="cell-44" class="cell" data-outputid="55aaff0c-c5ca-4433-835b-26390bea8252" data-execution_count="332">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>bx, by, model <span class="op">=</span> gpu(bx, by, model)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> bx</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> layer_name <span class="kw">in</span> model.layers.keys():</span>
@@ -686,7 +683,7 @@ x mean: 0.018953658640384674, sd: 0.022025499492883682
 **********</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="78a4e835-474e-4633-ef3b-60fdc882e0b8" data-execution_count="333">
+<div id="cell-45" class="cell" data-outputid="78a4e835-474e-4633-ef3b-60fdc882e0b8" data-execution_count="333">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>stride <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> <span class="fl">0.001</span></span>
@@ -709,7 +706,7 @@ epoch 9; loss 2.3051; accuracy 0.11</code></pre>
 </div>
 <section id="solution-batch-normalization" class="level2">
 <h2 class="anchored" data-anchor-id="solution-batch-normalization">Solution? Batch Normalization</h2>
-<div class="cell" data-execution_count="339">
+<div id="cell-47" class="cell" data-execution_count="339">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ConvNet(nn.Module):</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, layer_filters, stride, kernel_size<span class="op">=</span><span class="dv">3</span>, h<span class="op">=</span><span class="dv">32</span>, w<span class="op">=</span><span class="dv">32</span>, num_classes<span class="op">=</span><span class="dv">10</span>):</span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">super</span>(ConvNet, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
@@ -733,7 +730,7 @@ epoch 9; loss 2.3051; accuracy 0.11</code></pre>
 <span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="va">self</span>.classification(x)</span>
 <span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="340">
+<div id="cell-48" class="cell" data-execution_count="340">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>depth <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>ni <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>nh <span class="op">=</span> <span class="dv">32</span></span>
@@ -743,13 +740,13 @@ epoch 9; loss 2.3051; accuracy 0.11</code></pre>
 <span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ConvNet(layer_filters, stride, kernel_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="8c13261a-abf9-4eaa-96f4-50f7cfe08fb3" data-execution_count="341">
+<div id="cell-49" class="cell" data-outputid="8c13261a-abf9-4eaa-96f4-50f7cfe08fb3" data-execution_count="341">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>model.num_layers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="341">
 <pre><code>5</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="b0c31df3-a8ed-4726-a44d-39f0f4d1ea9c" data-execution_count="342">
+<div id="cell-50" class="cell" data-outputid="b0c31df3-a8ed-4726-a44d-39f0f4d1ea9c" data-execution_count="342">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>bx, by, model <span class="op">=</span> gpu(bx, by, model)</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> bx</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> layer_name <span class="kw">in</span> model.layers.keys():</span>
@@ -793,13 +790,13 @@ x mean: 6.51925802230835e-09, sd: 0.9999526739120483
 **********</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="425c6d0f-b919-4182-e1d7-e500caf52fae" data-execution_count="174">
+<div id="cell-51" class="cell" data-outputid="425c6d0f-b919-4182-e1d7-e500caf52fae" data-execution_count="174">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>model.layers.layer_1_bn.weight.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="174">
 <pre><code>torch.Size([32])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="28323940-d224-4204-ca3d-eecbb065c50c" data-execution_count="343">
+<div id="cell-52" class="cell" data-outputid="28323940-d224-4204-ca3d-eecbb065c50c" data-execution_count="343">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>stride <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>kernel_size <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> <span class="fl">0.001</span></span>
@@ -861,18 +858,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -904,11 +890,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -918,8 +943,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -931,7 +965,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -975,6 +1132,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1000,6 +1158,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1060,6 +1244,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
