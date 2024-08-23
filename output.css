@@ -792,6 +792,10 @@ video {
   --tw-scroll-snap-strictness: mandatory;
 }
 
+.snap-proximity {
+  --tw-scroll-snap-strictness: proximity;
+}
+
 .snap-start {
   scroll-snap-align: start;
 }
