@@ -5,12 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Davood Wadi</title>
-    <link rel="stylesheet" href="tailwind.css" />
-    <!-- <link rel="stylesheet" href="output.css" /> -->
-  </head>
-  <body class="bg-gray-100">
+    <!-- <link rel="stylesheet" href="tailwind.css" /> -->
+    <link rel="stylesheet" href="output.css" />
     <!-- navbar start -->
-    <nav class="sticky left-0 top-0 w-full bg-black">
+    <nav class="fixed top-0 w-full bg-black">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -143,7 +141,8 @@
     </nav>
 
     <!-- navbar end -->
-
+  </head>
+  <body class="bg-gray-100">
     <div class="h-screen snap-y snap-proximity overflow-y-scroll scroll-smooth">
       <div
         id="profile"
@@ -239,7 +238,7 @@
       </div>
       <div
         id="projects"
-        class="flex min-h-screen snap-start items-center justify-between bg-white p-4 text-gray-800 md:flex-row"
+        class="flex min-h-screen snap-start items-center justify-between bg-gray-900 text-white md:flex-row"
       >
         <div class="mx-2 text-center">
           <h1 class="mb-4 text-4xl font-bold">Projects</h1>
@@ -364,7 +363,7 @@
       </div>
       <div
         id="research"
-        class="flex h-screen shrink-0 snap-center items-center justify-center bg-white text-gray-800"
+        class="flex h-screen shrink-0 snap-center items-center justify-center bg-gray-900 text-white"
       >
         <div class="text-center">
           <h1 class="mb-4 text-4xl font-bold">Research</h1>
