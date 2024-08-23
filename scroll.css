@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  display: flex;
+  flex: row;
+  align-items: center;
+}
+
+.fixed-element {
+  position: sticky; /* Changed from fixed to absolute */
+
+  background: white; /* Optional for visibility */
+  z-index: 10; /* Ensure it stays on top */
+  font-size: xx-large;
+}
+
+.scrollable-container {
+  margin-top: 40px; /* Adjust this value to match the height of the fixed element */
+  height: calc(100vh + 40px); /* Adjust height as needed */
+  overflow-y: auto; /* Enables vertical scrolling */
+  font-size: xx-large;
+}
+
+.scrollable-container::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Edge */
+}
