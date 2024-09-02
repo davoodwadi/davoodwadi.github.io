@@ -238,9 +238,9 @@
       </div>
       <div
         id="projects"
-        class="relative flex min-h-screen snap-start items-start justify-between bg-gray-900 pb-12 text-white md:flex-row md:overflow-y-auto"
+        class="relative flex min-h-screen snap-start flex-col items-start justify-between bg-gray-900 pb-12 text-white md:flex-row md:overflow-y-auto"
       >
-        <div class="top-28 z-40 mx-2 py-28 text-center md:sticky md:py-48">
+        <div class="top-28 z-40 mx-2 py-10 text-center md:sticky md:py-48">
           <h1 class="mb-4 text-4xl font-bold">Projects</h1>
         </div>
         <div class="mx-4 pb-24 pt-4 md:mt-28 md:h-screen md:pt-28">
@@ -260,6 +260,11 @@
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                 <span class="font-mono font-bold">LLM-Exceptions</span> for
                 IPython
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg"
+                  alt="Jupyter"
+                  class="inline h-5 w-5 align-middle"
+                />
               </h3>
               <p
                 class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"
@@ -291,7 +296,7 @@
                   /></svg
               ></a>
             </li>
-            <li class="mb-10 ms-4">
+            <li class="mb-4 ms-4">
               <div
                 class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700"
               ></div>
@@ -300,36 +305,83 @@
                 >July 2024</time
               >
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                <span class="font-mono font-bold">Spreed.dev</span> was
-                conceptualized
+                <span class="font-mono font-bold">Spreed.chat</span>
+
+                <img
+                  src="https://raw.githubusercontent.com/davoodwadi/jsChat-login/main/frontend/assets/spreed-2/spreed.svg"
+                  alt="Description of SVG"
+                  class="inline h-5 w-5 align-middle"
+                />
+                was conceptualized
               </h3>
               <p
-                class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"
+                class="mb-2 text-base font-normal text-gray-500 dark:text-gray-400"
               >
                 Alternate reality chatbot, where you can ask multiple questions
                 to the same LLM response. Each question branches out into its
                 own conversation history. You end up with a mind-map of the
                 entire topic you wish to explore.
               </p>
+              <p class="mb-2 text-base font-normal text-gray-300">
+                Frameworks used:
+              </p>
+              <ul class="mb-4 text-gray-300">
+                <li class="mb-2 ms-4">
+                  <strong
+                    >Node.js
+                    <img
+                      src="https://nodejs.org/static/logos/nodejsStackedLight.svg"
+                      alt="Node.js Logo"
+                      class="mx-2 inline h-5 align-middle"
+                  /></strong>
+                  <br />
+                  Used as the runtime environment for the server-side
+                  application and building the RESTful API and handling backend
+                  operations.
+                </li>
+                <li class="mb-2 ms-4">
+                  <strong
+                    >React
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                      class="mx-2 inline h-5 align-middle"
+                  /></strong>
+                  <br />
+                  Used to develop the frontend of the application and branching
+                  logic.
+                </li>
+                <li class="mb-2 ms-4">
+                  <strong
+                    >MongoDB
+                    <img
+                      src="https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg"
+                      class="mx-2 inline h-5 align-middle"
+                  /></strong>
+                  <br />
+                  For storing user conversations and managing user data.
+                </li>
+                <li class="mb-2 ms-4">
+                  <strong
+                    >Redis
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Redis_logo.svg/2560px-Redis_logo.svg.png"
+                      class="mx-2 inline h-5 align-middle"
+                  /></strong>
+                  <br />
+                  For storing user sessions.
+                </li>
+              </ul>
+
               <a
-                href="https://chat.intelChain.io"
-                class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                href="https://spreed.chat"
+                class="mb-4 inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                 >Check out the beta version
-                <svg
-                  class="ms-2 h-3 w-3 rtl:rotate-180"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 10"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                  /></svg
-              ></a>
+                <img
+                  src="https://raw.githubusercontent.com/davoodwadi/jsChat-login/main/frontend/assets/spreed-2/spreed.svg"
+                  alt="Description of SVG"
+                  class="mx-2 inline h-5 w-5 align-middle"
+                />
+              </a>
             </li>
 
             <li class="ms-4">
