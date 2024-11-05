@@ -1,0 +1,81 @@
+---
+title: "Model capacity"
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  cache: true
+---
+
+Model capacity refers to the ability of a machine learning model to capture and represent complex relationships between the input variables (features) and the target variable (labels). It determines the complexity and flexibility of the model in fitting the training data.
+
+In other words, model capacity represents the amount of information or patterns that a model can learn from the data. A model with a high capacity can learn intricate relationships in the training data, which may result in overfitting. On the other hand, a model with low capacity may not be able to capture the underlying patterns in the data, leading to underfitting.
+
+The capacity of a model can be controlled by adjusting its architectural complexity. For example, in neural networks, increasing the number of hidden layers and hidden units increases the capacity of the model.
+
+Mathematically, we can define model capacity as the number of parameters that the model has to learn. For example, in linear regression, the model capacity is determined by the number of coefficients (slope and intercept) that the model needs to estimate. In neural networks, the model capacity is determined by the number of weights and biases associated with each neuron.
+
+Now, let's understand the concept of model capacity using a simple example with polynomial regression. Polynomial regression is a form of linear regression where the relationship between the input feature (x) and the target variable (y) is modeled as an nth-degree polynomial.
+
+First, let's generate some synthetic data that follows a quadratic relationship between x and y:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate synthetic data
+np.random.seed(42)
+x = np.linspace(-5, 5, 100)
+y = 2 * x ** 2 + np.random.normal(0, 4, 100)
+
+# Plot the data
+plt.scatter(x, y)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Quadratic Relationship')
+plt.show()
+```
+
+By visualizing the data, we can observe that the relationship between x and y follows a quadratic curve. Now, let's try fitting this data using different polynomial regression models with different degrees of complexity.
+
+```{python}
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+
+# Fit linear regression model
+linear_model = make_pipeline(PolynomialFeatures(degree=1), LinearRegression())
+linear_model.fit(x.reshape(-1, 1), y)
+
+# Fit quadratic regression model
+quadratic_model = make_pipeline(PolynomialFeatures(degree=2), LinearRegression())
+quadratic_model.fit(x.reshape(-1, 1), y)
+
+# Fit cubic regression model
+cubic_model = make_pipeline(PolynomialFeatures(degree=3), LinearRegression())
+cubic_model.fit(x.reshape(-1, 1), y)
+
+# Predict on new data points
+x_test = np.linspace(-5, 5, 100)
+y_linear = linear_model.predict(x_test.reshape(-1, 1))
+y_quadratic = quadratic_model.predict(x_test.reshape(-1, 1))
+y_cubic = cubic_model.predict(x_test.reshape(-1, 1))
+
+# Plot the regression curves
+plt.scatter(x, y, label='Data')
+plt.plot(x_test, y_linear, label='Linear')
+plt.plot(x_test, y_quadratic, label='Quadratic')
+plt.plot(x_test, y_cubic, label='Cubic')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Polynomial Regression')
+plt.legend()
+plt.show()
+```
+
+In the above code, we fit three polynomial regression models: linear, quadratic, and cubic regression. The degree of the polynomial is indicated by the `degree` parameter in the `PolynomialFeatures` class. We can observe that as we increase the complexity (degree) of the polynomial, the models can better capture the underlying quadratic relationship.
+
+However, it's important to note that high-capacity models can also be prone to overfitting, especially when the amount of training data is limited. Therefore, it's crucial to balance the model's capacity with the complexity of the problem at hand and the size of the training dataset.
+
+To summarize, model capacity refers to the amount of information or patterns a machine learning model can learn from the data. It is determined by the number of parameters that the model needs to estimate. Increasing the model's capacity can improve its ability to represent complex relationships in the data, but it can also increase the risk of overfitting.

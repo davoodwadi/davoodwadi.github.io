@@ -1,0 +1,12 @@
+{
+  "hash": "ca5bcb09bfa80d0cdc895c175b95d17d",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"\"\nformat:\n  html:\n    code-fold: false\njupyter: python3\nexecute: \n  cache: true\n---\n\n\n\nIn the field of machine learning and classification, evaluating the model's performance is crucial. One common way to evaluate classification models is by using a confusion matrix. The confusion matrix provides a detailed breakdown of the model's predictions and their corresponding actual labels. From the confusion matrix, we can calculate several performance metrics, including precision, recall, and F1-score.\n\nLet's start by understanding what a confusion matrix is.\n\nA confusion matrix is a table that visualizes the performance of a classification model. It consists of four different values:\n\n- True Positive (TP): The number of positive instances that the model correctly predicted as positive.\n- False Positive (FP): The number of negative instances that the model incorrectly predicted as positive.\n- True Negative (TN): The number of negative instances that the model correctly predicted as negative.\n- False Negative (FN): The number of positive instances that the model incorrectly predicted as negative.\n\nThe confusion matrix is typically presented in the following format:\n\n|         | Predicted Positive | Predicted Negative |\n|---------|--------------------|--------------------|\n| Actual Positive |      TP          |        FN          |\n| Actual Negative |      FP          |        TN          |\n\n\nNow, let's calculate precision, recall, and F1-score using the confusion matrix.\n\n**Precision** measures the accuracy of positive predictions. It is calculated using the formula:\n\n\n$\\text{{Precision}} = \\frac{TP}{{TP + FP}}$\n\n**Recall**, also known as the sensitivity or true positive rate, measures the proportion of actual positive instances that were correctly classified. It is calculated using the formula:\n\n\n$\\text{{Recall}} = \\frac{TP}{{TP + FN}}$\n\n**F1-score** is the harmonic mean of precision and recall. It provides a balanced measure between the two. F1-score is calculated using the formula:\n\n\n$F1 = \\frac{2 \\times \\text{{Precision}} \\times \\text{{Recall}}}{{\\text{{Precision}} + \\text{{Recall}}}}$\n\n",
+    "supporting": [
+      "prf1_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

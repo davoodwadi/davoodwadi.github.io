@@ -1,0 +1,6129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>value_and_policy_iteration_question – Davood Wadi</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Davood Wadi</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.qmd"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making">
+ <span class="dropdown-text">MIT ADSP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../courses.html">
+ <span class="dropdown-text">MATH60629A</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#week-12---sequential-decision-making-i" id="toc-week-12---sequential-decision-making-i" class="nav-link active" data-scroll-target="#week-12---sequential-decision-making-i">Week 12 - Sequential Decision Making I</a>
+  <ul class="collapse">
+  <li><a href="#value-and-policy-iteration-exercices" id="toc-value-and-policy-iteration-exercices" class="nav-link" data-scroll-target="#value-and-policy-iteration-exercices">Value and Policy Iteration Exercices</a></li>
+  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">0. Preliminaries</a>
+  <ul class="collapse">
+  <li><a href="#tic-tac-toe" id="toc-tic-tac-toe" class="nav-link" data-scroll-target="#tic-tac-toe">0.1 Tic-Tac-Toe</a></li>
+  <li><a href="#recommender-systems" id="toc-recommender-systems" class="nav-link" data-scroll-target="#recommender-systems">0.2 Recommender Systems</a></li>
+  </ul></li>
+  <li><a href="#value-iteration" id="toc-value-iteration" class="nav-link" data-scroll-target="#value-iteration">1. Value Iteration</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">1.1 Setup</a></li>
+  </ul></li>
+  <li><a href="#note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions." id="toc-note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions." class="nav-link" data-scroll-target="#note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions."><em>Note.</em> The value iteration algorithm is not accounting for stochastic transitions.</a>
+  <ul class="collapse">
+  <li><a href="#value-iteration-algorithms---code-completion" id="toc-value-iteration-algorithms---code-completion" class="nav-link" data-scroll-target="#value-iteration-algorithms---code-completion">1.2 Value iteration algorithms - code completion</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#note.-if-noise_prob0-theres-a-posibility-of-getting-stuck-as-non-terminal-states-due-to-the-calculation-of-v-based-on-a-deterministic-environment." id="toc-note.-if-noise_prob0-theres-a-posibility-of-getting-stuck-as-non-terminal-states-due-to-the-calculation-of-v-based-on-a-deterministic-environment." class="nav-link" data-scroll-target="#note.-if-noise_prob0-theres-a-posibility-of-getting-stuck-as-non-terminal-states-due-to-the-calculation-of-v-based-on-a-deterministic-environment."><em>Note.</em> If <code>NOISE_PROB&gt;0</code> there’s a posibility of getting stuck as non-terminal states due to the calculation of <span class="math inline">\(v\)</span> based on a deterministic environment.</a>
+  <ul class="collapse">
+  <li><a href="#policy-iteration" id="toc-policy-iteration" class="nav-link" data-scroll-target="#policy-iteration">2. Policy Iteration</a>
+  <ul class="collapse">
+  <li><a href="#policy-iteration---code-completion" id="toc-policy-iteration---code-completion" class="nav-link" data-scroll-target="#policy-iteration---code-completion">2.2 Policy iteration - code completion</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#we-have-to-set-noise_prob0-or-else-the-policy-evaluation-will-not-converge-values-would-be-0-for-all-states" id="toc-we-have-to-set-noise_prob0-or-else-the-policy-evaluation-will-not-converge-values-would-be-0-for-all-states" class="nav-link" data-scroll-target="#we-have-to-set-noise_prob0-or-else-the-policy-evaluation-will-not-converge-values-would-be-0-for-all-states">We have to set <code>noise_prob=0</code> or else the policy evaluation will not converge (values would be 0 for all states)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<p><a href="https://colab.research.google.com/github/davoodwadi/davoodwadi.github.io/blob/main/week12-MDPs/value_and_policy_iteration_question.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+<section id="week-12---sequential-decision-making-i" class="level1">
+<h1>Week 12 - Sequential Decision Making I</h1>
+<section id="value-and-policy-iteration-exercices" class="level2">
+<h2 class="anchored" data-anchor-id="value-and-policy-iteration-exercices">Value and Policy Iteration Exercices</h2>
+<p>Author: Massimo Caccia massimo.p.caccia@gmail.com <br></p>
+<p>The code was Adapted from: https://github.com/lazyprogrammer/machine_learning_examples/tree/master/rl <br> and then from: https://github.com/omerbsezer/Reinforcement_learning_tutorial_with_demo</p>
+</section>
+<section id="preliminaries" class="level2">
+<h2 class="anchored" data-anchor-id="preliminaries">0. Preliminaries</h2>
+<p>Before we jump into the value and policy iteration excercies, we will test your comprehension of a Markov Decision Process (MDP). <br></p>
+<section id="tic-tac-toe" class="level3">
+<h3 class="anchored" data-anchor-id="tic-tac-toe">0.1 Tic-Tac-Toe</h3>
+<p>Let’s take a simple example: Tic-Tac-Toe (also known as Tic-tac-toe, noughts and crosses, or Xs and Os). Definition: it is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.</p>
+<div id="cell-5" class="cell" data-outputid="47ceff3c-43a0-459c-8b9e-583fce27d9b7" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.display <span class="im">import</span> HTML</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Image(url<span class="op">=</span> <span class="st">"https://bjc.edc.org/bjc-r/img/3-lists/TTT1_img/Three%20States</span><span class="sc">%20o</span><span class="st">f%20TTT.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<img src="https://bjc.edc.org/bjc-r/img/3-lists/TTT1_img/Three%20States%20of%20TTT.png">
+</div>
+</div>
+<p><strong>Question:</strong> Imagine you were trying to build an agent for this game. Let’s try to describe how we would model it. Specifically, what are the states, actions, transition function and rewards?</p>
+<p>States:</p>
+<p>Actions:</p>
+<p>Reward:</p>
+<p>Transition Probabilities:</p>
+</section>
+<section id="recommender-systems" class="level3">
+<h3 class="anchored" data-anchor-id="recommender-systems">0.2 Recommender Systems</h3>
+<p><strong>Question:</strong> In the last class we discussed recommender systems. Imagine that you would like to model the recommendation process over time as an MDP. How would you do it?</p>
+<p>States:</p>
+<p>Actions:</p>
+<p>Reward:</p>
+<p>Transition Probabilities:</p>
+</section>
+</section>
+<section id="value-iteration" class="level2">
+<h2 class="anchored" data-anchor-id="value-iteration">1. Value Iteration</h2>
+<p>The exercises will test your capacity to <strong>complete the value iteration algorithm</strong>.</p>
+<p>You can find details about the algorithm at slide 46 of the <a href="http://www.cs.toronto.edu/~lcharlin/courses/80-629/slides_rl.pdf">slide</a> deck. <br></p>
+<p>The algorithm will be tested on a simple Gridworld similar to the one presented at slide 12.</p>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">1.1 Setup</h3>
+<div id="cell-13" class="cell" data-outputid="0d922270-8f3c-4843-d281-4cf1b24c297d" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#imports</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>lcharlin<span class="op">/</span><span class="dv">80</span><span class="op">-</span><span class="dv">629</span><span class="op">/</span>master<span class="op">/</span>week12<span class="op">-</span>MDPs<span class="op">/</span>gridWorldGame.py</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gridWorldGame <span class="im">import</span> standard_grid, negative_grid, print_values, print_policy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--2023-10-13 13:44:37--  https://raw.githubusercontent.com/lcharlin/80-629/master/week12-MDPs/gridWorldGame.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3800 (3.7K) [text/plain]
+Saving to: ‘gridWorldGame.py’
+
+gridWorldGame.py      0%[                    ]       0  --.-KB/s               gridWorldGame.py    100%[===================&gt;]   3.71K  --.-KB/s    in 0s      
+
+2023-10-13 13:44:38 (50.8 MB/s) - ‘gridWorldGame.py’ saved [3800/3800]
+</code></pre>
+</div>
+</div>
+<p>Let’s set some variables. <br> <code>SMALL_ENOUGH</code> is a threshold we will utilize to determine the convergence of value iteration<br> <code>GAMMA</code> is the discount factor denoted <span class="math inline">\(\gamma\)</span> in the slides (see slide 36) <br> <code>ALL_POSSIBLE_ACTIONS</code> are the actions you can take in the GridWold, as in slide 12. In this simple grid world, we will have four actions: Up, Down, Right, Left. <br> <code>NOISE_PROB</code> defines how stochastic the environement is. It is the probability that the environment takes you where a random action would.</p>
+<div id="cell-15" class="cell" data-execution_count="118">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SMALL_ENOUGH <span class="op">=</span> <span class="fl">1e-3</span> <span class="co"># threshold to declare convergence</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>GAMMA <span class="op">=</span> <span class="fl">0.9</span>         <span class="co"># discount factor</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ALL_POSSIBLE_ACTIONS <span class="op">=</span> (<span class="st">'U'</span>, <span class="st">'D'</span>, <span class="st">'L'</span>, <span class="st">'R'</span>) <span class="co"># Up, Down, Left, Right</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>NOISE_PROB <span class="op">=</span> <span class="fl">0.9</span>    <span class="co"># Probability of the agent not reaching it's intended goal after an action</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions." class="level2">
+<h2 class="anchored" data-anchor-id="note.-the-value-iteration-algorithm-is-not-accounting-for-stochastic-transitions."><em>Note.</em> The value iteration algorithm is not accounting for stochastic transitions.</h2>
+<p>Need to set <code>NOISE_PROB=0</code></p>
+<p>Now we will set up a the Gridworld. <br> It has the following Rewards:</p>
+<div id="cell-18" class="cell" data-outputid="a2cc9b30-7c1c-41c6-f8a4-be9c01a6ba26" data-execution_count="119">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> standard_grid(noise_prob<span class="op">=</span>NOISE_PROB)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"rewards:"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>print_values(grid.rewards, grid)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>grid.rewards</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rewards:
+---------------------------
+ 0.00| 0.00| 0.00| 1.10|
+---------------------------
+ 0.00| 0.00| 0.00|-1.00|
+---------------------------
+ 0.00| 0.00| 0.00| 0.00|</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="119">
+<pre><code>{(0, 3): 1.1, (1, 3): -1}</code></pre>
+</div>
+</div>
+<p>There are three absorbing states: (0,3),(1,3), and (1,1)</p>
+<p>Next, we will define a random inital policy <span class="math inline">\(\pi\)</span>. <br> Remember that a policy maps states to actions <span class="math inline">\(\pi : S \rightarrow A\)</span>.</p>
+<div id="cell-21" class="cell" data-outputid="50443f62-9c68-4e63-ff61-11c1da950560" data-execution_count="121">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>policy <span class="op">=</span> {}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> grid.actions.keys():</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    policy[s] <span class="op">=</span> np.random.choice(ALL_POSSIBLE_ACTIONS)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initial policy</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"initial policy:"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>initial policy:
+---------------------------
+  R  |  U  |  R  | N/A |
+---------------------------
+  U  | N/A |  R  | N/A |
+---------------------------
+  U  |  U  |  D  |  R  |</code></pre>
+</div>
+</div>
+<p>Note that there is no policy in the absorbing/terminal states (hence the Not Available “N/A”).</p>
+<p>Next, we will randomly initialize the value fonction</p>
+<div id="cell-24" class="cell" data-outputid="890e6dc5-6c65-4afe-f039-c5bb1117b85b" data-execution_count="127">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>) <span class="co"># make sure this is reproducable</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> {}</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> grid.all_states()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> states:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s <span class="kw">in</span> grid.actions:</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        V[s] <span class="op">=</span> np.random.random()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># terminal state</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        V[s] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># initial value for all states in grid</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>---------------------------
+ 0.79| 0.19| 0.28| 0.00|
+---------------------------
+ 0.96| 0.00| 0.62| 0.00|
+---------------------------
+ 0.78| 0.44| 0.80| 0.27|</code></pre>
+</div>
+</div>
+<p>Note that we set to Null the values of the terminal states. <br> For the print_values() function to compile, we set them to 0.</p>
+<section id="value-iteration-algorithms---code-completion" class="level3">
+<h3 class="anchored" data-anchor-id="value-iteration-algorithms---code-completion">1.2 Value iteration algorithms - code completion</h3>
+<p>You will now have to complete the Value iteration algorithm. <br> Remember that, for each iteration, the value of each state s is updated using:</p>
+<p><span class="math display">\[
+V(s) = \underset{a}{max}\big\{ \sum_{s'}  p(s'|s,a)(r + \gamma*V(s') \big\}
+\]</span> Note that in the current gridWorld, <span class="math inline">\(p(s'|s,a)\)</span> is deterministic. <br> Also, remember that in value iteration, the policy is implicit. <br> Thus, you don’t need to update it at every iteration. <br> Run the algorithm until convergence.</p>
+</section>
+</section>
+</section>
+<section id="note.-if-noise_prob0-theres-a-posibility-of-getting-stuck-as-non-terminal-states-due-to-the-calculation-of-v-based-on-a-deterministic-environment." class="level1">
+<h1><em>Note.</em> If <code>NOISE_PROB&gt;0</code> there’s a posibility of getting stuck as non-terminal states due to the calculation of <span class="math inline">\(v\)</span> based on a deterministic environment.</h1>
+<div id="cell-28" class="cell" data-outputid="c85e712d-590d-4ec2-b4de-6d402d580fb3" data-execution_count="129">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>iteration<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>: <span class="co"># run the algorithm until convergence</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"iteration </span><span class="sc">%d</span><span class="st">: "</span> <span class="op">%</span> iteration)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    print_values(V, grid)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    biggest_change <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> states: <span class="co"># for each state</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        old_v <span class="op">=</span> V[s]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># V(s) only has a value if it's not a terminal/absorbing state</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">in</span> policy:</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>              new_v <span class="op">=</span> <span class="bu">float</span>(<span class="st">'-inf'</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> a <span class="kw">in</span> ALL_POSSIBLE_ACTIONS:</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                grid.set_state(s)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                <span class="co"># get reward</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                r <span class="op">=</span> grid.move(a)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>                <span class="co"># get s'</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>                sprime <span class="op">=</span> grid.current_state()</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>                <span class="co">## Implement This!</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>                <span class="co">## hints:</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>                <span class="co">##   - compute this V[s] = max[a]{ sum[s'] { p(s'|s,a)[r + gamma*V[s']] } }</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>                <span class="co">##   -  in fact, we are computing this V[s] = max[a]{[r + gamma*V[s']] } with deterministic transition probabilities</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>                v <span class="op">=</span> r <span class="op">+</span> GAMMA<span class="op">*</span>V[sprime]</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> v <span class="op">&gt;</span> new_v:</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>                    new_v <span class="op">=</span> v</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>                V[s] <span class="op">=</span> new_v</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                biggest_change <span class="op">=</span> <span class="bu">max</span>(biggest_change, np.<span class="bu">abs</span>(old_v <span class="op">-</span> V[s]))</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> biggest_change <span class="op">&lt;</span> SMALL_ENOUGH:</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    iteration <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Streaming output truncated to the last 5000 lines.
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.80| 0.89| 0.80|
+
+
+
+iteration 1213: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1214: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1215: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1216: 
+---------------------------
+ 0.72| 0.80| 0.80| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1217: 
+---------------------------
+ 0.65| 0.72| 0.65| 0.00|
+---------------------------
+ 0.58| 0.00| 0.72| 0.00|
+---------------------------
+ 0.58| 0.65| 0.65| 0.65|
+
+
+
+iteration 1218: 
+---------------------------
+ 0.58| 0.58| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.58| 0.00|
+---------------------------
+ 0.53| 0.58| 0.53| 0.58|
+
+
+
+iteration 1219: 
+---------------------------
+ 0.47| 0.99| 1.10| 0.00|
+---------------------------
+ 0.43| 0.00| 0.99| 0.00|
+---------------------------
+ 0.47| 0.47| 0.43| 0.47|
+
+
+
+iteration 1220: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00|-1.00| 0.00|
+---------------------------
+ 0.38| 0.43| 0.38| 0.38|
+
+
+
+iteration 1221: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.35| 0.89| 0.35|
+
+
+
+iteration 1222: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1223: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1224: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1225: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1226: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1227: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1228: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1229: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1230: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1231: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1232: 
+---------------------------
+ 0.72| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1233: 
+---------------------------
+ 0.72| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1234: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1235: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1236: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.53|
+
+
+
+iteration 1237: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1238: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1239: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.65| 0.72| 0.58| 0.65|
+
+
+
+iteration 1240: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.65| 0.72| 0.58| 0.65|
+
+
+
+iteration 1241: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.65| 0.72| 0.58| 0.65|
+
+
+
+iteration 1242: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.65| 0.72| 0.58| 0.65|
+
+
+
+iteration 1243: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.58| 0.89| 0.53|
+
+
+
+iteration 1244: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1245: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1246: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1247: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1248: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1249: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1250: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1251: 
+---------------------------
+ 0.80| 0.80| 0.72| 0.00|
+---------------------------
+ 0.72| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1252: 
+---------------------------
+ 0.65| 0.72| 1.10| 0.00|
+---------------------------
+ 0.58| 0.00| 0.65| 0.00|
+---------------------------
+ 0.65| 0.65| 0.58| 0.65|
+
+
+
+iteration 1253: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.53| 0.58|-0.90|-1.00|
+
+
+
+iteration 1254: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.53| 0.58|-0.90|-1.00|
+
+
+
+iteration 1255: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.53| 0.58|-0.90|-1.00|
+
+
+
+iteration 1256: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89|-0.81|
+
+
+
+iteration 1257: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89|-0.81|
+
+
+
+iteration 1258: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.80|
+
+
+
+iteration 1259: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00|-1.00| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1260: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1261: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.53|
+
+
+
+iteration 1262: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1263: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1264: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1265: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1266: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1267: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1268: 
+---------------------------
+ 0.80| 0.99| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1269: 
+---------------------------
+ 0.72| 0.99| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1270: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.80| 0.00|
+---------------------------
+ 0.58| 0.65| 0.72| 0.80|
+
+
+
+iteration 1271: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1272: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1273: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1274: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1275: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.65|
+
+
+
+iteration 1276: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1277: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1278: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1279: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.47| 0.53| 0.47| 0.53|
+
+
+
+iteration 1280: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.43| 0.72| 0.43|
+
+
+
+iteration 1281: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1282: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1283: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1284: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1285: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1286: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1287: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1288: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1289: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1290: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1291: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1292: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1293: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1294: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1295: 
+---------------------------
+ 0.72| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1296: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.53|
+
+
+
+iteration 1297: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.53|
+
+
+
+iteration 1298: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1299: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1300: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1301: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.65|
+
+
+
+iteration 1302: 
+---------------------------
+ 0.89| 0.99| 0.99| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89|-0.90|
+
+
+
+iteration 1303: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.89| 0.00|
+---------------------------
+ 0.72| 0.80| 0.80| 0.80|
+
+
+
+iteration 1304: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.72| 0.89| 0.72|
+
+
+
+iteration 1305: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.72| 0.89| 0.72|
+
+
+
+iteration 1306: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.72| 0.89| 0.72|
+
+
+
+iteration 1307: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1308: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1309: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1310: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1311: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1312: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1313: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1314: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1315: 
+---------------------------
+ 0.58| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1316: 
+---------------------------
+ 0.58| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1317: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1318: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1319: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1320: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1321: 
+---------------------------
+ 0.72| 0.89| 0.80| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72|-0.90|
+
+
+
+iteration 1322: 
+---------------------------
+ 0.58| 0.65| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.72| 0.00|
+---------------------------
+ 0.58| 0.65| 0.65| 0.65|
+
+
+
+iteration 1323: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.53| 0.58| 0.53| 0.58|
+
+
+
+iteration 1324: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.47| 0.00|
+---------------------------
+ 0.72| 0.47| 0.43| 0.47|
+
+
+
+iteration 1325: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.38|
+
+
+
+iteration 1326: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1327: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1328: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1329: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1330: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-0.90|
+
+
+
+iteration 1331: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-0.90|
+
+
+
+iteration 1332: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-0.90|
+
+
+
+iteration 1333: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1334: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1335: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1336: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1337: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1338: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1339: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1340: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1341: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.72| 0.65| 0.65|
+
+
+
+iteration 1342: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.58| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.58|
+
+
+
+iteration 1343: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.58| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.58|
+
+
+
+iteration 1344: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1345: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1346: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.80|
+
+
+
+iteration 1347: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1348: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1349: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-0.90|
+
+
+
+iteration 1350: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1351: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1352: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.53| 0.00|
+---------------------------
+ 0.72| 0.53| 0.47| 0.53|
+
+
+
+iteration 1353: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.43| 0.00|
+---------------------------
+ 0.58| 0.65| 0.38| 0.43|
+
+
+
+iteration 1354: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.43| 0.00|
+---------------------------
+ 0.58| 0.65| 0.38| 0.43|
+
+
+
+iteration 1355: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.43| 0.00|
+---------------------------
+ 0.58| 0.65| 0.38| 0.43|
+
+
+
+iteration 1356: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.58| 0.53| 0.35|
+
+
+
+iteration 1357: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.58| 0.53| 0.35|
+
+
+
+iteration 1358: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.47| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.47|
+
+
+
+iteration 1359: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.47| 0.53| 0.89| 0.53|
+
+
+
+iteration 1360: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.47| 0.53| 0.89| 0.53|
+
+
+
+iteration 1361: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1362: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1363: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1364: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1365: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1366: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1367: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1368: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1369: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1370: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1371: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1372: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1373: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.72| 0.65| 0.65|
+
+
+
+iteration 1374: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89|-0.90|
+
+
+
+iteration 1375: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.80|
+
+
+
+iteration 1376: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1377: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1378: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1379: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-1.00|
+
+
+
+iteration 1380: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.58| 0.65| 0.72| 0.80|
+
+
+
+iteration 1381: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89|-0.81|
+
+
+
+iteration 1382: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00|-1.00| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1383: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00|-1.00| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1384: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00|-1.00| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1385: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1386: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1387: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1388: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1389: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1390: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1391: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1392: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1393: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1394: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1395: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72|-0.90|
+
+
+
+iteration 1396: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1397: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1398: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1399: 
+---------------------------
+ 0.89| 0.99| 0.99| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.80|
+
+
+
+iteration 1400: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.89| 0.00|
+---------------------------
+ 0.72| 0.80| 0.80| 0.80|
+
+
+
+iteration 1401: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.58| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.72| 0.89| 0.72|
+
+
+
+iteration 1402: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1403: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1404: 
+---------------------------
+ 0.80| 0.99| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-1.00|
+
+
+
+iteration 1405: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1406: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1407: 
+---------------------------
+ 0.80| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.53| 0.72| 0.53|
+
+
+
+iteration 1408: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1409: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-0.90|
+
+
+
+iteration 1410: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1411: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1412: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1413: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1414: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1415: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1416: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1417: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1418: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1419: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1420: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1421: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1422: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72|-1.00|
+
+
+
+iteration 1423: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1424: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1425: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89|-1.00|
+
+
+
+iteration 1426: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89|-1.00|
+
+
+
+iteration 1427: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89|-1.00|
+
+
+
+iteration 1428: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1429: 
+---------------------------
+ 0.72| 0.80| 0.72| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1430: 
+---------------------------
+ 0.58| 0.65| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1431: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.47| 0.53| 0.89| 0.53|
+
+
+
+iteration 1432: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1433: 
+---------------------------
+ 0.58| 0.99| 0.89| 0.00|
+---------------------------
+ 0.53| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1434: 
+---------------------------
+ 0.72| 0.80| 0.72| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.47| 0.53| 0.72| 0.53|
+
+
+
+iteration 1435: 
+---------------------------
+ 0.58| 0.65| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1436: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.53| 0.00|
+---------------------------
+ 0.53| 0.58| 0.53| 0.53|
+
+
+
+iteration 1437: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.43| 0.47| 0.89| 0.47|
+
+
+
+iteration 1438: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1439: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1440: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1441: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.65| 0.89| 0.65|
+
+
+
+iteration 1442: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1443: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1444: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.80|
+
+
+
+iteration 1445: 
+---------------------------
+ 0.80| 0.80| 0.72| 0.00|
+---------------------------
+ 0.72| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1446: 
+---------------------------
+ 0.65| 0.72| 1.10| 0.00|
+---------------------------
+ 0.58| 0.00| 0.65| 0.00|
+---------------------------
+ 0.65| 0.65| 0.58| 0.65|
+
+
+
+iteration 1447: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.53| 0.58| 0.89|-0.90|
+
+
+
+iteration 1448: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.53| 0.58| 0.89|-0.90|
+
+
+
+iteration 1449: 
+---------------------------
+ 0.80| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1450: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1451: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1452: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1453: 
+---------------------------
+ 0.72| 0.80| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1454: 
+---------------------------
+ 0.72| 0.80| 0.72| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1455: 
+---------------------------
+ 0.58| 0.65| 0.58| 0.00|
+---------------------------
+ 0.53| 0.00|-1.00| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58|-1.00|
+
+
+
+iteration 1456: 
+---------------------------
+ 0.53| 0.53| 1.10| 0.00|
+---------------------------
+ 0.43| 0.00| 0.53| 0.00|
+---------------------------
+ 0.47| 0.53| 0.47| 0.53|
+
+
+
+iteration 1457: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.38| 0.43| 0.89| 0.43|
+
+
+
+iteration 1458: 
+---------------------------
+ 0.89| 0.99| 0.99| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1459: 
+---------------------------
+ 0.80| 0.89| 0.80| 0.00|
+---------------------------
+ 0.72| 0.00| 0.89| 0.00|
+---------------------------
+ 0.72| 0.65| 0.80| 0.65|
+
+
+
+iteration 1460: 
+---------------------------
+ 0.65| 0.72| 1.10| 0.00|
+---------------------------
+ 0.58| 0.00| 0.72| 0.00|
+---------------------------
+ 0.65| 0.72| 0.65| 0.72|
+
+
+
+iteration 1461: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.58|
+
+
+
+iteration 1462: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.58|
+
+
+
+iteration 1463: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.58|
+
+
+
+iteration 1464: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.53| 0.00|
+---------------------------
+ 0.72| 0.53| 0.47| 0.53|
+
+
+
+iteration 1465: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.43|
+
+
+
+iteration 1466: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.53| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.53|
+
+
+
+iteration 1467: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.53| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.53|
+
+
+
+iteration 1468: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.47|-1.00|
+
+
+
+iteration 1469: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.47|-1.00|
+
+
+
+iteration 1470: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.47|-1.00|
+
+
+
+iteration 1471: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.43|
+
+
+
+iteration 1472: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1473: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1474: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1475: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1476: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1477: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1478: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1479: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1480: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1481: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1482: 
+---------------------------
+ 0.72| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00|-1.00| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.53|
+
+
+
+iteration 1483: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.53|
+
+
+
+iteration 1484: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.58| 0.89| 0.80|
+
+
+
+iteration 1485: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1486: 
+---------------------------
+ 0.72| 0.80| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1487: 
+---------------------------
+ 0.72| 0.80| 0.72| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1488: 
+---------------------------
+ 0.58| 0.65| 0.58| 0.00|
+---------------------------
+ 0.53| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1489: 
+---------------------------
+ 0.53| 0.53| 1.10| 0.00|
+---------------------------
+ 0.47| 0.00| 0.53| 0.00|
+---------------------------
+ 0.53| 0.58| 0.53| 0.53|
+
+
+
+iteration 1490: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.43| 0.47| 0.89| 0.47|
+
+
+
+iteration 1491: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1492: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1493: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1494: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.53| 0.47| 0.53|
+
+
+
+iteration 1495: 
+---------------------------
+ 0.89| 0.99| 0.99| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.43|
+
+
+
+iteration 1496: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.89| 0.00|
+---------------------------
+ 0.72| 0.53| 0.80| 0.53|
+
+
+
+iteration 1497: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.72| 0.89| 0.72|
+
+
+
+iteration 1498: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.72| 0.89| 0.72|
+
+
+
+iteration 1499: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1500: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1501: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1502: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1503: 
+---------------------------
+ 0.72| 0.80| 0.80| 0.00|
+---------------------------
+ 0.65| 0.00| 0.53| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.53|
+
+
+
+iteration 1504: 
+---------------------------
+ 0.65| 0.72| 1.10| 0.00|
+---------------------------
+ 0.58| 0.00| 0.53| 0.00|
+---------------------------
+ 0.58| 0.53| 0.47| 0.53|
+
+
+
+iteration 1505: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.43| 0.00|
+---------------------------
+ 0.53| 0.53| 0.47| 0.43|
+
+
+
+iteration 1506: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.47| 0.43| 0.43|
+
+
+
+iteration 1507: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.38|
+
+
+
+iteration 1508: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1509: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1510: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1511: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1512: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1513: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1514: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1515: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.53|
+
+
+
+iteration 1516: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1517: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1518: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1519: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1520: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1521: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1522: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1523: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1524: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1525: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1526: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1527: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.47| 0.53|
+
+
+
+iteration 1528: 
+---------------------------
+ 0.58| 0.65| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.53| 0.89| 0.43|
+
+
+
+iteration 1529: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-1.00|
+
+
+
+iteration 1530: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1531: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1532: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1533: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1534: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72|-0.90|
+
+
+
+iteration 1535: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1536: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1537: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1538: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72|-1.00|
+
+
+
+iteration 1539: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1540: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1541: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1542: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.80|
+
+
+
+iteration 1543: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1544: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1545: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1546: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1547: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.72| 0.89| 0.65|
+
+
+
+iteration 1548: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.65| 0.72| 0.89| 0.65|
+
+
+
+iteration 1549: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1550: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1551: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1552: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1553: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1554: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1555: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1556: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1557: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1558: 
+---------------------------
+ 0.89| 0.99| 0.99| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1559: 
+---------------------------
+ 0.80| 0.89| 0.80| 0.00|
+---------------------------
+ 0.72| 0.00| 0.89| 0.00|
+---------------------------
+ 0.58| 0.65| 0.80| 0.65|
+
+
+
+iteration 1560: 
+---------------------------
+ 0.65| 0.72| 1.10| 0.00|
+---------------------------
+ 0.58| 0.00| 0.72| 0.00|
+---------------------------
+ 0.65| 0.72| 0.65| 0.72|
+
+
+
+iteration 1561: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.58| 0.00|
+---------------------------
+ 0.53| 0.58| 0.53| 0.58|
+
+
+
+iteration 1562: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.47| 0.89| 0.47|
+
+
+
+iteration 1563: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.47| 0.89| 0.47|
+
+
+
+iteration 1564: 
+---------------------------
+ 0.72| 0.80| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1565: 
+---------------------------
+ 0.72| 0.80| 0.72| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.65| 0.72| 0.72| 0.80|
+
+
+
+iteration 1566: 
+---------------------------
+ 0.58| 0.65| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1567: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.47| 0.53| 0.89| 0.53|
+
+
+
+iteration 1568: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.47| 0.53| 0.89| 0.53|
+
+
+
+iteration 1569: 
+---------------------------
+ 0.89| 0.99| 0.99| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1570: 
+---------------------------
+ 0.80| 0.89| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.89| 0.00|
+---------------------------
+ 0.72| 0.80| 0.80| 0.80|
+
+
+
+iteration 1571: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.72| 0.00|
+---------------------------
+ 0.65| 0.72| 0.65| 0.72|
+
+
+
+iteration 1572: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.58| 0.89| 0.58|
+
+
+
+iteration 1573: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1574: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1575: 
+---------------------------
+ 0.80| 0.99| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1576: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1577: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1578: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1579: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1580: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1581: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1582: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1583: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1584: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1585: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1586: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1587: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1588: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1589: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1590: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1591: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1592: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1593: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1594: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1595: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.53|
+
+
+
+iteration 1596: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1597: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1598: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1599: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1600: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1601: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1602: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1603: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1604: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1605: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1606: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1607: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1608: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1609: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1610: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.53|
+
+
+
+iteration 1611: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.47| 0.53|
+
+
+
+iteration 1612: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.43|
+
+
+
+iteration 1613: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1614: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1615: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1616: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.53|
+
+
+
+iteration 1617: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1618: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.65|
+
+
+
+iteration 1619: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1620: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1621: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00|-1.00| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58|-0.90|
+
+
+
+iteration 1622: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00|-1.00| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58|-0.90|
+
+
+
+iteration 1623: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1624: 
+---------------------------
+ 0.80| 0.80| 1.10| 0.00|
+---------------------------
+ 0.72| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1625: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.65| 0.65| 0.58| 0.65|
+
+
+
+iteration 1626: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.58| 0.89| 0.53|
+
+
+
+iteration 1627: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89|-1.00|
+
+
+
+iteration 1628: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1629: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89|-1.00|
+
+
+
+iteration 1630: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89|-1.00|
+
+
+
+iteration 1631: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89|-1.00|
+
+
+
+iteration 1632: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89|-1.00|
+
+
+
+iteration 1633: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.53| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89|-1.00|
+
+
+
+iteration 1634: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1635: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1636: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.53|
+
+
+
+iteration 1637: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1638: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1639: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1640: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1641: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1642: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1643: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1644: 
+---------------------------
+ 0.72| 0.99| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1645: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1646: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1647: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1648: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1649: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1650: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1651: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1652: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1653: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.72| 0.89| 0.65|
+
+
+
+iteration 1654: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1655: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1656: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1657: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1658: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89|-1.00|
+
+
+
+iteration 1659: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89|-1.00|
+
+
+
+iteration 1660: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89|-1.00|
+
+
+
+iteration 1661: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1662: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1663: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1664: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1665: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1666: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1667: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1668: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1669: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1670: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1671: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1672: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.65|
+
+
+
+iteration 1673: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.58| 0.53|
+
+
+
+iteration 1674: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.53| 0.00|
+---------------------------
+ 0.72| 0.65| 0.47| 0.53|
+
+
+
+iteration 1675: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.43|
+
+
+
+iteration 1676: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.43|
+
+
+
+iteration 1677: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1678: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1679: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.80|
+
+
+
+iteration 1680: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.65|
+
+
+
+iteration 1681: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.65| 0.89| 0.80|
+
+
+
+iteration 1682: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1683: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1684: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1685: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.65| 0.72| 0.72| 0.80|
+
+
+
+iteration 1686: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1687: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1688: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1689: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1690: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1691: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1692: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1693: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1694: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1695: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1696: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1697: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.58| 0.65| 0.89| 0.65|
+
+
+
+iteration 1698: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+
+
+
+iteration 1699: 
+---------------------------
+ 0.89| 0.99| 0.89| 0.00|
+---------------------------
+ 0.80| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1700: 
+---------------------------
+ 0.72| 0.80| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.65| 0.72| 0.65|
+
+
+
+iteration 1701: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1702: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1703: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1704: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.65| 0.00|
+---------------------------
+ 0.58| 0.65| 0.58| 0.65|
+
+
+
+iteration 1705: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1706: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1707: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1708: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.53| 0.89| 0.53|
+
+
+
+iteration 1709: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1710: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1711: 
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+
+
+
+iteration 1712: 
+---------------------------
+ 0.89|</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-129-131b4b75b3c0&gt;</span> in <span class="ansi-cyan-fg">&lt;cell line: 2&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg ansi-bold">      2</span> <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span> <span class="ansi-red-fg"># run the algorithm until convergence</span>
+<span class="ansi-green-fg ansi-bold">      3</span>     print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"iteration %d: "</span> <span class="ansi-blue-fg">%</span> iteration<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">     </span>print_values<span class="ansi-blue-fg">(</span>V<span class="ansi-blue-fg">,</span> grid<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">      5</span>     print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"\n\n"</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">      6</span> 
+
+<span class="ansi-green-fg">/content/gridWorldGame.py</span> in <span class="ansi-cyan-fg">print_values</span><span class="ansi-blue-fg">(V, g)</span>
+<span class="ansi-green-fg ansi-bold">    123</span>       v <span class="ansi-blue-fg">=</span> V<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">(</span>i<span class="ansi-blue-fg">,</span>j<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    124</span>       <span class="ansi-green-fg">if</span> v <span class="ansi-blue-fg">&gt;=</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 125</span><span class="ansi-red-fg">         </span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">" %.2f|"</span> <span class="ansi-blue-fg">%</span> v<span class="ansi-blue-fg">,</span> end<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">""</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    126</span>       <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    127</span>         print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"%.2f|"</span> <span class="ansi-blue-fg">%</span> v<span class="ansi-blue-fg">,</span> end<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">""</span><span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># -ve sign takes up an extra space</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/ipykernel/iostream.py</span> in <span class="ansi-cyan-fg">write</span><span class="ansi-blue-fg">(self, string)</span>
+<span class="ansi-green-fg ansi-bold">    400</span>             is_child <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span><span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_is_master_process<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    401</span>             <span class="ansi-red-fg"># only touch the buffer in the IO thread to avoid races</span>
+<span class="ansi-green-fg">--&gt; 402</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>pub_thread<span class="ansi-blue-fg">.</span>schedule<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> <span class="ansi-blue-fg">:</span> self<span class="ansi-blue-fg">.</span>_buffer<span class="ansi-blue-fg">.</span>write<span class="ansi-blue-fg">(</span>string<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    403</span>             <span class="ansi-green-fg">if</span> is_child<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    404</span>                 <span class="ansi-red-fg"># mp.Pool cannot be trusted to flush promptly (or ever),</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/ipykernel/iostream.py</span> in <span class="ansi-cyan-fg">schedule</span><span class="ansi-blue-fg">(self, f)</span>
+<span class="ansi-green-fg ansi-bold">    201</span>             self<span class="ansi-blue-fg">.</span>_events<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    202</span>             <span class="ansi-red-fg"># wake event thread (message content is ignored)</span>
+<span class="ansi-green-fg">--&gt; 203</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_event_pipe<span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">b''</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    204</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    205</span>             f<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/zmq/sugar/socket.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, data, flags, copy, track, routing_id, group)</span>
+<span class="ansi-green-fg ansi-bold">    616</span>                 )
+<span class="ansi-green-fg ansi-bold">    617</span>             data<span class="ansi-blue-fg">.</span>group <span class="ansi-blue-fg">=</span> group
+<span class="ansi-green-fg">--&gt; 618</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> super<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span>data<span class="ansi-blue-fg">,</span> flags<span class="ansi-blue-fg">=</span>flags<span class="ansi-blue-fg">,</span> copy<span class="ansi-blue-fg">=</span>copy<span class="ansi-blue-fg">,</span> track<span class="ansi-blue-fg">=</span>track<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    619</span> 
+<span class="ansi-green-fg ansi-bold">    620</span>     def send_multipart(
+
+<span class="ansi-green-fg">zmq/backend/cython/socket.pyx</span> in <span class="ansi-cyan-fg">zmq.backend.cython.socket.Socket.send</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">zmq/backend/cython/socket.pyx</span> in <span class="ansi-cyan-fg">zmq.backend.cython.socket.Socket.send</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">zmq/backend/cython/socket.pyx</span> in <span class="ansi-cyan-fg">zmq.backend.cython.socket._send_copy</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/zmq/backend/cython/checkrc.pxd</span> in <span class="ansi-cyan-fg">zmq.backend.cython.checkrc._check_rc</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
+</div>
+</div>
+</div>
+<p>Now that the value function is trained, use it to find the optimal policy.</p>
+<div id="cell-30" class="cell" data-execution_count="130">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>deterministic_grid <span class="op">=</span> standard_grid(noise_prob<span class="op">=</span><span class="fl">0.</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> policy.keys():</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    best_a <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    best_value <span class="op">=</span> <span class="bu">float</span>(<span class="st">'-inf'</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># loop through all possible actions to find the best current action</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a <span class="kw">in</span> ALL_POSSIBLE_ACTIONS:</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        deterministic_grid.set_state(s)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> deterministic_grid.move(a)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[deterministic_grid.current_state()]</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> v <span class="op">&gt;</span> best_value:</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>            best_value <span class="op">=</span> v</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>            best_a <span class="op">=</span> a</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    policy[s] <span class="op">=</span> best_a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now print your policy and make sure it leads to the upper-right corner which is the termnial state returning the most rewards.</p>
+<div id="cell-32" class="cell" data-outputid="ce4790f9-97c7-4cf8-99cd-df400c82f9a3" data-execution_count="131">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"values:"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"policy:"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>values:
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.65| 0.00| 0.80| 0.00|
+---------------------------
+ 0.72| 0.80| 0.72| 0.80|
+policy:
+---------------------------
+  R  |  R  |  R  | N/A |
+---------------------------
+  U  | N/A |  U  | N/A |
+---------------------------
+  R  |  U  |  U  |  D  |</code></pre>
+</div>
+</div>
+<section id="policy-iteration" class="level2">
+<h2 class="anchored" data-anchor-id="policy-iteration">2. Policy Iteration</h2>
+<p>You will be tested on your capacity to <strong>complete the poliy iteration algorithm</strong>. <br> You can find details about the algorithm at slide 47 of the slide deck. <br> The algorithm will be tested on a simple Gridworld similar to the one presented at slide 12. <br> This Gridworld is however simpler because the MDP is deterministic. <br></p>
+<p>First we will define a random inital policy. <br> Remember that a policy maps states to actions.</p>
+<div id="cell-36" class="cell" data-outputid="924872aa-fe9b-44a4-da6f-f5dccec5024a" data-execution_count="132">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>policy <span class="op">=</span> {}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> grid.actions.keys():</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    policy[s] <span class="op">=</span> np.random.choice(ALL_POSSIBLE_ACTIONS)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initial policy</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"initial policy:"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>initial policy:
+---------------------------
+  U  |  D  |  D  | N/A |
+---------------------------
+  R  | N/A |  D  | N/A |
+---------------------------
+  R  |  U  |  L  |  L  |</code></pre>
+</div>
+</div>
+<p>Next, we will randomly initialize the value fonction</p>
+<div id="cell-38" class="cell" data-outputid="7717ff68-058d-4362-a7a5-0903bb92966c" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize V(s) - value function</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> {}</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> grid.all_states()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> states:</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s <span class="kw">in</span> grid.actions:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        V[s] <span class="op">=</span> np.random.random()</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># terminal state</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        V[s] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># initial value for all states in grid</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>---------------------------
+ 0.79| 0.19| 0.28| 0.00|
+---------------------------
+ 0.96| 0.00| 0.62| 0.00|
+---------------------------
+ 0.78| 0.44| 0.80| 0.27|</code></pre>
+</div>
+</div>
+<p>Note that we set to Null the values of the terminal states. <br> For the print_values() function to compile, we set them to 0.</p>
+<section id="policy-iteration---code-completion" class="level3">
+<h3 class="anchored" data-anchor-id="policy-iteration---code-completion">2.2 Policy iteration - code completion</h3>
+<p>You will now have to complete the Policy iteration algorithm. <br> Remember that the algorithm works in two phases. <br> First, in the <em>policy evaluation</em> phase, the value function is update with the formula:</p>
+<p><span class="math display">\[
+V^\pi(s) =  \sum_{s'}  p(s'|s,\pi(s))(r + \gamma*V^\pi(s')
+\]</span> This part of the algorithm is already coded for you. <br></p>
+<p>Second, in the <em>policy improvement</em> step, the policy is updated with the formula:</p>
+<p><span class="math display">\[
+\pi'(s) = \underset{a}{arg max}\big\{ \sum_{s'}  p(s'|s,a)(r + \gamma*V^\pi(s') \big\}
+\]</span></p>
+<p>This is the part of code you will have to complete. <br></p>
+<p>Note that in the current gridWorld, p(s’|s,a) is deterministic. <br> Run the algorithm until convergence.</p>
+</section>
+</section>
+</section>
+<section id="we-have-to-set-noise_prob0-or-else-the-policy-evaluation-will-not-converge-values-would-be-0-for-all-states" class="level1">
+<h1>We have to set <code>noise_prob=0</code> or else the policy evaluation will not converge (values would be 0 for all states)</h1>
+<div id="cell-42" class="cell" data-outputid="273d9e4f-f393-47e8-fd2f-ebfbb9249046" data-execution_count="169">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> standard_grid(noise_prob<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"rewards:"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>print_values(grid.rewards, grid)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>grid.rewards</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rewards:
+---------------------------
+ 0.00| 0.00| 0.00| 1.10|
+---------------------------
+ 0.00| 0.00| 0.00|-1.00|
+---------------------------
+ 0.00| 0.00| 0.00| 0.00|</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="169">
+<pre><code>{(0, 3): 1.1, (1, 3): -1}</code></pre>
+</div>
+</div>
+<div id="cell-43" class="cell" data-outputid="b86ddc9c-34fc-4df9-9cd5-6a18a90edd1a" data-execution_count="170">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>grid_height <span class="op">=</span> <span class="bu">max</span>([s[<span class="dv">0</span>] <span class="cf">for</span> s <span class="kw">in</span> grid.all_states()]) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>grid_width <span class="op">=</span> <span class="bu">max</span>([s[<span class="dv">1</span>] <span class="cf">for</span> s <span class="kw">in</span> grid.all_states()]) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>grid_height, grid_width</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="170">
+<pre><code>(3, 4)</code></pre>
+</div>
+</div>
+<div id="cell-44" class="cell" data-outputid="53c53975-72e2-4988-aa40-74e4b2ab7474" data-execution_count="171">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>iteration<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># repeat until the policy does not change</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"values (iteration </span><span class="sc">%d</span><span class="st">)"</span> <span class="op">%</span> iteration)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    print_values(V, grid)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"policy (iteration </span><span class="sc">%d</span><span class="st">)"</span> <span class="op">%</span> iteration)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    print_policy(policy, grid)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. policy evaluation step</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this implementation does multiple policy-evaluation steps</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this is different than in the algorithm from the slides</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># which does a single one.</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>        biggest_change <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> s <span class="kw">in</span> states:</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>            old_v <span class="op">=</span> V[s]</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>            <span class="co"># V(s) only has value if it's not a terminal state</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> s <span class="kw">in</span> policy:</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>                a <span class="op">=</span> policy[s]</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>                grid.set_state(s)</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>                r <span class="op">=</span> grid.move(a) <span class="co"># reward</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>                sprime <span class="op">=</span> grid.current_state() <span class="co"># s'</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>                V[s] <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[sprime]</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>            biggest_change <span class="op">=</span> <span class="bu">max</span>(biggest_change, np.<span class="bu">abs</span>(old_v <span class="op">-</span> V[s]))</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> biggest_change <span class="op">&lt;</span> SMALL_ENOUGH:</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">#2. policy improvement step</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    is_policy_converged <span class="op">=</span> np.ones((grid_height, grid_width), dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> states:</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">in</span> policy:</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>            old_a <span class="op">=</span> policy[s]</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>            new_a <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>            best_value <span class="op">=</span> <span class="bu">float</span>(<span class="st">'-inf'</span>)</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>            <span class="co"># loop through all possible actions to find the best current action</span></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> a <span class="kw">in</span> ALL_POSSIBLE_ACTIONS:</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>                grid.set_state(s)</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>                r <span class="op">=</span> grid.move(a)</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>                sprime <span class="op">=</span> grid.current_state()</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>                v <span class="op">=</span> r <span class="op">+</span> GAMMA <span class="op">*</span> V[sprime]</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> v <span class="op">&gt;</span> best_value:</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>                    best_value <span class="op">=</span> v</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>                    new_a <span class="op">=</span> a</span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> new_a <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">'problem'</span>)</span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>            policy[s] <span class="op">=</span> new_a</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> new_a <span class="op">!=</span> old_a:</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>                is_policy_converged[s] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># making sure we stop iterations if *all* states' policies converge</span></span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> is_policy_converged.<span class="bu">all</span>():</span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>    iteration<span class="op">+=</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>values (iteration 0)
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+policy (iteration 0)
+---------------------------
+  R  |  R  |  R  | N/A |
+---------------------------
+  U  | N/A |  U  | N/A |
+---------------------------
+  U  |  R  |  U  |  L  |
+
+
+</code></pre>
+</div>
+</div>
+<p>Now print your policy and make sure it leads to the upper-right corner which is the termnial state returning the most rewards.</p>
+<div id="cell-46" class="cell" data-outputid="a8a2a569-8951-419a-b08c-fdd77fcb399f" data-execution_count="172">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"final values:"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>print_values(V, grid)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"final policy:"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>print_policy(policy, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>final values:
+---------------------------
+ 0.89| 0.99| 1.10| 0.00|
+---------------------------
+ 0.80| 0.00| 0.99| 0.00|
+---------------------------
+ 0.72| 0.80| 0.89| 0.80|
+final policy:
+---------------------------
+  R  |  R  |  R  | N/A |
+---------------------------
+  U  | N/A |  U  | N/A |
+---------------------------
+  U  |  R  |  U  |  L  |</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

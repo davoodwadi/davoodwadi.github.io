@@ -1,0 +1,133 @@
+
+---
+title: ""
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  cache: true
+eval: false
+---
+
+
+# Policy Iteration Algorithm
+
+In reinforcement learning, the **policy iteration algorithm** is used to find the optimal policy for an agent to maximize its expected return in a Markov Decision Process (MDP). The algorithm consists of two main steps: policy evaluation and policy improvement. 
+
+1. **Policy Evaluation**: In this step, we evaluate the given policy by calculating the state-value function for each state. The state-value function, denoted as V(s), represents the expected return starting from state s and following the given policy. The Bellman equation for V(s) is given by:
+
+$V(s) = \sum_{a} \pi(a|s) \sum_{s',r} p(s', r|s, a) [r + \gamma V(s')]$
+
+where:
+
+- $\pi(a|s)$ is the probability of taking action a in state s according to the policy $\pi$.
+- $p(s',r|s,a)$ is the probability of transitioning to state s' and receiving reward r, given that the agent took action a in state s.
+- $\gamma$ is the discount factor, which determines the importance of future rewards compared to immediate rewards.
+
+The policy evaluation step involves iteratively updating the state-value function until it converges to its true value under the given policy. 
+
+2. **Policy Improvement**: Once the state-value function is updated, we can improve the policy by selecting the action that maximizes the expected return in each state. This can be done by using the *greedy policy improvement* rule:
+
+
+$\pi'(s) = \arg\max_{a} \sum_{s', r} p(s', r|s, a) [r + \gamma V(s')]$
+
+
+where $\pi'(s)$ is the new policy, and $V(s')$ is the updated state-value function.
+
+The policy improvement step involves updating the policy based on the updated state-value function from the previous step.
+
+This process of policy evaluation and policy improvement is repeated iteratively until the policy converges to the optimal policy.
+
+Now let's see an example of how to implement the policy iteration algorithm in Python:
+
+```{python}
+# Step 1: Policy Evaluation
+def policy_evaluation(policy, states, actions, rewards, transitions, discount_factor, theta):
+    # Initialize the state-value function with zeros
+    V = {s: 0 for s in states}
+
+    while True:
+        delta = 0
+        
+        # Iterate over all states
+        for s in states:
+            v = V[s]
+            new_v = 0
+            
+            # Iterate over all possible actions
+            for a in actions:
+                # Compute the expected return for each action
+                next_states = transitions[s][a]
+                expected_return = sum(prob * (reward + discount_factor * V[next_state]) for next_state, reward, prob in next_states)
+
+                # Compute the new state-value function
+                new_v += policy[s][a] * expected_return
+
+            # Update the state-value function for the current state
+            V[s] = new_v
+
+            # Calculate the maximum difference between the old and new state-value functions
+            delta = max(delta, abs(v - V[s]))
+        
+        # If the maximum difference is less than a threshold, we assume convergence
+        if delta < theta:
+            break
+    
+    return V
+
+# Step 2: Policy Improvement
+def policy_improvement(states, actions, rewards, transitions, discount_factor, V):
+    # Initialize the new policy with zeros
+    new_policy = {s: {a: 0 for a in actions} for s in states}
+    
+    for s in states:
+        action_values = []
+        
+        # Iterate over all possible actions
+        for a in actions:
+            # Compute the expected return for each action
+            next_states = transitions[s][a]
+            expected_return = sum(prob * (reward + discount_factor * V[next_state]) for next_state, reward, prob in next_states)
+            
+            # Add the expected return to the list of action values
+            action_values.append(expected_return)
+        
+        # Assign the action with the maximum expected return as the new policy for the current state
+        idx = np.argmax(action_values)
+        new_policy[s][actions[idx]] = 1
+    
+    return new_policy
+
+# Step 3: Policy Iteration
+def policy_iteration(states, actions, rewards, transitions, discount_factor, theta):
+    # Initialize a random policy
+    policy = {s: {a: 1 / len(actions) for a in actions} for s in states}
+
+    while True:
+        # Policy Evaluation
+        V = policy_evaluation(policy, states, actions, rewards, transitions, discount_factor, theta)
+        
+        # Policy Improvement
+        new_policy = policy_improvement(states, actions, rewards, transitions, discount_factor, V)
+        
+        # If the new policy is the same as the old policy, we have converged to the optimal policy
+        if policy == new_policy:
+            break
+        
+        policy = new_policy
+    
+    return policy
+```
+
+In the code above, we define three functions to implement the policy iteration algorithm:
+
+1. `policy_evaluation`: This function performs policy evaluation by iteratively updating the state-value function until it converges. It takes as input the policy, state and action spaces, rewards, transition probabilities, discount factor, and a convergence threshold.
+
+2. `policy_improvement`: This function improves the policy by selecting the action that maximizes the expected return in each state. It takes as input the state and action spaces, rewards, transition probabilities, discount factor, and the updated state-value function.
+
+3. `policy_iteration`: This function combines the policy evaluation and policy improvement steps to find the optimal policy. It iteratively updates the policy until it converges to the optimal policy.
+
+To apply the policy iteration algorithm to a specific problem, you need to provide the state and action spaces, rewards, transition probabilities, discount factor, and convergence threshold.
+
+Now you can use the `policy_iteration` function to find the optimal policy for a given MDP.

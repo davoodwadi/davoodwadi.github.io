@@ -1,0 +1,128 @@
+
+---
+title: ""
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  cache: true
+---
+
+
+# Gradient Descent with PyTorch
+
+In this tutorial, we will learn how to implement the Gradient Descent algorithm using PyTorch. Gradient Descent is an optimization algorithm commonly used in machine learning to find the optimal parameters of a model by iteratively updating them based on the gradient of a cost function.
+
+We will start by explaining the theory behind Gradient Descent, then move on to implementing it in PyTorch.
+
+## Theory
+
+Gradient Descent works by iteratively updating the parameters of a model in the opposite direction of the gradient of a cost function. The goal is to find the minimum of the cost function, which corresponds to the optimal parameters for the model.
+
+The update rule for Gradient Descent is given by:
+
+
+$\theta = \theta - \alpha \cdot \nabla J(\theta)$
+
+
+where:
+- $\theta$ represents the current parameters of the model,
+- $\alpha$ is the learning rate (step size),
+- $J(\theta)$ is the cost function, and
+- $\nabla J(\theta)$ is the gradient of the cost function with respect to $\theta$.
+
+The learning rate $\alpha$ determines the size of the steps taken in each iteration. Too small of a learning rate may cause the algorithm to converge slowly, while too large of a learning rate may cause it to overshoot the minimum.
+
+## Implementation
+
+Now let's implement Gradient Descent using PyTorch. We will start by generating some sample data and defining a linear regression model. Then, we will define the cost function and gradient descent function.
+
+### Step 1: Generate Sample Data
+
+```{python}
+import torch
+
+# Set random seed for reproducibility
+torch.manual_seed(0)
+
+# Generate some dummy data
+X = torch.tensor([[1], [2], [3], [4]], dtype=torch.float32)
+y = torch.tensor([[2], [4], [6], [8]], dtype=torch.float32)
+print(f"X is {X}")
+print(f"y is {y}")
+```
+
+In this step, we import the `torch` module, set the random seed for reproducibility, and generate some dummy data. Here, `X` represents the input features and `y` represents the corresponding output values.
+
+### Step 2: Define Linear Regression Model
+
+```{python}
+class LinearRegression(torch.nn.Module):
+    def __init__(self):
+        super(LinearRegression, self).__init__()
+        self.linear = torch.nn.Linear(1, 1)
+        
+    def forward(self, x):
+        y_pred = self.linear(x)
+        return y_pred
+    
+model = LinearRegression()
+print(f"weight: {model.linear.weight.data}")
+print(f"bias: {model.linear.bias.data}")
+```
+
+In this step, we define a linear regression model using PyTorch's `torch.nn.Module` class. The model consists of a single linear layer `self.linear`, which maps the input features to the output values. The `forward` method is used to define the forward pass of the model.
+
+### Step 3: Define Cost Function
+
+```{python}
+criterion = torch.nn.MSELoss()
+```
+
+In this step, we define the Mean Squared Error (MSE) loss function using PyTorch's `torch.nn.MSELoss` class. The loss function measures the difference between the predicted values and the actual values.
+
+### Step 4: Define Gradient Descent Function
+
+```{python}
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+
+def gradient_descent(X, y, model, criterion, optimizer, num_epochs):
+    for epoch in range(num_epochs):
+        # Forward pass
+        y_pred = model(X)
+        
+        # Compute loss
+        loss = criterion(y_pred, y)
+        
+        # Backward pass and optimization
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        
+        if (epoch+1) % 200 == 0:
+            print(f'Epoch: {epoch+1}, Loss: {loss.item():.3f}, Weight: {model.linear.weight.data.item():.3f}, bias: {model.linear.bias.data.item():.3f}')
+```
+
+In this step, we define the gradient descent function `gradient_descent`. The function takes the input features `X`, target values `y`, model, criterion (loss function), optimizer, and the number of epochs as input.
+
+In each epoch, we perform the following steps:
+1. Compute the forward pass of the model to obtain the predicted values.
+2. Compute the loss between the predicted values and the actual values.
+3. Perform backpropagation to compute the gradients.
+4. Update the parameters of the model using the optimizer.
+
+We also print the loss value every 10 epochs to track the progress of the algorithm.
+
+### Step 5: Run Gradient Descent
+
+```{python}
+num_epochs = 2000
+gradient_descent(X, y, model, criterion, optimizer, num_epochs)
+```
+
+Finally, we run the gradient descent function with the specified number of epochs. The function will update the parameters of the model in each epoch to minimize the loss.
+
+## Conclusion
+
+In this tutorial, we learned how to implement the Gradient Descent algorithm using PyTorch. Gradient Descent is a fundamental optimization algorithm used to find the optimal parameters of a model. By iteratively updating the parameters in the direction of the negative gradient, we can find the minimum of a cost function.

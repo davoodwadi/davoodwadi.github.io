@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>session_7 – Davood Wadi</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Davood Wadi</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.qmd"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="https://professional.mit.edu/course-catalog/applied-data-science-program-leveraging-ai-effective-decision-making">
+ <span class="dropdown-text">MIT ADSP</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./courses.html">
+ <span class="dropdown-text">MATH60629A</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#kmeans-update" id="toc-kmeans-update" class="nav-link active" data-scroll-target="#kmeans-update">kmeans update</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<p><a href="https://colab.research.google.com/github/davoodwadi/davoodwadi.github.io/blob/main/session_7.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+<div id="cell-1" class="cell" data-outputid="f804f070-167e-4834-fe47-e95992ac5973">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classic libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Data science libraries</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn <span class="im">as</span> sk</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans   <span class="co"># KMeans function</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_circles, make_blobs  <span class="co"># Datasets</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split   <span class="co"># Cross validation library</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> mixture</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Data visualization libaries</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># A must! For nice an easy figures - look for sns command in the notebook</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> cm   <span class="co"># This is a nice color chart</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to obtain utilities.py</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>nc https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>lcharlin<span class="op">/</span><span class="dv">80</span><span class="op">-</span><span class="dv">629</span><span class="op">/</span>master<span class="op">/</span>week7<span class="op">-</span>Unsupervised<span class="op">/</span>utilities.py</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>mkdir Images</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget <span class="op">-</span>nc <span class="op">-</span>P Images https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>lcharlin<span class="op">/</span><span class="dv">80</span><span class="op">-</span><span class="dv">629</span><span class="op">/</span>master<span class="op">/</span>week7<span class="op">-</span>Unsupervised<span class="op">/</span>Images<span class="op">/</span>AE.png</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Homemade libraries</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utilities <span class="im">import</span> color, super_scat_it, distance, initiate, estimate_centroid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--2023-10-17 19:50:19--  https://raw.githubusercontent.com/lcharlin/80-629/master/week7-Unsupervised/utilities.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4292 (4.2K) [text/plain]
+Saving to: ‘utilities.py’
+
+utilities.py        100%[===================&gt;]   4.19K  --.-KB/s    in 0s      
+
+2023-10-17 19:50:19 (23.1 MB/s) - ‘utilities.py’ saved [4292/4292]
+
+--2023-10-17 19:50:19--  https://raw.githubusercontent.com/lcharlin/80-629/master/week7-Unsupervised/Images/AE.png
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.109.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 55744 (54K) [image/png]
+Saving to: ‘Images/AE.png’
+
+AE.png              100%[===================&gt;]  54.44K  --.-KB/s    in 0.04s   
+
+2023-10-17 19:50:20 (1.24 MB/s) - ‘Images/AE.png’ saved [55744/55744]
+</code></pre>
+</div>
+</div>
+<div id="cell-2" class="cell" data-outputid="d289960a-06d2-45d7-bfab-22de64f3ba95">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nb_obs <span class="op">=</span> <span class="dv">1000</span>   <span class="co"># Number of observation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">5</span>   <span class="co"># Number of clusters</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># try 4 and 1</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>std <span class="op">=</span> <span class="dv">4</span>   <span class="co"># Standard deviation associated to the isotopic Gaussian Mixture -</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>dim <span class="op">=</span> <span class="dv">2</span>   <span class="co"># Covariates dimension - if dim &gt; 2, don't expect data vizualisation from matplotlib!</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> <span class="dv">10</span>   <span class="co"># Random seed to replicate the experience</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Data generation</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span>nb_obs, centers<span class="op">=</span>k, cluster_std<span class="op">=</span>std,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                  n_features<span class="op">=</span>dim, random_state<span class="op">=</span>seed)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Data visualization - see utilities.py script</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>super_scat_it(X, y, k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Step 1: init centroids</p>
+<div id="cell-4" class="cell" data-outputid="989def3a-6102-43d1-fa61-62d9c0cca9c4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>centroid <span class="op">=</span> np.array([</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">10</span>,<span class="dv">10</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    [<span class="op">-</span><span class="dv">10</span>, <span class="op">-</span><span class="dv">10</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>centroid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>array([[  0,   0],
+       [ 10,  10],
+       [-10, -10]])</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-outputid="517548f6-000c-49b8-99db-b9e7b5a44c81">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>(1000, 2)</code></pre>
+</div>
+</div>
+<div id="cell-6" class="cell" data-outputid="ec912422-9dbd-4e0f-f695-e01e733e3cdc">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>distList<span class="op">=</span>[]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dist <span class="op">=</span> ((X <span class="op">-</span> centroid[i])<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(dist.shape)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  distList.append(dist)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> np.stack(distList, axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>dists.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1000,)
+(1000,)
+(1000,)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>(1000, 3)</code></pre>
+</div>
+</div>
+<div id="cell-7" class="cell" data-outputid="5915b047-ad52-441c-e2c3-e6c1dd85ba5d">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dists[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>array([119.86211768, 427.46909266, 212.25514271])</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-outputid="46400f30-45b7-4ce0-a551-e6d37cb1d527">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>np.argmin([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>0</code></pre>
+</div>
+</div>
+<div id="cell-9" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> np.argmin(dists, axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-10" class="cell" data-outputid="c8888821-ce14-42ab-8e1c-556bb40bb8fd">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x <span class="op">=</span> X[:, <span class="dv">0</span>], y <span class="op">=</span> X[:, <span class="dv">1</span>], hue<span class="op">=</span>label)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(centroid[:, <span class="dv">0</span>], centroid[:, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'x'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-11" class="cell" data-outputid="143db6d7-bf13-4e9f-cdf2-2f564ed00eb3">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">15</span>, <span class="dv">15</span>, num<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">15</span>, <span class="dv">15</span>, num<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>x1_mesh, x2_mesh <span class="op">=</span> np.meshgrid(x1, x2)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>x1_mesh <span class="op">=</span> x1_mesh.ravel()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>x2_mesh <span class="op">=</span> x2_mesh.ravel()</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>x_mesh <span class="op">=</span> np.stack([x1_mesh, x2_mesh], axis <span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>tol <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>dist_c0 <span class="op">=</span> ((x_mesh<span class="op">-</span>centroid[<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>dist_c1 <span class="op">=</span> ((x_mesh<span class="op">-</span>centroid[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>dist_c2 <span class="op">=</span> ((x_mesh<span class="op">-</span>centroid[<span class="dv">2</span>])<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>equidistance_01 <span class="op">=</span> np.where(np.<span class="bu">abs</span>(dist_c0 <span class="op">-</span> dist_c1)<span class="op">&lt;</span>tol)[<span class="dv">0</span>]</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>equidistance_02 <span class="op">=</span> np.where(np.<span class="bu">abs</span>(dist_c0 <span class="op">-</span> dist_c2)<span class="op">&lt;</span>tol)[<span class="dv">0</span>]</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>equidistance_12 <span class="op">=</span> np.where(np.<span class="bu">abs</span>(dist_c1 <span class="op">-</span> dist_c2)<span class="op">&lt;</span>tol)[<span class="dv">0</span>]</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>X[:,<span class="dv">0</span>], y<span class="op">=</span>X[:,<span class="dv">1</span>], hue<span class="op">=</span>label)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ax.scatter(centroid[:,<span class="dv">0</span>], centroid[:,<span class="dv">1</span>], marker<span class="op">=</span><span class="st">'x'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>ax.plot(x_mesh[equidistance_01][:,<span class="dv">0</span>], x_mesh[equidistance_01][:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>ax.plot(x_mesh[equidistance_02][:,<span class="dv">0</span>], x_mesh[equidistance_02][:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>ax.plot(x_mesh[equidistance_12][:,<span class="dv">0</span>], x_mesh[equidistance_12][:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-12" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_kmeans(X, label, centroid):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  x1 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">15</span>,<span class="dv">15</span>, num<span class="op">=</span><span class="dv">2000</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  x2 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">20</span>,<span class="dv">15</span>, num<span class="op">=</span><span class="dv">2000</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  x1_mesh, x2_mesh <span class="op">=</span> np.meshgrid(x1,x2)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  x1_mesh <span class="op">=</span> x1_mesh.ravel()</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  x2_mesh <span class="op">=</span> x2_mesh.ravel()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  x_mesh <span class="op">=</span> np.stack([x1_mesh, x2_mesh], axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  tol <span class="op">=</span> <span class="fl">1.</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span>X[:,<span class="dv">0</span>], y<span class="op">=</span>X[:,<span class="dv">1</span>], hue<span class="op">=</span>label)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  ax.scatter(centroid[:,<span class="dv">0</span>], centroid[:,<span class="dv">1</span>], marker<span class="op">=</span><span class="st">'x'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  distList <span class="op">=</span> []</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># c0 = centroid[0]</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># c1 = centroid[1]</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># c2 = centroid[2]</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    dist_c <span class="op">=</span> ((x_mesh<span class="op">-</span>centroid[i])<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    distList.append(dist_c)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dist_c1 = ((x_mesh-c1)**2).sum(-1)</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dist_c2 = ((x_mesh-c2)**2).sum(-1)</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">+</span><span class="dv">1</span>, k):</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>      equidistance_idx <span class="op">=</span> np.where(np.<span class="bu">abs</span>(distList[i] <span class="op">-</span> distList[j])<span class="op">&lt;</span>tol)[<span class="dv">0</span>]</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="ss">f'index: </span><span class="sc">{</span>equidistance_idx<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>      ax.plot(x_mesh[equidistance_idx][:,<span class="dv">0</span>], x_mesh[equidistance_idx][:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-13" class="cell" data-outputid="1671f7b8-8484-4f80-9782-64bcc810ceba">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1: update centroids</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>X[label<span class="op">==</span><span class="dv">0</span>].mean(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>array([ 2.66390984, -3.51057107])</code></pre>
+</div>
+</div>
+<section id="kmeans-update" class="level3">
+<h3 class="anchored" data-anchor-id="kmeans-update">kmeans update</h3>
+<div id="cell-15" class="cell" data-outputid="d7b9bf1c-6768-4c97-c16c-48849d551940">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>centroid <span class="op">=</span> np.random.choice(X.shape[<span class="dv">0</span>], k)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>centroid <span class="op">=</span> X[centroid]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>centroid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="82">
+<pre><code>array([[11.64043071,  3.99012917],
+       [ 2.23747052, 12.25920027],
+       [ 6.24985027, -5.18995183],
+       ...,
+       [-1.65120925, -2.63691358],
+       [ 4.34142091, -7.13214427],
+       [-1.78339836, -7.17532697]])</code></pre>
+</div>
+</div>
+<div id="cell-16" class="cell" data-outputid="11e7efc6-53a6-4f64-aa8b-0a2198f267d9">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>distList<span class="op">=</span>[]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  dist <span class="op">=</span> ((X <span class="op">-</span> centroid[i])<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(dist.shape)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  distList.append(dist)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> np.stack(distList, axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> np.argmin(dists, axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)
+(1000,)</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell" data-outputid="b289ce87-b9e7-48f1-91be-5b2e14a6745c">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>super_scat_it(X, label, <span class="dv">2</span>, centroid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-18" class="cell" data-outputid="80bc1cd2-6564-4fbb-92bf-b9fb945d8c5a">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plot_kmeans(X,label,centroid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-84-df6330054769&gt;</span> in <span class="ansi-cyan-fg">&lt;cell line: 1&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>plot_kmeans<span class="ansi-blue-fg">(</span>X<span class="ansi-blue-fg">,</span>label<span class="ansi-blue-fg">,</span>centroid<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-33-6d2cc02b8eb2&gt;</span> in <span class="ansi-cyan-fg">plot_kmeans</span><span class="ansi-blue-fg">(X, label, centroid)</span>
+<span class="ansi-green-fg ansi-bold">     18</span>     <span class="ansi-red-fg"># c1 = centroid[1]</span>
+<span class="ansi-green-fg ansi-bold">     19</span>     <span class="ansi-red-fg"># c2 = centroid[2]</span>
+<span class="ansi-green-fg">---&gt; 20</span><span class="ansi-red-fg">     </span>dist_c <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">(</span>x_mesh<span class="ansi-blue-fg">-</span>centroid<span class="ansi-blue-fg">[</span>i<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">**</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>sum<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     21</span>     distList<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>dist_c<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     22</span>     <span class="ansi-red-fg"># dist_c1 = ((x_mesh-c1)**2).sum(-1)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.10/dist-packages/numpy/core/_methods.py</span> in <span class="ansi-cyan-fg">_sum</span><span class="ansi-blue-fg">(a, axis, dtype, out, keepdims, initial, where)</span>
+<span class="ansi-green-fg ansi-bold">     44</span>     <span class="ansi-green-fg">return</span> umr_minimum<span class="ansi-blue-fg">(</span>a<span class="ansi-blue-fg">,</span> axis<span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> out<span class="ansi-blue-fg">,</span> keepdims<span class="ansi-blue-fg">,</span> initial<span class="ansi-blue-fg">,</span> where<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     45</span> 
+<span class="ansi-green-fg">---&gt; 46</span><span class="ansi-red-fg"> def _sum(a, axis=None, dtype=None, out=None, keepdims=False,
+</span><span class="ansi-green-fg ansi-bold">     47</span>          initial=_NoValue, where=True):
+<span class="ansi-green-fg ansi-bold">     48</span>     <span class="ansi-green-fg">return</span> umr_sum<span class="ansi-blue-fg">(</span>a<span class="ansi-blue-fg">,</span> axis<span class="ansi-blue-fg">,</span> dtype<span class="ansi-blue-fg">,</span> out<span class="ansi-blue-fg">,</span> keepdims<span class="ansi-blue-fg">,</span> initial<span class="ansi-blue-fg">,</span> where<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-17-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-19" class="cell" data-outputid="b3e89e05-7951-460a-9da9-d1618a3ab140">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step1: estimate new centroids</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  centroid_points <span class="op">=</span> X[label<span class="op">==</span>i]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  new_estimate_c <span class="op">=</span> centroid_points.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> np.<span class="bu">any</span>(np.isnan(new_estimate_c)):</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'empty cluster: </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">continue</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  centroid[i,:] <span class="op">=</span> new_estimate_c</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_kmeans(X,label,centroid)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>RuntimeWarning: Mean of empty slice.
+  new_estimate_c = centroid_points.mean(axis=0)
+/usr/local/lib/python3.10/dist-packages/numpy/core/_methods.py:182: RuntimeWarning: invalid value encountered in divide
+  ret = um.true_divide(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>empty cluster: 49
+empty cluster: 58
+empty cluster: 67
+empty cluster: 75
+empty cluster: 97
+empty cluster: 100
+empty cluster: 105
+empty cluster: 131
+empty cluster: 138
+empty cluster: 143
+empty cluster: 150
+empty cluster: 153
+empty cluster: 156
+empty cluster: 162
+empty cluster: 167
+empty cluster: 175
+empty cluster: 196
+empty cluster: 200
+empty cluster: 207
+empty cluster: 214
+empty cluster: 219
+empty cluster: 223
+empty cluster: 248
+empty cluster: 258
+empty cluster: 259
+empty cluster: 268
+empty cluster: 277
+empty cluster: 279
+empty cluster: 283
+empty cluster: 288
+empty cluster: 291
+empty cluster: 292
+empty cluster: 293
+empty cluster: 304
+empty cluster: 308
+empty cluster: 309
+empty cluster: 311
+empty cluster: 312
+empty cluster: 315
+empty cluster: 319
+empty cluster: 323
+empty cluster: 330
+empty cluster: 335
+empty cluster: 339
+empty cluster: 341
+empty cluster: 343
+empty cluster: 348
+empty cluster: 349
+empty cluster: 352
+empty cluster: 353
+empty cluster: 357
+empty cluster: 360
+empty cluster: 364
+empty cluster: 376
+empty cluster: 387
+empty cluster: 389
+empty cluster: 393
+empty cluster: 394
+empty cluster: 396
+empty cluster: 397
+empty cluster: 399
+empty cluster: 402
+empty cluster: 405
+empty cluster: 412
+empty cluster: 413
+empty cluster: 415
+empty cluster: 417
+empty cluster: 418
+empty cluster: 420
+empty cluster: 421
+empty cluster: 426
+empty cluster: 428
+empty cluster: 430
+empty cluster: 431
+empty cluster: 437
+empty cluster: 442
+empty cluster: 443
+empty cluster: 444
+empty cluster: 445
+empty cluster: 450
+empty cluster: 455
+empty cluster: 456
+empty cluster: 457
+empty cluster: 458
+empty cluster: 460
+empty cluster: 462
+empty cluster: 463
+empty cluster: 464
+empty cluster: 469
+empty cluster: 471
+empty cluster: 473
+empty cluster: 475
+empty cluster: 477
+empty cluster: 483
+empty cluster: 486
+empty cluster: 487
+empty cluster: 488
+empty cluster: 489
+empty cluster: 500
+empty cluster: 501
+empty cluster: 508
+empty cluster: 511
+empty cluster: 514
+empty cluster: 520
+empty cluster: 523
+empty cluster: 525
+empty cluster: 526
+empty cluster: 527
+empty cluster: 531
+empty cluster: 533
+empty cluster: 536
+empty cluster: 537
+empty cluster: 539
+empty cluster: 540
+empty cluster: 541
+empty cluster: 547
+empty cluster: 549
+empty cluster: 551
+empty cluster: 553
+empty cluster: 555
+empty cluster: 562
+empty cluster: 564
+empty cluster: 565
+empty cluster: 566
+empty cluster: 567
+empty cluster: 573
+empty cluster: 577
+empty cluster: 581
+empty cluster: 582
+empty cluster: 583
+empty cluster: 590
+empty cluster: 595
+empty cluster: 596
+empty cluster: 597
+empty cluster: 598
+empty cluster: 603
+empty cluster: 604
+empty cluster: 605
+empty cluster: 607
+empty cluster: 608
+empty cluster: 609
+empty cluster: 614
+empty cluster: 615
+empty cluster: 616
+empty cluster: 617
+empty cluster: 619
+empty cluster: 621
+empty cluster: 629
+empty cluster: 631
+empty cluster: 634
+empty cluster: 636
+empty cluster: 637
+empty cluster: 638
+empty cluster: 639
+empty cluster: 642
+empty cluster: 643
+empty cluster: 644
+empty cluster: 649
+empty cluster: 651
+empty cluster: 654
+empty cluster: 656
+empty cluster: 658
+empty cluster: 659
+empty cluster: 668
+empty cluster: 669
+empty cluster: 670
+empty cluster: 672
+empty cluster: 673
+empty cluster: 676
+empty cluster: 678
+empty cluster: 681
+empty cluster: 682
+empty cluster: 684
+empty cluster: 685
+empty cluster: 691
+empty cluster: 693
+empty cluster: 694
+empty cluster: 700
+empty cluster: 703
+empty cluster: 704
+empty cluster: 705
+empty cluster: 707
+empty cluster: 710
+empty cluster: 711
+empty cluster: 714
+empty cluster: 719
+empty cluster: 720
+empty cluster: 721
+empty cluster: 722
+empty cluster: 723
+empty cluster: 724
+empty cluster: 728
+empty cluster: 729
+empty cluster: 731
+empty cluster: 734
+empty cluster: 736
+empty cluster: 737
+empty cluster: 739
+empty cluster: 740
+empty cluster: 744
+empty cluster: 745
+empty cluster: 746
+empty cluster: 747
+empty cluster: 748
+empty cluster: 751
+empty cluster: 752
+empty cluster: 754
+empty cluster: 755
+empty cluster: 757
+empty cluster: 759
+empty cluster: 762
+empty cluster: 766
+empty cluster: 769
+empty cluster: 770
+empty cluster: 774
+empty cluster: 779
+empty cluster: 780
+empty cluster: 782
+empty cluster: 783
+empty cluster: 785
+empty cluster: 786
+empty cluster: 787
+empty cluster: 788
+empty cluster: 790
+empty cluster: 792
+empty cluster: 794
+empty cluster: 797
+empty cluster: 802
+empty cluster: 803
+empty cluster: 805
+empty cluster: 806
+empty cluster: 807
+empty cluster: 808
+empty cluster: 809
+empty cluster: 811
+empty cluster: 815
+empty cluster: 816
+empty cluster: 817
+empty cluster: 818
+empty cluster: 819
+empty cluster: 821
+empty cluster: 823
+empty cluster: 824
+empty cluster: 825
+empty cluster: 827
+empty cluster: 829
+empty cluster: 831
+empty cluster: 832
+empty cluster: 833
+empty cluster: 835
+empty cluster: 836
+empty cluster: 839
+empty cluster: 841
+empty cluster: 844
+empty cluster: 845
+empty cluster: 846
+empty cluster: 850
+empty cluster: 853
+empty cluster: 854
+empty cluster: 855
+empty cluster: 856
+empty cluster: 858
+empty cluster: 859
+empty cluster: 860
+empty cluster: 862
+empty cluster: 863
+empty cluster: 864
+empty cluster: 866
+empty cluster: 867
+empty cluster: 869
+empty cluster: 870
+empty cluster: 871
+empty cluster: 872
+empty cluster: 873
+empty cluster: 875
+empty cluster: 876
+empty cluster: 877
+empty cluster: 878
+empty cluster: 879
+empty cluster: 881
+empty cluster: 883
+empty cluster: 884
+empty cluster: 887
+empty cluster: 889
+empty cluster: 890
+empty cluster: 891
+empty cluster: 894
+empty cluster: 895
+empty cluster: 896
+empty cluster: 898
+empty cluster: 899
+empty cluster: 901
+empty cluster: 903
+empty cluster: 905
+empty cluster: 906
+empty cluster: 907
+empty cluster: 909
+empty cluster: 910
+empty cluster: 912
+empty cluster: 913
+empty cluster: 914
+empty cluster: 917
+empty cluster: 919
+empty cluster: 920
+empty cluster: 921
+empty cluster: 922
+empty cluster: 923
+empty cluster: 925
+empty cluster: 926
+empty cluster: 927
+empty cluster: 929
+empty cluster: 930
+empty cluster: 932
+empty cluster: 933
+empty cluster: 934
+empty cluster: 937
+empty cluster: 941
+empty cluster: 944
+empty cluster: 947
+empty cluster: 948
+empty cluster: 949
+empty cluster: 951
+empty cluster: 952
+empty cluster: 953
+empty cluster: 954
+empty cluster: 955
+empty cluster: 961
+empty cluster: 962
+empty cluster: 963
+empty cluster: 964
+empty cluster: 966
+empty cluster: 968
+empty cluster: 972
+empty cluster: 973
+empty cluster: 975
+empty cluster: 976
+empty cluster: 978
+empty cluster: 980
+empty cluster: 981
+empty cluster: 982
+empty cluster: 983
+empty cluster: 984
+empty cluster: 985
+empty cluster: 986
+empty cluster: 988
+empty cluster: 989
+empty cluster: 990
+empty cluster: 992
+empty cluster: 994
+empty cluster: 995
+empty cluster: 997
+empty cluster: 998</code></pre>
+</div>
+</div>
+<div id="cell-20" class="cell" data-outputid="d835f013-3d56-4375-9cf6-149d51ab42cc">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 2: update responsibilties</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>distList<span class="op">=</span>[]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  dist <span class="op">=</span> ((X <span class="op">-</span> centroid[i])<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  distList.append(dist)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> np.stack(distList, axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>old_label <span class="op">=</span> label</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> np.argmin(dists, axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> np.<span class="bu">all</span>(label<span class="op">==</span>old_label):</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">'converged'</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>(label <span class="op">!=</span> old_label)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> points changed clusters'</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_kmeans(X, label, centroid)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>152 points changed clusters</code></pre>
+</div>
+</div>
+<div id="cell-21" class="cell" data-outputid="bf93ee13-2cd6-4e49-82f7-c567525785eb">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>super_scat_it(X, label, <span class="dv">2</span>, centroid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-22" class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-23" class="cell" data-outputid="347775df-899e-4e2d-eaec-c5b11a86f5eb">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test <span class="op">=</span> train_test_split(X, test_size<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>X_test, X_valid <span class="op">=</span> train_test_split(X_test, test_size<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>X_train.shape, X_valid.shape, X_test.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="91">
+<pre><code>((800, 2), (100, 2), (100, 2))</code></pre>
+</div>
+</div>
+<div id="cell-24" class="cell" data-outputid="78a45265-181b-4bf5-f200-16ace6b1a48f">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="93">
+<style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=1)</pre></div></div></div></div></div>
+</div>
+</div>
+<div id="cell-25" class="cell" data-outputid="8f29e4ca-1243-4564-df7c-0bd1dd480dee">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(k)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>km.fit(X_train)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>plot_kmeans(X_train, km.labels_, km.cluster_centers_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>index: [1553998 1553999 1555994 ... 2512001 2512002 2512003]
+index: [1058000 1058001 1060000 ... 3009999 3011998 3011999]
+index: [    958     959     960 ... 3999035 3999036 3999037]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-24-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-26" class="cell" data-outputid="28b84aa5-aa40-4fef-a595-db47b3183b39">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>np.mean(np.<span class="bu">min</span>(distance(X_train, km.cluster_centers_), axis<span class="op">=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="115">
+<pre><code>19.12240266172254</code></pre>
+</div>
+</div>
+<div id="cell-27" class="cell" data-outputid="a3465d63-33c8-43df-aab4-24ef0393c27c">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>np.mean(np.<span class="bu">min</span>(distance(X_valid, km.cluster_centers_), axis<span class="op">=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="116">
+<pre><code>18.6988932263249</code></pre>
+</div>
+</div>
+<div id="cell-28" class="cell" data-outputid="39880937-96b0-4e5b-c632-7100c3de0ee4">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>msdList<span class="op">=</span>[]</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ssList<span class="op">=</span>[]</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">50</span>):</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  km <span class="op">=</span> KMeans(k)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  km.fit(X_train)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  MSD_valid <span class="op">=</span> np.mean(np.<span class="bu">min</span>(distance(X_valid, km.cluster_centers_), axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  ss <span class="op">=</span> silhouette_score(X_valid, km.predict(X_valid))</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  msdList.append(MSD_valid)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  ssList.append(ss)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot_kmeans(X_train, km.labels_, km.cluster_centers_)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(</code></pre>
+</div>
+</div>
+<div id="cell-29" class="cell" data-outputid="30121a72-1aff-4ac5-b427-deeeda3376c5">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">50</span>),msdList)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.legend()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-28-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-30" class="cell" data-outputid="415e2486-1b3d-4b7b-bc62-995178a6f666">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">50</span>),ssList)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-29-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-31" class="cell" data-outputid="1ff849e7-e755-49ef-bef7-29109d19a997">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ssList</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="129">
+<pre><code>[0.3961670960505321,
+ 0.42309299036193465,
+ 0.41323359261533565,
+ 0.35845788368236225,
+ 0.3261781234857473,
+ 0.3210218185677933,
+ 0.28731660888773275,
+ 0.253313999920173,
+ 0.2263632245918344,
+ 0.2800443974094739,
+ 0.26306477416604523,
+ 0.29982583670778495,
+ 0.24946632458173335,
+ 0.2664948055996919,
+ 0.26086196467330064,
+ 0.2388250543440697,
+ 0.22344328586449985,
+ 0.2864523182027193,
+ 0.20438943745296306,
+ 0.24285641708041436,
+ 0.25951011364743903,
+ 0.2030292936394905,
+ 0.1524776186314184,
+ 0.2530605686721461,
+ 0.17804834649861753,
+ 0.21797379597922112,
+ 0.1760364306068806,
+ 0.2175449619629544,
+ 0.2052350202032814,
+ 0.19307598235588874,
+ 0.25954955883184183,
+ 0.13996926253115632,
+ 0.2360961350143296,
+ 0.20456532329040925,
+ 0.17327527321976624,
+ 0.2259775564639099,
+ 0.17749398788946716,
+ 0.16747193618039868,
+ 0.21952097898588666,
+ 0.19391310866628164,
+ 0.18292616851943408,
+ 0.20100552743654487,
+ 0.24043623686508794,
+ 0.1426149888103317,
+ 0.24651006524270347,
+ 0.1797739614683562,
+ 0.24617268285242147,
+ 0.18005725515974247]</code></pre>
+</div>
+</div>
+<div id="cell-32" class="cell" data-outputid="2d73c08b-2690-4d04-c18f-d45b45798977">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, we generate some data</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>cluster_std<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">1000</span>, centers<span class="op">=</span><span class="dv">2</span>, cluster_std<span class="op">=</span>cluster_std,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>                  n_features<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the GMM model</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>nb_components <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>GMM <span class="op">=</span> mixture.GaussianMixture(n_components<span class="op">=</span>nb_components,</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>                              covariance_type<span class="op">=</span><span class="st">'full'</span>)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>GMM.fit(X)</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the clustering result, where the color of the points indicate</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="co"># to which cluster they probabilistically belong to.</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>super_scat_it(X, GMM.predict_proba(X), dim<span class="op">=</span>nb_components,</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>              clusters_center<span class="op">=</span><span class="dv">0</span>, task<span class="op">=</span><span class="st">'EM'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING:matplotlib.legend:No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-31-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-34" class="cell" data-outputid="17ed0031-181b-45e1-844d-8a544fbe65eb">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> DBSCAN(<span class="dv">2</span>, min_samples<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>db.fit(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="146">
+<style>#sk-container-id-7 {color: black;background-color: white;}#sk-container-id-7 pre{padding: 0;}#sk-container-id-7 div.sk-toggleable {background-color: white;}#sk-container-id-7 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-7 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-7 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-7 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-7 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-7 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-7 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-7 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-7 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-7 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-7 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-7 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-7 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-7 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-7 div.sk-item {position: relative;z-index: 1;}#sk-container-id-7 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-7 div.sk-item::before, #sk-container-id-7 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-7 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-7 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-7 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-7 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-7 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-7 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-7 div.sk-label-container {text-align: center;}#sk-container-id-7 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-7 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-7" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>DBSCAN(eps=2, min_samples=1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" checked=""><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">DBSCAN</label><div class="sk-toggleable__content"><pre>DBSCAN(eps=2, min_samples=1)</pre></div></div></div></div></div>
+</div>
+</div>
+<div id="cell-35" class="cell" data-outputid="cb6bbda0-6feb-4375-fb82-6540b7aba1c0">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span> X[:, <span class="dv">0</span>], y<span class="op">=</span> X[:, <span class="dv">1</span>], hue<span class="op">=</span>db.labels_, cmap <span class="op">=</span> <span class="st">'tab20'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/seaborn/relational.py:573: UserWarning: No data for colormapping provided via 'c'. Parameters 'cmap' will be ignored
+  points = ax.scatter(x=x, y=y, **kws)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-34-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-36" class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>nb_obs <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="dv">4</span>  <span class="co"># Number of observations</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">3</span>           <span class="co"># Number of groups</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>std <span class="op">=</span> <span class="fl">0.01</span>      <span class="co"># Standard deviation for each blob</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>dim <span class="op">=</span> <span class="dv">5</span>         <span class="co"># Data dimensions</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> <span class="dv">10</span>       <span class="co"># Seed to control the data generation</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span>nb_obs, centers<span class="op">=</span>k, cluster_std<span class="op">=</span>std,</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>                  n_features<span class="op">=</span>dim, random_state<span class="op">=</span><span class="dv">10</span>)   <span class="co"># Data generation</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>X_train, X_valid, y_train, y_valid <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-37" class="cell" data-outputid="a294c273-7d40-462c-b32c-c687c3583d56">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings <span class="co"># to remove some sklearn warnings</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPRegressor</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">1e-1</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>aenn <span class="op">=</span> MLPRegressor(hidden_layer_sizes<span class="op">=</span>(<span class="dv">2</span>), <span class="co"># a single hidden layer of size 2</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>             activation<span class="op">=</span><span class="st">'logistic'</span>,</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>             solver<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>             alpha<span class="op">=</span><span class="fl">0.0001</span>,</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>             batch_size<span class="op">=</span><span class="st">'auto'</span>,</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>             early_stopping<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>             learning_rate_init<span class="op">=</span>learning_rate,</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>             verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Since we use early_stopping builtin into the MLPRegressor,</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a><span class="co"># we use both train and validation as our training set.</span></span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>aenn.fit(np.vstack((X_train, X_valid)), np.vstack((X_train, X_valid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Iteration 1, loss = 12.20862840
+Validation score: 0.655398
+Iteration 2, loss = 4.56986544
+Validation score: 0.883360
+Iteration 3, loss = 1.81661732
+Validation score: 0.957771
+Iteration 4, loss = 0.76008199
+Validation score: 0.984299
+Iteration 5, loss = 0.30783475
+Validation score: 0.994155
+Iteration 6, loss = 0.11674324
+Validation score: 0.997958
+Iteration 7, loss = 0.04050203
+Validation score: 0.999338
+Iteration 8, loss = 0.01293865
+Validation score: 0.999804
+Iteration 9, loss = 0.00387536
+Validation score: 0.999945
+Iteration 10, loss = 0.00120254
+Validation score: 0.999985
+Iteration 11, loss = 0.00049143
+Validation score: 0.999994
+Iteration 12, loss = 0.00032358
+Validation score: 0.999996
+Iteration 13, loss = 0.00028811
+Validation score: 0.999997
+Iteration 14, loss = 0.00028146
+Validation score: 0.999997
+Iteration 15, loss = 0.00028036
+Validation score: 0.999997
+Iteration 16, loss = 0.00028027
+Validation score: 0.999997
+Iteration 17, loss = 0.00028027
+Validation score: 0.999997
+Iteration 18, loss = 0.00028036
+Validation score: 0.999997
+Iteration 19, loss = 0.00028027
+Validation score: 0.999997
+Iteration 20, loss = 0.00028022
+Validation score: 0.999997
+Validation score did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="149">
+<style>#sk-container-id-8 {color: black;background-color: white;}#sk-container-id-8 pre{padding: 0;}#sk-container-id-8 div.sk-toggleable {background-color: white;}#sk-container-id-8 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-8 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-8 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-8 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-8 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-8 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-8 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-8 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-8 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-8 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-8 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-8 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-8 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-8 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-8 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-8 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-8 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-8 div.sk-item {position: relative;z-index: 1;}#sk-container-id-8 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-8 div.sk-item::before, #sk-container-id-8 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-8 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-8 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-8 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-8 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-8 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-8 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-8 div.sk-label-container {text-align: center;}#sk-container-id-8 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-8 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-8" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>MLPRegressor(activation='logistic', early_stopping=True, hidden_layer_sizes=2,
+             learning_rate_init=0.1, verbose=True)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" checked=""><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">MLPRegressor</label><div class="sk-toggleable__content"><pre>MLPRegressor(activation='logistic', early_stopping=True, hidden_layer_sizes=2,
+             learning_rate_init=0.1, verbose=True)</pre></div></div></div></div></div>
+</div>
+</div>
+<div id="cell-38" class="cell" data-outputid="ac44cae5-6549-4311-8719-9f1fe8586698">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>n_sub <span class="op">=</span> <span class="dv">500</span> <span class="co"># we use a subset of 500 samples from the original data</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>X_sub <span class="op">=</span> X_train[<span class="dv">0</span>:n_sub]</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>y_sub <span class="op">=</span> y_train[<span class="dv">0</span>:n_sub]</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the hidden representations</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>hiddens <span class="op">=</span> expit(np.dot(X_sub, aenn.coefs_[<span class="dv">0</span>]) <span class="op">+</span> aenn.intercepts_[<span class="dv">0</span>])</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>hiddens.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="150">
+<pre><code>(500, 2)</code></pre>
+</div>
+</div>
+<div id="cell-39" class="cell" data-outputid="36214866-e6e9-46f1-bb3e-be2f54c0451a">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>n_sub <span class="op">=</span> <span class="bu">len</span>(X_train) <span class="co"># we use a subset of 500 samples from the original data</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> expit</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>X_sub <span class="op">=</span> X_train[<span class="dv">0</span>:n_sub]</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>y_sub <span class="op">=</span> y_train[<span class="dv">0</span>:n_sub]</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the hidden representations</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>hiddens <span class="op">=</span> expit(np.dot(X_sub, aenn.coefs_[<span class="dv">0</span>]) <span class="op">+</span> aenn.intercepts_[<span class="dv">0</span>])</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>hiddens <span class="op">+=</span> np.random.randn(n_sub,<span class="dv">2</span>)<span class="op">*</span><span class="fl">0.01</span> <span class="co"># add a bit of noise for vizualization purposes</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>plt.scatter(hiddens[:, <span class="dv">1</span>], hiddens[:, <span class="dv">0</span>], c<span class="op">=</span>y_sub)</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'First hidden dimension'</span>)</span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Second hidden dimension'</span>)</span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'The hidden dimensions of </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st">-dimensional points'</span> <span class="op">%</span> (X_sub.shape))</span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="session_7_files/figure-html/cell-38-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
