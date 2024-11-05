@@ -1,0 +1,126 @@
+
+---
+title: ""
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  cache: true
+---
+
+
+To demonstrate the implementation of Multilayer Perceptron (MLP) using Pytorch, we will use the classic Iris dataset. MLP is a type of artificial neural network that is widely used in machine learning for classification tasks. In this tutorial, we will build a simple MLP model to classify the Iris flowers into different species.
+
+But first, let's import the necessary libraries:
+
+```{python}
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+```
+
+Now let's load the Iris dataset and split it into training and testing sets:
+
+```{python}
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
+
+In the code above, we first import the required libraries: `torch` for building and training the MLP model, `torch.nn` for defining the network architecture, `torch.optim` for optimizing the model parameters, `sklearn.datasets` for loading the Iris dataset, and `sklearn.model_selection` for splitting the dataset into training and testing sets.
+
+Next, we load the Iris dataset using `load_iris()` function and assign the feature data to `X` and the target labels to `y`. Then, we split the dataset into training and testing sets using `train_test_split()` function, where we specify the test size as 0.2 (20% of the data) and set the random state for reproducibility.
+
+Now, let's define our MLP model:
+
+```{python}
+class MLP(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(MLP, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_size, num_classes)
+    
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.relu(out)
+        out = self.fc2(out)
+        return out
+```
+
+In the code above, we define a class `MLP` inheriting from `nn.Module`. The constructor (`__init__()`) takes three arguments: `input_size` which is the number of input features, `hidden_size` which is the number of neurons in the hidden layer, and `num_classes` which is the number of output classes. Inside the constructor, we define the layers of our MLP model using `nn.Linear` (fully connected) and `nn.ReLU` (rectified linear unit) activation function.
+
+The `forward()` method defines the forward pass of the model. It takes an input `x`, passes it through the layers, and returns the output.
+
+Now let's create an instance of our MLP model:
+
+```{python}
+input_size = X.shape[1]
+hidden_size = 64
+num_classes = len(set(y))
+
+model = MLP(input_size, hidden_size, num_classes)
+```
+
+In the code above, we set `input_size` as the number of features in the input data (`X.shape[1]`), `hidden_size` as 64 (you can change this value to experiment), and `num_classes` as the number of unique classes in the target labels (`len(set(y))`).
+
+Now let's define the loss function and optimizer:
+
+```{python}
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+```
+
+We use `nn.CrossEntropyLoss()` as our loss function, which is suitable for multi-class classification problems. We also define the optimizer using `optim.Adam` and pass the model parameters (`model.parameters()`) along with the learning rate (`lr=0.001`).
+
+Next, let's train the MLP model:
+
+```{python}
+num_epochs = 100
+batch_size = 16
+
+for epoch in range(num_epochs):
+    for i in range(0, X_train.shape[0], batch_size):
+        batch_X = torch.FloatTensor(X_train[i:i+batch_size])
+        batch_y = torch.LongTensor(y_train[i:i+batch_size])
+        
+        # Forward pass
+        outputs = model(batch_X)
+        loss = criterion(outputs, batch_y)
+        
+        # Backward and optimize
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+    if (epoch+1) % 10 == 0:
+        print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+```
+
+In the code above, we define the number of epochs (`num_epochs`) and the batch size (`batch_size`) for training. We iterate over each epoch and split the training data into batches. For each batch, we convert the numpy arrays to tensors using `torch.FloatTensor` and `torch.LongTensor` for the input features and target labels respectively.
+
+In the forward pass, we pass the input batch (`batch_X`) through the model and compute the predicted outputs. We then calculate the loss between the predicted outputs and the target labels using the defined loss function.
+
+In the backward pass, we zero the gradients with `optimizer.zero_grad()`, compute the gradients of the loss with respect to the model parameters using `loss.backward()`, and update the model parameters using the optimizer with `optimizer.step()`.
+
+Finally, we print the loss value every 10 epochs for tracking the training progress.
+
+After training, let's evaluate the MLP model on the test set:
+
+```{python}
+with torch.no_grad():
+    outputs = model(torch.FloatTensor(X_test))
+    _, predicted = torch.max(outputs.data, 1)
+
+accuracy = (predicted == torch.LongTensor(y_test)).sum().item() / len(y_test)
+print(f'Accuracy: {accuracy:.4f}')
+```
+
+In the code above, we use `torch.no_grad()` to turn off gradient calculation and save memory. We pass the test features (`X_test`) through the trained model and obtain the predicted outputs. We then use `torch.max()` to get the class labels with the highest probability and compare them with the ground truth labels (`y_test`) to calculate the accuracy.
+
+That's it! You have successfully implemented an MLP model using Pytorch for classification on the Iris dataset.

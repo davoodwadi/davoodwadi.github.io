@@ -1,0 +1,114 @@
+
+---
+title: ""
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  cache: true
+---
+
+
+# Naive Bayes Classifier
+
+The Naive Bayes classifier is a probabilistic machine learning algorithm based on Bayes' theorem. It is commonly used for classification problems and is especially effective when dealing with high-dimensional data. Naive Bayes assumes that the presence of a particular feature in a class is independent of the presence of other features.
+
+## Bayes' Theorem
+
+Before diving into Naive Bayes, let's start with Bayes' theorem. Bayes' theorem allows us to calculate the probability of a hypothesis given some observed evidence. It is stated as:
+
+
+$P(h|e) = \frac{{P(e|h) \cdot P(h)}}{{P(e)}}$
+
+Where:
+
+- $P(h|e)$ is the posterior probability of hypothesis $h$ given evidence $e$.
+- $P(e|h)$ is the probability of evidence $e$ given hypothesis $h$.
+- $P(h)$ is the prior probability of hypothesis $h$.
+- $P(e)$ is the probability of evidence $e$.
+
+In the context of Naive Bayes, we can reframe this theorem as:
+
+$P(y|X) = \frac{{P(X|y) \cdot P(y)}}{{P(X)}}$
+
+Where:
+
+- $X$ represents the input features.
+- $y$ represents the class or target variable.
+- $P(y|X)$ is the posterior probability of class $y$ given features $X$.
+- $P(X|y)$ is the probability of observing features $X$ given class $y$.
+- $P(y)$ is the prior probability of class $y$.
+- $P(X)$ is the probability of observing features $X$.
+
+## Naive Bayes Classifier
+
+The Naive Bayes classifier assumes that the presence of each feature is independent of the presence of other features, given the class variable. This is where the "Naive" part comes in. Despite this simplifying assumption, Naive Bayes can still be very effective in practice, especially with text classification tasks.
+
+There are three common types of Naive Bayes classifiers:
+1. Gaussian Naive Bayes: It assumes that the features are normally distributed.
+2. Multinomial Naive Bayes: It is suitable for discrete features (e.g., word counts).
+3. Bernoulli Naive Bayes: It is suitable for binary features (e.g., true/false).
+
+In this tutorial, we will focus on Gaussian Naive Bayes, which is commonly used for continuous features.
+
+## Gaussian Naive Bayes
+
+Gaussian Naive Bayes assumes that the continuous features in each class are normally distributed. It calculates the mean and standard deviation for each feature in each class and uses a Gaussian probability density function to estimate the likelihood of observing a particular feature value given a class.
+The formula for the Gaussian probability density function is:
+
+
+$P(x|y) = \frac{1}{{\sqrt{{2\pi\sigma_y^2}}}} \cdot e^{-\frac{{(x - \mu_y)^2}}{{2\sigma_y^2}}}$
+
+Where:
+
+- $x$ is the feature value.
+- $y$ is the class label.
+- $\mu_y$ is the mean of the feature values in class $y$.
+- $\sigma_y$ is the standard deviation of the feature values in class $y$.
+- $\pi$ is the mathematical constant pi.
+
+## Implementation
+
+Now let's see the implementation of Gaussian Naive Bayes in Python using the `sklearn` library.
+
+Step 1: Import the required libraries.
+```{python}
+from sklearn.naive_bayes import GaussianNB
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+```
+
+Step 2: Load the dataset.
+```{python}
+iris = load_iris()
+X = iris.data
+y = iris.target
+```
+
+Step 3: Split the dataset into training and testing sets.
+```{python}
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
+
+Step 4: Create a Gaussian Naive Bayes classifier and fit it to the training data.
+```{python}
+clf = GaussianNB()
+clf.fit(X_train, y_train)
+```
+
+Step 5: Make predictions on the test data.
+```{python}
+y_pred = clf.predict(X_test)
+```
+
+Step 6: Evaluate the accuracy of the classifier.
+```{python}
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+```
+
+That's it! You have successfully implemented Gaussian Naive Bayes for classification in Python using `sklearn`.
+
+Note: This tutorial only covers the basic usage of Naive Bayes. There are many other aspects and variations of Naive Bayes that you can explore, such as Laplace smoothing, handling missing values, and dealing with categorical features.

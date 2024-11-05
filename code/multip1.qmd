@@ -1,0 +1,84 @@
+---
+title: "Multiple Linear Regression - Part 1"
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  cache: true
+---
+
+In machine learning and statistics, multiple linear regression is a commonly used technique to model the relationship between a dependent variable and multiple independent variables. It assumes a linear relationship between the independent variables and the dependent variable.
+
+The general form of multiple linear regression can be written as:
+
+$$y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_px_p + \epsilon$$
+
+Where:
+
+- $y$ is the dependent variable,
+- $x_1, x_2, ..., x_p$ are the independent variables,
+- $\beta_0, \beta_1, \beta_2, ..., \beta_p$ are the coefficients,
+- $\epsilon$ is the noise term.
+
+To perform multiple linear regression, we can use the Ordinary Least Squares (OLS) method, which aims to find the coefficients that minimize the sum of the squared differences between the actual and predicted values.
+
+## Design Matrix
+
+In multiple linear regression, we represent the independent variables as a matrix called the design matrix. The design matrix, denoted by $X$, has one row for each observation and one column for each independent variable.
+
+For example, if we have n observations and p independent variables, the design matrix $X$ will be an n x p matrix.
+
+## Proof of OLS
+
+The OLS method minimizes the sum of squared errors (SSE) between the actual dependent variable values and the predicted values. The SSE can be written as:
+
+$$SSE = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2$$
+
+Where:
+
+- $y_i$ is the actual dependent variable value for the i-th observation,
+- $\hat{y}_i$ is the predicted dependent variable value for the i-th observation.
+
+To find the coefficients that minimize SSE, we differentiate SSE with respect to each coefficient and set the derivatives to zero.
+
+Let's derive the formula for OLS step by step.
+
+1. The predicted value of the dependent variable can be written as:
+
+$$\hat{y} = X\beta$$
+
+Where:
+
+- $\hat{y}$ is an n x 1 vector of predicted values,
+- $X$ is the design matrix,
+- $\beta$ is a vector of coefficients.
+
+2. The SSE can be expressed in matrix form as:
+
+$$SSE = (\mathbf{y} - \mathbf{\hat{y}})^T (\mathbf{y} - \mathbf{\hat{y}})$$
+
+Where:
+
+- $\mathbf{y}$ is an n x 1 vector of actual dependent variable values,
+- $\mathbf{\hat{y}}$ is an n x 1 vector of predicted dependent variable values.
+
+3. Expanding the above equation, we get:
+
+$$SSE = (\mathbf{y} - X\beta)^T (\mathbf{y} - X\beta)$$
+
+4. Expanding the squared term, we get:
+
+$$SSE = \mathbf{y}^T\mathbf{y} - 2\beta^TX^T\mathbf{y} + \beta^TX^TX\beta$$
+
+5. To minimize SSE with respect to $\beta$, we differentiate SSE with respect to $\beta$ and set the derivative to zero:
+
+$$\frac{\partial SSE}{\partial \beta} = -2X^T\mathbf{y} + 2X^TX\beta = 0$$
+
+6. Solving for $\beta$, we get:
+
+$$X^TX\beta = X^T\mathbf{y}$$
+
+$$\beta = (X^TX)^{-1}X^T\mathbf{y}$$
+
+The above formula gives us the optimal values for $\beta$ that minimize SSE.

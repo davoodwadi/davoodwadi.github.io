@@ -1,0 +1,167 @@
+{
+  "courses.qmd": {
+    "courses.html": "dfebb32f"
+  },
+  "sessions.qmd": {
+    "sessions.html": "342815eb"
+  },
+  "index.qmd": {
+    "index.html": "ef3c7410"
+  },
+  "code/Session1.ipynb": {
+    "Session1.html": "05bcc05d"
+  },
+  "code/Model.qmd": {
+    "Model.html": "cbba7c58"
+  },
+  "code/Session2.ipynb": {
+    "Session2.html": "e61f60bd"
+  },
+  "code/overfi.qmd": {
+    "overfi.html": "4d21281c"
+  },
+  "code/multip1.qmd": {
+    "multip1.html": "d6f7fd0f"
+  },
+  "code/multip2.qmd": {
+    "multip2.html": "a33168b7"
+  },
+  "code/L2 nor.qmd": {
+    "L2 nor.html": "519021c0"
+  },
+  "code/L2 reg.qmd": {
+    "L2 reg.html": "32abb942"
+  },
+  "code/Genera.qmd": {
+    "Genera.html": "2a76034a"
+  },
+  "code/Improv.qmd": {
+    "Improv.html": "e986b633"
+  },
+  "code/bias v.qmd": {
+    "bias v.html": "0dbe855f"
+  },
+  "code/Linear_classification.qmd": {
+    "Linear_classification.html": "bbd9882f"
+  },
+  "code/SVM.qmd": {
+    "SVM.html": "53f76146"
+  },
+  "w3/week3_exercise.ipynb": {
+    "week3_exercise.html": "88f8b46c"
+  },
+  "code/naive.qmd": {
+    "naive.html": "5a2631c0"
+  },
+  "code/multin.qmd": {
+    "multin.html": "7f02ef09"
+  },
+  "code/precis.qmd": {
+    "precis.html": "4ae1e4c8"
+  },
+  "code/confus.qmd": {
+    "confus.html": "ef8acc05"
+  },
+  "code/prf1.qmd": {
+    "prf1.html": "3726e9df"
+  },
+  "code/precis.ipynb": {
+    "precis.html": "36721b4b"
+  },
+  "Neural_Networks_questions.ipynb": {
+    "Neural_Networks_questions.html": "cdb08c74"
+  },
+  "Introduction_to_ML.ipynb": {
+    "Introduction_to_ML.html": "6f92f52a"
+  },
+  "code/gradie2.qmd": {
+    "gradie2.html": "d0d0d15c"
+  },
+  "code/pytorch_intro.qmd": {
+    "pytorch_intro.html": "4134a28d"
+  },
+  "code/MLP_pytorch.qmd": {
+    "MLP_pytorch.html": "fc52b3a1"
+  },
+  "code/RNN_timeseries.qmd": {
+    "RNN_timeseries.html": "e1df6224"
+  },
+  "code/backpropagation_pytorch.qmd": {
+    "backpropagation_pytorch.html": "ea1152ba"
+  },
+  "code/datasets_pytorch.qmd": {
+    "datasets_pytorch.html": "1d2acbec"
+  },
+  "code/dataloader_pytorch.qmd": {
+    "dataloader_pytorch.html": "fecf48ca"
+  },
+  "Introduction_to_PyTorch.ipynb": {
+    "Introduction_to_PyTorch.html": "8a0d1f51"
+  },
+  "code/RNN_LM.qmd": {
+    "RNN_LM.html": "40869571"
+  },
+  "Minibatch_PyTorch.ipynb": {
+    "Minibatch_PyTorch.html": "a5a1b22c"
+  },
+  "SVD.ipynb": {
+    "SVD.html": "b9f34f51"
+  },
+  "groups/grouping.ipynb": {
+    "grouping.html": "26cf88ad"
+  },
+  "code/DataParallel.qmd": {
+    "DataParallel.html": "5561e1ec"
+  },
+  "SVD_movielens100k.ipynb": {
+    "SVD_movielens100k.html": "4e4bb2c6"
+  },
+  "code/DistributedDataParallel.qmd": {
+    "DistributedDataParallel.html": "161245a5"
+  },
+  "code/value iteration.qmd": {
+    "value iteration.html": "60d7e713"
+  },
+  "code/policy iteration.qmd": {
+    "policy iteration.html": "7cdfeb71"
+  },
+  "Batch_normalization.ipynb": {
+    "Batch_normalization.html": "2d89e66d"
+  },
+  "High_accuracy_CIFAR10.ipynb": {
+    "High_accuracy_CIFAR10.html": "d483aab7"
+  },
+  "linear_separation.ipynb": {
+    "linear_separation.html": "3c9b1f03"
+  },
+  "code/LM.ipynb": {
+    "LM.html": "47402aa8"
+  },
+  "RL/First RL example.ipynb": {
+    "First RL example.html": "c552ed36"
+  },
+  "RL/On-policy first-visit MC control (for soft policies).ipynb": {
+    "On-policy first-visit MC control (for soft policies).html": "57eaa997"
+  },
+  "week12-MDPs/value_and_policy_iteration_question.ipynb": {
+    "value_and_policy_iteration_question.html": "af2a547e"
+  },
+  "week12-MDPs/value_and_policy_iteration_question_NOISE_PROB.ipynb": {
+    "value_and_policy_iteration_question_NOISE_PROB.html": "f2f69191"
+  },
+  "session_7.ipynb": {
+    "session_7.html": "1a6eedfb"
+  },
+  "week6-RNNs+CNNs/CNNs_Questions.ipynb": {
+    "CNNs_Questions.html": "7f93d492"
+  },
+  "week7-Unsupervised/Unsupervised_questions_inclass.ipynb": {
+    "Unsupervised_questions_inclass.html": "4e1a3263"
+  },
+  "MATH60629A_Homework.ipynb": {
+    "MATH60629A_Homework.html": "e4dd275e"
+  },
+  "Session_7_Unsupervised_Learning.ipynb": {
+    "Session_7_Unsupervised_Learning.html": "f1a6438b"
+  }
+}
