@@ -8,9 +8,7 @@ on:
       - reopened
       - synchronize
       - closed
-  push:
-    branches:
-      - react
+      
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
