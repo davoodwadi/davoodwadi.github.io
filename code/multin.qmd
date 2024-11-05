@@ -1,0 +1,142 @@
+
+---
+title: ""
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  cache: true
+---
+
+
+# Multinomial Naive Bayes
+
+In machine learning, **Naive Bayes** is a probabilistic algorithm that is based on Bayes' theorem. It is commonly used for classification problems and is known for its simplicity and efficiency. In particular, **Multinomial Naive Bayes** is a variation of the Naive Bayes algorithm that is specifically designed for discrete features, such as word counts in text documents.
+
+## Bayes' Theorem
+
+To understand how Multinomial Naive Bayes works, let's first review Bayes' theorem. Bayes' theorem provides a way to calculate conditional probabilities. It can be formulated as follows:
+
+$P(A|B) = \frac{{P(B|A) P(A)}}{{P(B)}}$
+
+Where:
+
+- $P(A|B)$ is the probability of event A occurring given that event B has occurred.
+- $P(B|A)$ is the probability of event B occurring given that event A has occurred.
+- $P(A)$ is the probability of event A occurring.
+- $P(B)$ is the probability of event B occurring.
+
+## Multinomial Naive Bayes
+
+Multinomial Naive Bayes is specifically designed for problems with discrete features. It assumes that the features are generated from a multinomial distribution and that the features are conditionally independent given the class label. This assumption simplifies the conditional probability calculation and makes the algorithm computationally efficient.
+
+The formula for the multinomial distribution:
+
+$p(x_i | y) = \frac{n_{yi} + \alpha}{n_y + \alpha n}$
+
+Where
+
+- $n_{yi}$ is the number of times feature i appears in class y
+- $n_y$ is the number of time class y appears
+- $\alpha>0$ is the smoothing prior, which accounts for features not present in the learning samples and prevents zero probabilities in further computations. 
+  + Setting $\alpha=1$ is called Laplace smoothing, while $\alpha<1$ is called Lidstone smoothing.
+
+For a comrehensive analysis of Naive Bayes algorithms, visit [this link](https://scikit-learn.org/stable/modules/naive_bayes.html#multinomial-naive-bayes).
+
+Here's a step-by-step overview of how Multinomial Naive Bayes works:
+
+1. **Preparing the Dataset**: First, we need a dataset consisting of samples with features and corresponding class labels. The features should be discrete, such as word counts in text documents.
+2. **Feature Extraction**: Next, we need to extract features from the dataset. This can involve techniques like tokenization, stemming, and vectorization.
+3. **Training**: We then split the dataset into a training set and a test set. The training set is used to calculate the probabilities required for classification.
+4. **Calculating Class Prior Probabilities**: We calculate the prior probability of each class by counting the frequency of each class label in the training set.
+5. **Calculating Conditional Probabilities**: We calculate the conditional probability of each feature given the class label by counting the frequency of each feature in each class.
+6. **Classifying New Instances**: Finally, we use the calculated probabilities to classify new instances. For each new instance, we calculate the posterior probability of each class given the features and select the class with the highest probability as the predicted class.
+
+Let's now implement Multinomial Naive Bayes in Python using the **scikit-learn** library.
+
+## Implementation
+
+First, we need to import the necessary libraries:
+
+```{python}
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import numpy as np
+```
+
+Next, let's create an example dataset consisting of text documents and corresponding class labels:
+
+```{python}
+documents = ['The sun is shining',
+             'The weather is beautiful',
+             'I enjoy going for walks',
+             'I hate rainy days']
+
+labels = ['positive', 'positive', 'negative', 'negative']
+```
+
+Next, we need to split the dataset into a training set and a test set:
+
+```{python}
+doc_train, doc_test, y_train, y_test = train_test_split(documents, labels, test_size=0.2, random_state=42)
+print(doc_train)
+```
+
+Now, let's create a **CountVectorizer** object to extract features from the text documents:
+
+```{python}
+vectorizer = CountVectorizer()
+```
+
+We can then use the **fit_transform()** method of the vectorizer to transform the documents into a feature matrix:
+
+```{python}
+x_train = vectorizer.fit_transform(doc_train)
+print(x_train.todense())
+print(vectorizer.vocabulary_)
+
+i2w = {i:w for w,i in vectorizer.vocabulary_.items()}
+doc = x_train.toarray().copy().astype(str)
+for i in range(doc.shape[0]):
+  for j in range(doc.shape[1]):
+    if doc[i,j]=='1':
+      doc[i,j] = str(i2w[j])
+print(doc)
+```
+
+
+
+Now, let's create a **MultinomialNB** object and train it on the training set:
+
+```{python}
+model = MultinomialNB()
+model.fit(x_train, y_train)
+```
+
+We can then use the trained model to classify the instances in the test set:
+
+```{python}
+x_test = vectorizer.transform(doc_test)
+y_pred = model.predict(x_test)
+print(doc_test)
+print(x_test.todense())
+doc = x_test.toarray().copy().astype(str)
+for i in range(doc.shape[0]):
+  for j in range(doc.shape[1]):
+    if doc[i,j]=='1':
+      doc[i,j] = str(i2w[j])
+print(doc)
+print(y_pred)
+```
+
+Finally, let's calculate the accuracy of the model:
+
+```{python}
+accuracy = accuracy_score(y_test, y_pred)
+print('Accuracy:', accuracy)
+```
+
+We have successfully trained a Multinomial Naive Bayes classifier and used it to classify new instances.

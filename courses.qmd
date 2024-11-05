@@ -1,0 +1,278 @@
+---
+title: "MATH60629A - Machine Learning I (Fall 2023)"
+aliases:
+  - index.html
+resources:
+    - "*.pdf"
+format:
+  html:
+      toc: true
+      toc-depth: 4
+
+---
+## Course Information
+
+[Code Tutorials](#code-tutorials)       |       [Contact Information](#contact-information) 	| [Bibliographic Sources](#bibliographic-sources) 	| [Class Information](#class-information) 	| [Evaluations](#evaluations) 	| [Session Materials](sessions.qmd)
+
+### Code Tutorials
+* Week 1
+    + [Python basics](code/Session1.ipynb)
+* Week 2
+    + [Model capacity](code/Model.qmd)
+    + [Overfitting](code/overfi.qmd)
+    + [Linear regression - Part 1](code/multip1.qmd)
+    + [Linear regression - Part 2](code/multip2.qmd)
+    + [Bias/variance tradeoff](code/bias%20v.qmd)
+    + [L2 regularization](code/Improv.qmd)
+* Week 3
+    + [Linear least squares for classification](code/Linear_classification.qmd)
+    + [SVM for classification](code/SVM.qmd)
+    + [Gaussian Naive Bayes](code/naive.qmd)
+    + [Multinomial Naive Bayes](code/multin.qmd)
+    + [Precision, Recall, F1-Score](code/prf1.qmd)
+    + [Precision-Recall Curve](code/precis.qmd)
+* Week 4
+    + [Introduction to PyTorch (Part 1)](Introduction_to_PyTorch.ipynb) ([colab](https://github.com/davoodwadi/davoodwadi.github.io/blob/main/Introduction_to_PyTorch.ipynb))
+* Week 5
+    + [Introduction to PyTorch (Part 2)](code/pytorch_intro.qmd)
+    + [Dataset class in PyTorch](code/datasets_pytorch.qmd)
+    + [Batching and Dataloader in PyTorch](code/dataloader_pytorch.qmd)
+    + [Backpropagation with PyTorch](code/backpropagation_pytorch.qmd)
+    + [Linear regression with gradient descent](code/gradie2.qmd)
+    + [Classification using MLP with Pytorch](code/MLP_pytorch.qmd)
+
+* Week 6
+    + [Minibatch training in Pytorch](Minibatch_PyTorch.ipynb)
+    + [Batch Normalization](Batch_normalization.ipynb)
+    + [High accuracy: CIFAR-10](High_accuracy_CIFAR10.ipynb)
+    + [Introduction to RNNs](code/RNN_timeseries.qmd)
+    + [Time dependence](linear_separation.ipynb)
+    + [Language modeling (RNN and Transformer)](code/LM.ipynb)
+
+* Week 7
+    + [K-Means implementation (session 7 - in-class code)](session_7.ipynb)
+* Week 10
+    + [Multi-GPU training with DataParallel](code/DataParallel.qmd)
+    + [Multi-Node training with DistributedDataParallel](code/DistributedDataParallel.qmd)
+
+* Week 11
+    + [Singular Value Decomposition with PyTorch](SVD.ipynb)
+    + [Singular Value Decomposition for MovieLens100k](SVD_movielens100k.ipynb)
+* Week 12
+    + [Value iteration](code/value%20iteration.qmd)
+    + [Policy iteration](code/policy%20iteration.qmd)
+    
+
+
+### Contact Information
+::: {.callout-note appearance="minimal" collapse=true}
+
+* **Davood Wadi**
+    + Part-time Faculty Lecturer
+    + <davood.wadi@hec.ca>
+    + For office hours:
+        - [Book meeting](https://calendly.com/davoodwadi/30min) 
+
+
+* **Valérie Boucher**
+    + Assistant to Academic Activities
+    + <valerie.boucher@hec.ca>
+    + 514-340-5670
+    + Office: 4.632
+    + Availability: 
+        - Monday to Friday
+        - 8:30 a.m. to 12 p.m. and 1 to 4:00 p.m.
+
+ 
+* **Antonietta Florio**
+    + Assistant to Academic Activities
+    + <antonietta.florio@hec.ca>
+    + 514-340-6473
+    + Office: 4.632
+    + Availability:
+        - From Monday to Friday
+        - From 8 am to 12 pm and from 1 pm to 4:30 pm 
+* **Jennifer Caron**
+    + Executive Assistant
+    + <jennifer.caron@hec.ca>
+    + 514-340-6473
+    + Office: 4.632
+    + Availability:
+        - From Monday to Friday
+        - From 8 am to 12 pm and from 1 pm to 4:30 pm
+:::
+
+### Bibliographic Sources
+::: {.callout-note appearance="minimal" collapse=true}
+* The Elements of Statistical Learning: Data Mining, Inference, and Prediction
+    + [Available online](https://web.stanford.edu/~hastie/Papers/ESLII.pdf)
+
+ 
+* Goodfellow, Ian . Deep learning , MIT Press
+ISBN: 9780262035613
+    + [Available online](https://www.deeplearningbook.org)
+ 
+* Richard S. Sutton, Andrew G. Barto. A Bradford Book (2017 (in progress)). Reinforcement Learning: An Introduction Hardcover, 2nd edition ed., The MIT Press
+    + [Available online](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0ahUKEwjAx8CEmsLbAhUFjlkKHd3hBnQQFggpMAE&url=http%3A%2F%2Fincompleteideas.net%2Fbook%2Fbookdraft2017nov5.pdf&usg=AOvVaw00kFmqVbFSdkU3PTkJMJrO)
+ 
+* Murphy, Kevin (2012). Machine Learning: A Probabilistic Perspective, MIT Press
+ISBN: 9780262018029
+    + Available at the library
+ 
+* Ricci, Francesco. Recommender systems handbook, Springer
+ISBN: 148997637X
+    + Available at the library
+ 
+* Parsian, Mahmoud (2015). Data algorithms: recipes for scaling up with Hadoop and Spark, O'Reilly Media
+ISBN: 9781491906156
+    + Available at the library
+ 
+* McKinney, Wes. Python for data analysis: data wrangling with Pandas, NumPy, and IPython, O'Reilly Media
+    + Available at the library
+ 
+* Bishop, Christopher (2006). Pattern Recognition and Machine Learning, Springer-Verlag New York
+ISBN: 9780387310732
+    + Available at the library
+ 
+* Leskovec, Jurij. Mining of massive datasets, Cambridge University Press
+    + Available at the library
+ 
+* Grus, Joel. Data science from scratch, O'Reilly Media
+    + Available at the library
+ 
+* Sandy Ryza, Uri Laserson, Sean Owen, Josh Wills (2017). Advanced analytics with Spark: patterns from learning from data at scale, 2nd edition ed., O'Reilly Media
+    + Available at the library
+:::
+
+### Class Information
+::: {.callout-note appearance="minimal" collapse=false}
+* Location
+    + Building C-Ste-Cath, Room Groupe Cholette
+* Time
+    + Tuesdays, 3:30 PM - 6:30 PM EDT
+:::
+
+## Evaluations
+### [Bonus] Class participation (5%)
+
+To receive this 5% bonus point:
+
+1. Prepare for each session's code before the class starts.
+2. Log in to [deepnote](https://www.deepnote.com) with your **Full Name**.
+3. During the coding exercises in class, add your answer to the questions as a *comment*.
+
+### Homework (20%)
+* Due on 24 October 2023
+* Homework assignments are counted for 20% of your final grade.
+* The homework should be done in jupyter notebook [here](MATH60629A_Homework.ipynb) or Google Colab [here](https://colab.research.google.com/github/davoodwadi/MATH60629A.A2023-MACHINE-LEARNING-I/blob/main/MATH60629A_Homework.ipynb).
+
+* **Instructions**:
+    + The homework is due by 11:59PM EST on the due date. 
+    + Please upload a PDF version of your assignment on ZoneCours and insert the shareable link to your notebook in the same interface.
+    + Homeworks must be completed individually. 
+        - Discussion with others is okay, but you must write solutions yourself.
+    + All code used to arrive at answers is submitted along with answers.
+    + **Notes:**
+        - Please provide your code answers in the code block under each question and verbal answers in text boxes assigned in the notebook (where applicable).
+        - Please run the notebook before the submission so that the outputs are displayed.
+        - Please make sure that your results are reproducible. You may use random seeds from `random` and `numpy` packages. For `scikit-learn` modules, you may use the `random_state` argument.
+
+### Project (30%)
+The aim of this project is to allow you to learn about machine learning by trying to solve a task with it.
+
+First, select a question that can be answered using machine learning. I expect that your question will be about a model/algorithm or about an application. Then design a study that will try to answer your question. Your study must have an element of novelty. For example the novelty could be an extension or a variation of an existing algorithm or results of an existing method on a new dataset.
+
+Your study should involve reading and understanding some background material. Your study must involve running some experiments. You are free to use (or not) any of the tools or models we have seen in class.
+
+
+**Study plan**: *(1 upload per group)* Please submit a one-page summary of your proposed research question and study to ZoneCours. I will meet with each group to discuss study plans during the lecture on Week 9. I will send you a schedule the day before. We will probably only have about 15 minutes so please make sure that your study plan is clear and precise. You may also include questions that you would like us to discuss at the end of the document.
+
+**The group report**: *(1 upload per group)* Your report must contain a description of the question you are trying to answer, a clear description of the model/algorithm you are studying, a survey of related work which proper references, an empirical section that reports your results, and a conclusion that summarizes your findings and (if pertinent) highlights possible future directions of investigation. Your report should be no longer than 10 pages in length (plus references) for pairs or 13 pages (plus references) for teams of three.
+
+
+**The individual report**: *(1 upload per student)* You will also submit a brief individual report (at most one page), which will: (1) Describe the parts of the project you worked on (which machine learning methods you applied, which preprocessing steps you performed on the data, which parts of the term paper you wrote, who you worked with on what parts, etc.) and what parts of the project your teammates worked on. (2) What you learned from the project. The purpose of the individual report is to facilitate fair grading and to allow the instructor to understand well what you learned from the project.
+
+Project Report (30%)
+
+* Clarity/Relevance of problem statement and description of approach: 10%
+* Discussion of relationship to previous work and references: 4%
+* Design and execution of experiments: 10%
+* Figures/Tables/Writing: easily readable, properly labeled, 
+* informative: 5%
+* Indiviual report: 1%
+
+
+#### Project Topic
+
+Concretely, your project could take one of the following forms:
+
+* A competition on [kaggle.com](https://kaggle.com) that you try multiple ML methods on and can achieve a validation set performance in the top 100 on the leaderboard.
+* A benchmark task on [paperswithcode](https://paperswithcode.com) (e.g. [Speech Recognition](https://paperswithcode.com/task/speech-recognition)) where you try multiple methods and compare their performance.
+* A task in your own field whereby you apply multiple ML methods to solve the task.
+* An ML method that you apply to a new task (e.g. [Multi-head attention](https://paperswithcode.com/method/multi-head-attention) applied to time-series prediction)
+
+*Note*. The list above is not exhaustive. You are encouraged to be creative about the topic. Pick a topic that you find interesting and is relevant. The appropriateness of the topic will be discussed and resolved in the session on [Study plan](#timeline).
+
+#### Group Report Structure
+Your group report should read like a published paper. Similarly, your poster presentation should have a similar structure to conference posters. You might want to check out similar papers to your topic on the structure of your report (e.g. [A Comparison of Deep Learning Approach for Underwater Object Detection](https://www.jurnal.iaii.or.id/index.php/RESTI/article/view/3931/573)).
+
+Regardless of your topic, as a general rule of thumb, your Group Report should be structured as follows:
+
+1. Introduction:
+    Use this section to introduce the topic, its relevance, and a summary of the whole paper. This section should address the question, "Why the target audience of the paper should care about your work?"
+
+2. Related Work:
+    This section discusses what has been done, in prior research, on your topic. While most of the cited papers should be from academic publications, it is not uncommon to see non-academic references in papers (e.g. [stackoverflow](https://stackoverflow.com)). You might want to use academic search engines (e.g. [SemancticScholar](https://semanticscholar.org)) to find relavant papers.
+
+3. Experiments
+    This section should cover the steps you take to answer the question you posed in the Introduction. This includes data preparation, model and hyper-parameter selection, and evaluation steps.
+
+4. Results
+    In this section you present the resutls of your experiments with appropriate tables and figures.
+
+5. Conclusion
+    In your final section, you would summarize what you did in the paper, acknowledge the limitations of your work (All papers have this; no work is perfect.), suggest future research directions to address your limitations.
+
+#### Timeline
+
+* Team Registration, due: **October 1**. Fill this [form](https://forms.gle/DkNsrh8xpYyU1kAh6).
+* Study plan, due: **October 28** (by the end of the day EDT).
+* Handing in: Through *ZoneCours*
+* Project meeting, **October 31**
+* Project Presentation, due: **December 1**. Upload the PDF of your poster/slides to *ZoneCours*.
+* In-class Presentation, on **December 5**.
+* Final individual report, due: **December 15**, 2023 (by the end of the day EDT).
+    + Handing in: Through *ZoneCours* (per each team member).
+
+
+### Project Presentation (10%)
+Make a poster that describes your project [**You do not need to print your poster**]. You can think of a poster as supporting material for your oral presentation (in that way it is similar to slides). It could also follow a similar structure: begin by motivating your work, then (quickly) highlight related work, talk in depth about your solution, then go into results (pictures and tables are good tools for that), finally conclude and perhaps mention one or two ideas for future work.
+
+* Project Presentation (10%)
+    + Clarity of presentation: 3%
+    + Slide or Poster quality: 2%
+    + Correctness: 2%
+    + Answers to questions: 3%
+
+
+
+### Final Exam (30%)
++ Dec 14, 2023
++ 9:00 am - 12:00 pm EDT
++ Location to be communicated
+
+[Past exam - Fall 2018](exam_80629_A18.pdf)
+
+### Capsule Quizzes (10%)
+* In-class quizzes of the capsules
+* Capsule quizzes are counted for 10% of your final grade.
+* Time to complete each quiz is 10 minutes.
+    + Quiz 1, **Sep 20, 2023 11:30 AM to Sep 22, 2023 11:30 AM**.
+    + Quiz 2, **Sep 27, 2023 11:30 AM to Sep 29, 2023 11:30 AM**.
+    + Quiz 3 - CNNs and RNNs, **Nov 6, 2023 12:00 AM to Nov 8, 2023 12:00 AM**.
+    + Quiz 4 - Unsupervised Learning, **Nov 13, 2023 12:00 AM to Nov 15, 2023 12:00 AM**.
+    + Quiz 5 - Parallel Computing, **Nov 20, 2023 12:00 AM to Nov 22, 2023 12:00 AM**.
+    + Quiz 6 - Reinforcement Learning, **Nov 27, 2023 12:00 AM to Nov 29, 2023 12:00 AM**.
+
+## In-class Tools
+* [Cups pacing webapp](https://ml1-pace.onrender.com/ml1)
