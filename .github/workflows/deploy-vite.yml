@@ -1,34 +1,53 @@
-name: Deploy to GitHub Pages react-main
+name: Deploy Vite
 
 on:
   push:
     branches:
       - react-main
+  pull_request:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
 
-      - name: Build Project
+      - name: Build project
         run: npm run build
 
-      - name: Setup Directory for Deployment
-        run: |
-          mkdir -p ./dist/react      # Create a subdirectory for your react project
-          cp -R ./dist/* ./dist/react # Copy build outputs to the new directory
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/react # Point to the subdirectory
+          name: production-files
+          path: ./dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/react-main'
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+      - name: Display structure of downloaded files
+        run: ls -R your/destination/dir
+
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./dist
