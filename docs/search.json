@@ -1020,5 +1020,33 @@
     "title": "Davood Wadi",
     "section": "Automatic Differentiation",
     "text": "Automatic Differentiation\nOne of the key advantages of PyTorch over Numpy is its ability to perform automatic differentiation. It makes training deep learning models much easier by computing gradients automatically.\n\n# Enable automatic differentiation in PyTorch\ntensor = torch.tensor([[1., 2., 3.], [4., 5., 6.]], requires_grad=True)\n\n# Perform a forward operation\noutput = tensor.sum()\n\n# Perform automatic differentiation\noutput.backward()\n\n# Access the gradients\nprint(tensor.grad)\n\ntensor([[1., 1., 1.],\n        [1., 1., 1.]])\n\n\nThe requires_grad=True argument enables the computation of gradients for the tensor. The output.backward() function computes the gradients of output with respect to all tensors that have requires_grad=True. Finally, tensor.grad retrieves the gradients.\nThese are some of the similarities between PyTorch and Numpy. Understanding these similarities can make it easier for beginners to transition from Numpy to PyTorch."
+  },
+  {
+    "objectID": "cmpt641/test.html#discussion-question",
+    "href": "cmpt641/test.html#discussion-question",
+    "title": "Foundations of Digital Transformation",
+    "section": "Discussion Question",
+    "text": "Discussion Question\nWhat do you think is the most significant barrier to digital transformation in organizations today, and how can it be overcome?"
+  },
+  {
+    "objectID": "cmpt641/test.html#ddd",
+    "href": "cmpt641/test.html#ddd",
+    "title": "Foundations of Digital Transformation",
+    "section": "DDD",
+    "text": "DDD"
+  },
+  {
+    "objectID": "cmpt641/test.html#ddd-1",
+    "href": "cmpt641/test.html#ddd-1",
+    "title": "Foundations of Digital Transformation",
+    "section": "DDD",
+    "text": "DDD\n\nDigitization refers to converting analog information into digital format.\n\nIt involves the use of technology to improve efficiency and accuracy.\n\nDigital transformation goes beyond digitization by rethinking business models and processes.\n\nIt focuses on enhancing customer experiences and creating new value propositions.\n\nSuccessful digital transformation requires a strategic vision and leadership commitment."
+  },
+  {
+    "objectID": "cmpt641/test.html#discussion-question-1",
+    "href": "cmpt641/test.html#discussion-question-1",
+    "title": "Foundations of Digital Transformation",
+    "section": "Discussion Question",
+    "text": "Discussion Question\nHow can organizations ensure that their digitization efforts align with their overall digital transformation strategy?"
   }
 ]
