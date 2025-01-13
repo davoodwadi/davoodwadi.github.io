@@ -3,6 +3,7 @@ title: "Foundations of Digital Transformation"
 author: "Dr. Davood Wadi"
 format:
   revealjs:
+    self-contained: true
     smaller: true
     slide-number: true
     scrollable: true
