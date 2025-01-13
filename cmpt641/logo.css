@@ -1,0 +1,25 @@
+.reveal .slide-logo {
+    display: block;
+    position: fixed;
+    top: 5px;          /* Keep the logo 5 pixels from the top */
+    right: 12px;       /* Position the logo 12 pixels from the right */
+    bottom: unset !important; /* Remove any bottom positioning */
+    left: unset !important;   /* Remove any left positioning */
+    height: 50px !important;  /* Set the height to 30 pixels */
+    width: 50px !important;    /* Corrected width to 10 pixels */
+    max-width: unset !important; /* Remove any max-width */
+    max-height: unset !important; /* Remove any max-height */
+}
+
+.reveal h2 {
+    /* background-color: (255,0,0); */
+    color: #cb1f30;
+    
+}
+
+.reveal h1 {
+    /* background-color: (255,0,0); */
+    
+    color: #cb1f30;
+    
+}

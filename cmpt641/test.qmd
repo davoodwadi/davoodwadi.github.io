@@ -1,0 +1,42 @@
+---
+title: "Foundations of Digital Transformation"
+author: "Dr. Davood Wadi"
+format:
+  revealjs:
+    smaller: true
+    slide-number: true
+    scrollable: true
+    center-title-slide: false
+    logo: ucw.png
+    css: logo.css
+---
+
+# Foundations of Digital Transformation
+
+- Digital transformation is the integration of digital technology into all areas of a business.  
+- It fundamentally changes how businesses operate and deliver value to customers.  
+- It requires a cultural shift that challenges the status quo.  
+- Technology is a key enabler, but people and processes are equally important.  
+- Data-driven decision-making is essential for successful transformation.  
+
+
+## Discussion Question  
+What do you think is the most significant barrier to digital transformation in organizations today, and how can it be overcome?
+
+
+# Digitization to Digital Transformation
+
+## DDD
+
+![](dt.png)
+
+## DDD
+
+- Digitization refers to converting analog information into digital format.  
+- It involves the use of technology to improve efficiency and accuracy.  
+- Digital transformation goes beyond digitization by rethinking business models and processes.  
+- It focuses on enhancing customer experiences and creating new value propositions.  
+- Successful digital transformation requires a strategic vision and leadership commitment.  
+
+## Discussion Question  
+How can organizations ensure that their digitization efforts align with their overall digital transformation strategy?
