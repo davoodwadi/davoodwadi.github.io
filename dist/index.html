@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Davood Wadi</title>
+    <!-- <link rel="stylesheet" href="tailwind.css" /> -->
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <!-- navbar start -->
+    <nav class="fixed top-0 z-50 w-full bg-black">
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <!-- Mobile menu button-->
+            <button
+              type="button"
+              class="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="absolute -inset-0.5"></span>
+              <span class="sr-only">Open main menu</span>
+              <!--
+                  Icon when menu is closed.
+      
+                  Menu open: "hidden", Menu closed: "block"
+                -->
+              <svg
+                class="block h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+              <!--
+                  Icon when menu is open.
+      
+                  Menu open: "block", Menu closed: "hidden"
+                -->
+              <svg
+                class="hidden h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+          >
+            <div class="flex flex-shrink-0 items-center">
+              <img
+                class="h-8 w-auto"
+                src="/assets/intelchain-CtAaAHX2.png"
+                alt="intelChain.io"
+              />
+            </div>
+            <div class="hidden sm:ml-6 sm:block">
+              <div class="flex space-x-4" id="menu-items">
+                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                <a
+                  href="#profile"
+                  class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                  aria-current="page"
+                  >Profile</a
+                >
+                <a
+                  href="#projects"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white"
+                  >Projects</a
+                >
+                <a
+                  href="#education"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white"
+                  >Education</a
+                >
+                <a
+                  href="#research"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white"
+                  >Research</a
+                >
+                <a
+                  href="#service"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white"
+                  >Service</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu, show/hide based on menu state. -->
+      <div class="sm:hidden" id="mobile-menu">
+        <div class="hidden space-y-1 px-2 pb-3 pt-2" id="mobile-menu-items">
+          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+          <a
+            href="#profile"
+            class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+            aria-current="page"
+            >Profile</a
+          >
+          <a
+            href="#projects"
+            class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+            >Projects</a
+          >
+          <a
+            href="#education"
+            class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+            >Education</a
+          >
+          <a
+            href="#research"
+            class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+            >Research</a
+          >
+          <a
+            href="#service"
+            class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white"
+            >Service</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- navbar end -->
+    <script type="module" crossorigin src="/assets/index-DgxnBZVO.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Na8FTumS.css">
+  </head>
+  <body class="bg-gray-100">
+    <div class="h-screen snap-y snap-proximity scroll-smooth">
+      <div
+        id="profile"
+        class="flex h-screen shrink-0 snap-start items-center justify-center bg-gray-900 text-white"
+      >
+        <div
+          id="profileContent"
+          class="flex flex-col items-center text-center md:flex-row"
+        >
+          <img
+            src="/assets/photoMainLargeSquare-WoBGs37m.png"
+            alt="Davood Wadi"
+            class="h-auto w-52 rounded-full border-2 border-gray-300 lg:h-auto lg:w-96"
+          />
+          <div class="flex flex-col items-center">
+            <h1 class="mx-auto px-6 text-4xl font-bold lg:text-6xl">
+              Davood Wadi
+            </h1>
+            <p class="mx-auto px-6 py-2 text-xl lg:text-2xl">
+              AI Researcher, Educator, Enthusiast
+            </p>
+            <div
+              id="buttonContainer"
+              class="flex w-44 flex-col items-center justify-center"
+            >
+              <button
+                class="mt-2 w-full rounded-full border-2 border-gray-900 bg-white p-2 text-gray-900 hover:bg-gray-950 hover:text-gray-50"
+              >
+                Contact Info
+              </button>
+              <div class="m-2 flex w-full justify-between px-2">
+                <button
+                  id="linkedinButton"
+                  onclick="window.location.href='https://www.linkedin.com/in/davoodwadi/';"
+                  class="rounded-full bg-gray-900 p-2 font-semibold text-white"
+                >
+                  <svg
+                    class="h-5 w-5 fill-current"
+                    role="img"
+                    viewBox="0 0 256 256"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g>
+                      <path
+                        d="M218.123122,218.127392 L180.191928,218.127392 L180.191928,158.724263 C180.191928,144.559023 179.939053,126.323993 160.463756,126.323993 C140.707926,126.323993 137.685284,141.757585 137.685284,157.692986 L137.685284,218.123441 L99.7540894,218.123441 L99.7540894,95.9665207 L136.168036,95.9665207 L136.168036,112.660562 L136.677736,112.660562 C144.102746,99.9650027 157.908637,92.3824528 172.605689,92.9280076 C211.050535,92.9280076 218.138927,118.216023 218.138927,151.114151 L218.123122,218.127392 Z M56.9550587,79.2685282 C44.7981969,79.2707099 34.9413443,69.4171797 34.9391618,57.260052 C34.93698,45.1029244 44.7902948,35.2458562 56.9471566,35.2436736 C69.1040185,35.2414916 78.9608713,45.0950217 78.963054,57.2521493 C78.9641017,63.090208 76.6459976,68.6895714 72.5186979,72.8184433 C68.3913982,76.9473153 62.7929898,79.26748 56.9550587,79.2685282 M75.9206558,218.127392 L37.94995,218.127392 L37.94995,95.9665207 L75.9206558,95.9665207 L75.9206558,218.127392 Z M237.033403,0.0182577091 L18.8895249,0.0182577091 C8.57959469,-0.0980923971 0.124827038,8.16056231 -0.001,18.4706066 L-0.001,237.524091 C0.120519052,247.839103 8.57460631,256.105934 18.8895249,255.9977 L237.033403,255.9977 C247.368728,256.125818 255.855922,247.859464 255.999,237.524091 L255.999,18.4548016 C255.851624,8.12438979 247.363742,-0.133792868 237.033403,0.000790807055"
+                      ></path>
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  id="githubButton"
+                  onclick="window.location.href='https://github.com/davoodwadi/';"
+                  class="rounded-full bg-gray-900 p-2 font-semibold text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    role="img"
+                    class="w-5"
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 24 24"
+                  >
+                    <g fill="none">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                        fill="currentColor"
+                      />
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  id="youtubeButton"
+                  onclick="window.location.href='https://www.youtube.com/@DavoodWadi';"
+                  class="rounded-full bg-gray-900 p-2 font-semibold text-white"
+                >
+                  <svg
+                    class="h-5 w-5 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="projects"
+        class="relative flex min-h-screen snap-start flex-col items-start justify-between bg-gray-900 pb-12 text-white md:flex-row md:overflow-y-auto"
+      >
+        <div class="top-28 z-40 mx-2 py-10 text-center md:sticky md:py-48">
+          <h1 class="mb-4 text-4xl font-bold">Projects</h1>
+        </div>
+        <div class="mx-4 pb-24 pt-4 md:mt-28 md:h-screen md:pt-28">
+          <!--  timeline -->
+
+          <ol
+            class="relative border-s border-gray-200 pb-16 dark:border-gray-700"
+          >
+            <li class="mb-10 ms-4">
+              <div
+                class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700"
+              ></div>
+              <time
+                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >August 2024</time
+              >
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                <span class="font-mono font-bold">LLM-Exceptions</span> for
+                IPython
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg"
+                  alt="Jupyter"
+                  class="inline h-5 w-5 align-middle"
+                />
+              </h3>
+              <p
+                class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"
+              >
+                In addition to the error and stack trace, get explanations and
+                actionable steps to solve your errors directly in Jupyter
+                Notebook/Google Colab. This python package gives the input and
+                the error stack to an LLM to give you detailed explanations for
+                debugging, right inside the output of the cell.
+              </p>
+
+              <a
+                href="https://github.com/davoodwadi/llm_exceptions"
+                class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                >Install
+                <svg
+                  class="ms-2 h-3 w-3 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  /></svg
+              ></a>
+            </li>
+            <li class="mb-4 ms-4">
+              <div
+                class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700"
+              ></div>
+              <time
+                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >July 2024</time
+              >
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                <span class="font-mono font-bold">Spreed.chat</span>
+
+                <img
+                  src="https://raw.githubusercontent.com/davoodwadi/jsChat-next/refs/heads/main/jschat-next/public/spreed%20(Dark).svg"
+                  alt="spreed.chat"
+                  class="inline h-5 w-5 align-middle"
+                />
+                was conceptualized
+              </h3>
+              <p
+                class="mb-2 text-base font-normal text-gray-500 dark:text-gray-400"
+              >
+                Alternate reality chatbot, where you can ask multiple questions
+                to the same LLM response. Each question branches out into its
+                own conversation history. You end up with a mind-map of the
+                entire topic you wish to explore.
+              </p>
+              <p class="mb-2 text-base font-normal text-gray-300">
+                Frameworks used:
+              </p>
+              <ul class="mb-4 text-gray-300">
+                <li class="mb-2 ms-4">
+                  <strong
+                    >Node.js
+                    <img
+                      src="https://nodejs.org/static/logos/nodejsStackedLight.svg"
+                      alt="Node.js Logo"
+                      class="mx-2 inline h-5 align-middle"
+                  /></strong>
+                  <br />
+                  Used as the runtime environment for the server-side
+                  application and building the RESTful API and handling backend
+                  operations.
+                </li>
+                <li class="mb-2 ms-4">
+                  <strong
+                    >React
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                      class="mx-2 inline h-5 align-middle"
+                  /></strong>
+                  <br />
+                  Used to develop the frontend of the application and branching
+                  logic.
+                </li>
+                <li class="mb-2 ms-4">
+                  <strong
+                    >MongoDB
+                    <img
+                      src="https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg"
+                      class="mx-2 inline h-5 align-middle"
+                  /></strong>
+                  <br />
+                  For storing user conversations and managing user data.
+                </li>
+                <li class="mb-2 ms-4">
+                  <strong
+                    >Redis
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Redis_logo.svg/2560px-Redis_logo.svg.png"
+                      class="mx-2 inline h-5 align-middle"
+                  /></strong>
+                  <br />
+                  For storing user sessions.
+                </li>
+              </ul>
+
+              <a
+                href="https://spreed.chat"
+                class="mb-4 inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                >Check out the beta version
+                <img
+                  src="https://raw.githubusercontent.com/davoodwadi/jsChat-next/refs/heads/main/jschat-next/public/spreed%20(Dark).svg"
+                  alt="Description of SVG"
+                  class="mx-2 inline h-5 w-5 align-middle"
+                />
+              </a>
+            </li>
+
+            <li class="mb-2 ms-4">
+              <div
+                class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700"
+              ></div>
+              <time
+                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >February 2024</time
+              >
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                Towards End-to-end Generation with Multi-agent Adversarial LLMs
+              </h3>
+              <p
+                class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"
+              >
+                Created the idea of having multiple LLMs going back and forth on
+                a topic to improve each other.
+              </p>
+              <a
+                href="https://huggingface.co/spaces/davoodwadi/MultiAgentAdversary"
+                class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                >Check it out!
+                <svg
+                  class="ms-2 h-3 w-3 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  /></svg
+              ></a>
+            </li>
+            <li class="mb-2 ms-4">
+              <div
+                class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700"
+              ></div>
+              <time
+                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >November 2024</time
+              >
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                Gradient Descent Visual Demo
+              </h3>
+              <p
+                class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"
+              >
+                Visual gradient descent algorithm for <span>\((x-5)^2\)</span>,
+                <span>\(sin(x) \times 10 + (x-5)^2\)</span>, and a Saddle
+                function <span>\(cos(x) \times 10 + (x-5)^2\)</span>.
+              </p>
+              <a
+                href="https://gradient-descent-react.netlify.app/"
+                class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                >Check it out!
+                <svg
+                  class="ms-2 h-3 w-3 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  /></svg
+              ></a>
+            </li>
+          </ol>
+          <!--  chat.intelChain.io timeline -->
+        </div>
+      </div>
+      <div
+        id="education"
+        class="mx-4 flex snap-start flex-col items-start bg-gray-100 text-gray-800 lg:h-screen lg:flex-row lg:items-center lg:justify-around lg:overflow-x-auto"
+      >
+        <div class="mb-10 lg:mb-0 lg:text-center">
+          <h1
+            class="top-16 mb-4 mt-16 pt-16 text-5xl font-bold text-gray-900 lg:top-0 lg:mt-0 lg:pt-0"
+          >
+            Education
+          </h1>
+        </div>
+        <div
+          class="p-12 shadow-lg lg:rounded-lg lg:border-4 lg:border-gray-800 lg:bg-gray-900 lg:text-center lg:hover:bg-black"
+        >
+          <h1 class="mb-4 text-4xl font-bold text-gray-900 lg:text-white">
+            Ph.D. in Marketing
+          </h1>
+          <h2
+            class="mb-4 text-2xl font-semibold text-gray-700 lg:text-gray-200"
+          >
+            Specialization in Artificial Intelligence
+          </h2>
+          <p class="mx-auto max-w-xl text-lg text-gray-500 lg:text-gray-400">
+            HEC Montréal - 2023
+          </p>
+
+          <!-- Achievements Section -->
+          <div class="mt-6 text-left">
+            <ul
+              class="list-inside list-disc text-lg text-gray-500 lg:text-gray-200"
+            >
+              <li>Best 2023 Ph.D. Thesis Award Finalist</li>
+              <li>IVADO PhD Excellence Scholarship</li>
+              <li>IVADO Scientist in Residence Scholarship</li>
+              <li>2019 Saskatchewan Innovation & Opportunity Scholarship</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        id="research"
+        class="relative flex min-h-screen snap-start flex-col bg-gray-900 py-28 text-white md:flex-row md:justify-around md:overflow-y-auto"
+      >
+        <div class="top-1/4 z-40 mx-2 text-center md:sticky">
+          <h1 class="top-16 mb-4 pt-16 text-5xl font-bold text-white">
+            Research
+          </h1>
+          <p class="mx-auto mb-6 max-w-xl pb-28 text-lg">
+            Exploring consumer behavior through artificial intelligence.
+          </p>
+        </div>
+        <div class="mx-4 pb-24 pt-4 md:h-screen">
+          <div class="mb-10">
+            <!-- Research Topics Section -->
+            <h2 class="mb-3 text-3xl font-semibold">Research Topics</h2>
+            <ul class="mx-auto max-w-xl list-inside list-disc text-lg">
+              <li>Behavioral Analysis of Large Language Models (LLMs)</li>
+              <li>Non-convex Optimization</li>
+              <li>Altruism, Prosocial Behavior, and Financial Incentives</li>
+            </ul>
+          </div>
+          <div class="mb-10">
+            <!-- Marketing Publications Section -->
+            <h2 class="mb-3 text-2xl font-semibold">Research in Marketing</h2>
+            <ul class="mx-auto max-w-xl list-none text-lg">
+              <li class="my-2">
+                <p>
+                  The Interplay of Altruism and Financial Incentives: Maximizing
+                  Online Reviews through Effective Messaging
+                  <span class="text-gray-400"
+                    >(Journal of Interactive Marketing — 3rd Review Round)</span
+                  >
+                </p>
+              </li>
+              <li class="my-2">
+                <p>
+                  Be careful what you pay for: The effect of performance
+                  contingent incentives on online product reviews
+                  <span class="text-gray-400"
+                    >(Journal of Retailing — 2nd Review Round)</span
+                  >
+                </p>
+              </li>
+            </ul>
+          </div>
+          <!-- Consumer behavior Publications Section -->
+          <div class="mb-10">
+            <h2 class="mb-3 text-2xl font-semibold">
+              Research in Consumer Behavior
+            </h2>
+            <ul class="mx-auto max-w-xl list-none text-lg">
+              <li class="my-2">
+                <p class="mb-3">
+                  Prosocial LLM Chatbots: How Pure Altruism Reinforcement
+                  Enhances Chatbot Trust
+                  <span class="text-gray-400">(2024)</span>
+                </p>
+                <a
+                  href="https://huggingface.co/spaces/davoodwadi/ProsocialChatbot"
+                  class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                  >HuggingFace Space
+                  <svg
+                    class="ms-2 h-3 w-3 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    /></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- AI Publications Section -->
+          <div class="mb-10">
+            <h2 class="mb-3 text-2xl font-semibold">Research in AI/ML</h2>
+            <ul class="mx-auto max-w-xl list-none text-lg">
+              <li class="my-6">
+                <p>
+                  Read the signs: Towards Invariance to Gradient Descent's
+                  Hyperparameter Values
+                </p>
+                <p class="mb-3 text-gray-400">
+                  ICML 2022 - Phase I Accept (2022)
+                </p>
+                <a
+                  href="https://arxiv.org/abs/2301.10133"
+                  class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                  >arxiv
+                  <svg
+                    class="ms-2 h-3 w-3 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    /></svg
+                ></a>
+              </li>
+              <li class="my-6">
+                <p>
+                  LabSynth: Label Synthesis Algorithm for AI Domains with
+                  Limited Labelled Data
+                </p>
+                <p class="mb-3 text-gray-400">
+                  Text Block Segmentation Competition ICPR2020 (2nd place
+                  overall; 2022)
+                </p>
+                <a
+                  href="https://www.mathematik.uni-rostock.de/citlab/projects/text-block-segmentation-competition-icpr2020/results/"
+                  class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                  >Competition Ranking
+                  <svg
+                    class="ms-2 h-3 w-3 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    /></svg
+                ></a>
+                <a
+                  href="https://github.com/davoodwadi/ICPR2020-TextBlockSegment"
+                  class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                  >Code
+                  <svg
+                    class="ms-2 h-3 w-3 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9"
+                    /></svg
+                ></a>
+              </li>
+              <li class="my-6">
+                <p>
+                  I2D: Alternative Representation of Eye-Tracking Stream Data as
+                  2D Images
+                </p>
+              </li>
+              <li class="my-6">
+                <p>AOIgen: Automatic Website Area of Interest Detection</p>
+              </li>
+              <li class="my-6">
+                <p>
+                  Cognition-Based Auto-Adaptive Website User Interface in Real
+                  Time Winner of 2020 IVADO PhD Excellence Scholarship
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Research Projects Section -->
+          <h2 class="mb-3 mt-6 text-3xl font-semibold">Research Projects</h2>
+          <ul class="mx-auto max-w-xl list-inside list-disc text-lg">
+            <li>Developing a predictive model for customer retention.</li>
+            <li>Examining AI-driven marketing strategies in e-commerce.</li>
+            <li>Collaborating on sustainability marketing initiatives.</li>
+          </ul>
+          <div class="pb-24"></div>
+        </div>
+      </div>
+
+      <div
+        id="service"
+        class="relative flex min-h-screen snap-start flex-col items-center justify-between bg-white py-24 pb-12 text-gray-900 lg:m-0 lg:h-screen lg:flex-row lg:items-center lg:justify-around lg:justify-items-center lg:p-0"
+      >
+        <div
+          class="top-1/4 z-40 mx-2 pb-10 text-center lg:sticky lg:top-0 lg:pb-0"
+        >
+          <h1 class="mb-4 text-4xl font-bold">Service</h1>
+        </div>
+        <div class="mx-4 flex items-center pb-10 pt-4 lg:h-screen">
+          <!--  service timeline -->
+          <ol class="relative border-s border-gray-200 pb-16">
+            <li class="mb-10 ms-4">
+              <div
+                class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200"
+              ></div>
+              <time
+                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >November 2024</time
+              >
+              <h3 class="text-lg font-semibold text-gray-900">Reviewer</h3>
+              <p class="pb-2 text-base font-normal text-gray-500">
+                28th International Conference on Artificial Intelligence and
+                Statistics (AISTATS 2025)
+              </p>
+              <a
+                href="https://aistats.org/aistats2025/"
+                class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                >Link
+                <svg
+                  class="ms-2 h-3 w-3 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  /></svg
+              ></a>
+            </li>
+            <li class="mb-10 ms-4">
+              <div
+                class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200"
+              ></div>
+              <time
+                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >July 2024</time
+              >
+              <h3 class="text-lg font-semibold text-gray-900">Reviewer</h3>
+              <p class="pb-2 text-base font-normal text-gray-500">
+                NeurIPS 2024 (Gradient Descent Optimization, LLM, Vector
+                Symbolic Architecture)
+              </p>
+              <a
+                href="https://neurips.cc/Conferences/2024"
+                class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                >Link
+                <svg
+                  class="ms-2 h-3 w-3 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  /></svg
+              ></a>
+            </li>
+            <li class="mb-10 ms-4">
+              <div
+                class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700"
+              ></div>
+              <time
+                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >July 2022</time
+              >
+              <h3 class="text-lg font-semibold text-gray-900">Reviewer</h3>
+              <p class="pb-2 text-base font-normal text-gray-500">
+                NeurIPS 2022 (Gradient Descent Optimization)
+              </p>
+              <a
+                href="https://neurips.cc/Conferences/2022"
+                class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                >Link
+                <svg
+                  class="ms-2 h-3 w-3 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  /></svg
+              ></a>
+            </li>
+          </ol>
+          <!--  timeline end -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
